@@ -16,7 +16,6 @@ use Org\Gucken\Events\Annotations as Events,
  */
 class Zaz extends AbstractEventSource implements EventSourceInterface {
            
-
     
     /**
      * @return \Type\Record\Collection
