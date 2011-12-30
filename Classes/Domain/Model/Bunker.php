@@ -76,7 +76,7 @@ class Bunker extends AbstractEventSource implements EventSourceInterface {
                 return new \Type\Record(array(
                     'title'         => $xml->xpath('./following-sibling::dd[1]/strong//text()')->asString()->join()->normalizeSpace(),
                     'short'         => $xml->xpath('./following-sibling::dd[1]/text()')->asString()->join()->normalizeSpace(),
-                    'date'          => $xml->text()->asDate('%a%d.\s+%b%H:%M', null, 0, 0, time() - 14 * DAY),
+                    'date'          => $xml->text()->asDate('%a\s*%d.\s+%b%H:%M', null, 0, 0, time() - 14 * DAY),
                     'location'      => $self->getLocation(),
                     'type'          => $self->getType(),
                     'description'   => $description,
