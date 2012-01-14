@@ -67,42 +67,58 @@ class Forum extends AbstractEventSource implements EventSourceInterface {
             ->css('td.clSlideMenu1')
 			->xpath('//table/tr/td/table/tr[2]/td/table/tr[td[2][@class="textwb"]]')
             ->asXml()->map(function (\Type\Xml $xml) use ($self){
-				
-                $imageInText = $xml->xpath('./td[3]/img')->asXml()->first();
-
-                if ($imageInText) {
-                    return $self->getRecord(
-                            $xml,
-                            $imageInText->xpath('./preceding-sibling::text()'),
-                            $xml->xpath('./following-sibling::tr[1]/td[2]'),
-                            $xml->xpath('./td[3]/img'),
-                            $imageInText->xpath('./following-sibling::text()')
-                    );
-                } else {
-                    return $self->getRecord(
-                            $xml,
-                            $xml->xpath('./td[3]'),
-                            $xml->xpath('./following-sibling::tr[td/@class="textwb"][1]'),
-                            $xml->xpath('./following-sibling::tr[1]/td[1]//img'),
-                            $xml->xpath('./following-sibling::tr[1]/td[2]')
-                    );
-                }
+				$hasImageSideBar = $xml->xpath('./following-sibling::tr[1]/td[1]/table')->asXml()->first();
+				if ($hasImageSideBar) {
+					return $self->convertEventWithConcertLayout($xml);
+				} else {
+					return $self->convertEventWithPartyLayout($xml);
+				}
             });
     }
     
-    public function getRecord($xml, $title, $time, $image, $description) {
-        return new \Type\Record(array(
-            'title'       => $title->asString()->join(' ')->normalizeSpace(),
-            'time'        => $time->asString()->first() ? $time->asString()->first()->normalizeSpace() : '',
-            'image'       => $image->asUrl()->first(),
-            'description' => $description->asString()->join(' ')->normalizeSpace(),
-            'type'        => $this->getType(),
-            'date'        => $xml->xpath('./td[2]')->asString()->first()->asDate('%a,\s*%d.%m.','23:00'),            
-            'location'    => $this->getLocation(),
-            'url'         => $xml->getBaseUri(),
-        ));
-    }
+	/**
+	 *
+	 * @param \Type\Xml $xml 
+	 */
+	public function convertEventWithPartyLayout(Xml $xml) {
+		$title = $xml->xpath('td[3]/text()[1]')->asString()->first();
+		$date = $xml->xpath('./td[2]')->asString()->first();
+		$short = $xml->xpath('td[3]/text()')->asString()->join("\n")->remove($title)->normalizeSpace();
+		
+		return new \Type\Record(array(
+			'title' => $title->normalizeSpace(),
+			'image' => $xml->xpath('td[3]/img/@src')->asUrl()->first(),
+			'short' => $short,
+			'date' => $date->append($short)->asDate('%a,\s*%d.%m.(.*?%H((\s*Uhr)|([.:]%M)))?','23:00'),
+			'url' => $xml->getBaseUri(),
+			'type' => $this->getType(),
+			'location' => $this->getLocation(),			
+		));
+	} 
 	
+	public function convertEventWithConcertLayout(Xml $xml) {
+		$title = $xml->xpath('td[3]/text()')->asString()->join(', ')->normalizeSpace();
+		$date = $xml->xpath('./td[2]')->asString()->first();
+		$infoLine = $xml->xpath('./following-sibling::tr[td[3][contains(text(),"Beginn")]][1]/td[3]')->asString()->first()->normalizeSpace();
+		/* @var $infoLine \Type\String */
+		
+		$boxOffice = $infoLine->eachMatch('#(AK|Abendkasse)[\s:]+([\d,.-]+)#','$2')->first();
+		$preSelling = $infoLine->eachMatch('#(VVK|Vorverkauf)[\s:]+([\d,.-]+)#','$2')->first();
+		
+		return new \Type\Record(array(
+			'title' => $title->normalizeSpace(),
+			'image' => $xml->xpath('./following-sibling::tr[1]/td[1]/table//img/@src')->asUrl()->first(),
+			'short'		=> $infoLine,
+			'description' => $xml->xpath('./following-sibling::tr[1]/td[@class="textw"]')->asXml()->first()->formattedText()->removeExcessiveEmptyLines(),
+			'date' => $date->append($infoLine->substringAfter('Beginn:'))->asDate('%a,\s*%d.%m.(.*?%H((\s*Uhr)|([.:]%M)))?','21:00'),
+			'url' => $xml->getBaseUri(),
+			'cost_box_office' => is($boxOffice) ? $boxOffice->asNumber() : null,
+			'cost_pre_selling' => is($preSelling) ? $preSelling->asNumber() : null,
+			
+			'type' => $this->getType(),
+			'location' => $this->getLocation(),			
+		));				
+	} 
 }
 
 ?>
