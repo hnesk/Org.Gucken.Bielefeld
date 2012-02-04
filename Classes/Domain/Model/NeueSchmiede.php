@@ -55,8 +55,8 @@ class NeueSchmiede extends AbstractEventSource implements EventSourceInterface {
 		return new \Type\Record(array(
 				'title' => $title,
 				'date' => $header->asDate('%d.%m.%Y\s+%H:%M'),
-				'location' => $self->getLocation(),
-				'type' => $self->getTypeRepository()->findOneByKeywordString($type . ' ' . $title),
+				'location' => $this->getLocation(),
+				'type' => $this->getTypeRepository()->findOneByKeywordString($type . ' ' . $title),
 				'short' => $type,
 				'description' => $xml->css('div .fliesstext')->asString()->join("\n")->normalizeSpace()->substringAfter($title)->trim(),
 				'proof' => $xml,
