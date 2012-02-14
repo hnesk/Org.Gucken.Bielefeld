@@ -1,0 +1,18 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<f:if condition="{list}">
+	<f:then>
+		<a rel="popover" title="{title}" href="#errors_{e:objectHash(object:list)}">
+			<f:count subject="{list}" />
+		</a>
+		<div class="bt_tooltip" id="errors_{e:objectHash(object:list)}">
+			<ul>
+				<f:for each="{list}" as="line">
+					<li><pre>{line}</pre></li>
+				</f:for>
+			</ul>
+		</div>
+	</f:then>
+	<f:else>
+		<f:count subject="{list}" />
+	</f:else>
+</f:if>

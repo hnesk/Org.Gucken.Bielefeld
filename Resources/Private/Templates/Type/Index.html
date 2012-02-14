@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Admin.html" />
+
+
+<f:section name="content">
+    <h2><i class="icon-tags"></i> Veranstaltungstypen</h2>
+	<p><f:link.action action="add"><i class="icon-plus-sign"></i> Veranstaltungstyp hinzufügen</f:link.action></p>
+
+    <table class="typelist table table-striped table-condensed">
+        <thead>
+            <tr>
+				<th>Aktionen</th>
+                <th>Name</th>
+				<th>Plural</th>
+                <th>Keywords</th>
+            </tr>
+        </thead>
+        <tbody>
+			<f:for each="{types}" as="type">
+					<tr>
+						<td class="actions">
+							<div class="btn-group">
+								<f:link.action class="btn" action="edit" arguments="{type : type}"><i class="icon-pencil"></i></f:link.action><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<f:link.action action="edit" arguments="{type : type}">
+											<i class="icon-pencil"></i> Bearbeiten
+										</f:link.action>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<f:link.action action="delete" arguments="{type: type}">
+											<i class="icon-trash"></i> Löschen
+										</f:link.action>
+									</li>
+								</ul>
+							</div>					
+						</td>
+						<td class="title">
+							{type.title}
+						</td>
+						<td class="pluralTitle">
+							{type.pluralTitle}
+						</td>					
+						<td class="keywords">
+							<f:for each="{type.keywords}" as="keyword" iteration="i">{keyword}{f:if(condition:i.isLast,then:'',else:', ')}</f:for>
+						</td>
+					</tr>
+			</f:for>
+        </tbody>
+    </table>
+</f:section>

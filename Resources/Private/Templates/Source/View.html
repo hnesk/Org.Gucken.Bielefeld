@@ -1,0 +1,68 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Admin.html" />
+
+<f:section name="content">
+    <h2>Source: {source.name}</h2>
+    <div id="content">
+        <dl>
+            <dt>Name:</dt>
+            <dd>{source.name}</dd>
+
+            <dt>Implementation</dt>
+            <dd>{source.implementationClass}</dd>
+
+            <dt>Parameters</dt>
+            <f:for each="{source.parameterProperties}" key="key" as="property">
+                <dd><strong>{key}:</strong> {property}</dd>
+            </f:for>
+			
+            <dt>Log:</dt>
+            <dd>
+                <table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Imported</th>
+							<th>Duplicates</th>
+							<th>Messages</th>
+							<th>Errors</th>
+						</tr>
+					</thead>
+					<tbody>
+						<f:for each="{source.logEntries}" as="logEntry">
+							<tr>
+								<td>{logEntry.startTime -> f:format.date(format:'d.m.y H:i')}</td>
+								<td>{logEntry.importCount}</td>
+								<td>{logEntry.duplicateCount}</td>
+								<td><f:render partial="Tools/TooltipList" arguments="{list:logEntry.messages,title:'Messages'}" /></td>
+								<td><f:render partial="Tools/TooltipList" arguments="{list:logEntry.errors,title:'Errors'}" /></td>
+							</tr>
+						</f:for>						
+					</tbody>
+				</table>
+			</dd>
+			
+			
+            <dt>Events:</dt>
+            <dd>
+                <ul>
+                    <f:for each="{source.eventFactoids}" as="eventFactoid">
+						<li>
+							<h5>
+								<f:link.external uri="{eventFactoid.url}">
+								{eventFactoid.startDateTime -> f:format.date(format:'d.m.y H:i')}:
+								{eventFactoid.title}
+								</f:link.external>
+							</h5>
+							<pre><b>{eventFactoid.shortDescription}</b></pre>
+							<pre>{eventFactoid.description}</pre>
+							<p>{eventFactoid.type}, {eventFactoid.location}</p>
+						</li>
+                    </f:for>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</f:section>
+<f:section name="right">---</f:section>

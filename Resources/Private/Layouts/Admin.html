@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Backend: bielefeld.gucken.org</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!--[if lt IE 9]>
+		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" type="text/css" href="http://projects.localhost/bootstrap/docs/assets/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="http://projects.localhost/bootstrap/docs/assets/css/bootstrap-responsive.css">
+		<link rel="stylesheet"  type="text/css" media="all" href="{f:uri.resource(path:'css/ui/unity/jquery-ui-1.8.16.custom.css')}" />
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-collapse.js"></script>
+		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-alert.js"></script>
+		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-dropdown.js"></script>
+		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-tooltip.js"></script>
+		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-popover.js"></script>
+
+		<script type="text/javascript" src="{f:uri.resource(path:'js/init.js')}"></script>
+
+		<link rel="shortcut icon" href="gfx/favicon.ico">
+	</head>
+
+	<body>
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+					<f:link.action controller="Standard" action="index" class="brand">bielefeld<span>.</span>gucken<span>.</span>org</f:link.action>
+					<div class ="navbar-text pull-right" id="ajax-indicator"></div>
+					<div class="nav-collapse">
+						<f:render partial="Navigation/Top" />
+						<f:render partial="Account/Login" />		  
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+	<f:render partial="Tools/Messages" />		  
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<f:comment>
+			<div class="span2">
+				<div class="well sidebar-nav">
+					<f:render partial="Navigation/Left" />
+				</div>
+			</div>
+			</f:comment>
+				
+			<div class="span12">
+				<f:render section="content" />			
+			</div>
+		</div>
+		<hr />
+
+		<footer>
+			<p>bielefeld.gucken.org <f:format.date format="Y" date="now" /></p>
+		</footer>
+
+	</div>
+</body>
+</html>

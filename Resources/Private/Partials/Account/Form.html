@@ -1,0 +1,24 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+{namespace rad=Org\Gucken\Rad\ViewHelpers}
+<f:security.ifHasRole role="User">
+	<f:then>
+		<e:account as="account">
+			<h1>Du bist angemeldet</h1>
+			<p>Herzlichen Glückwunsch!</p>
+			<p>Eingelogged als <a href="#">{account.accountIdentifier}</a></p>
+			<p><f:link.action class="btn gucken" action="logout" controller="Account">Logout</f:link.action></p>
+		</e:account>
+	</f:then>
+	<f:else>
+		<h1>Anmeldung</h1>
+		<f:form class="form-horizontal" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">		
+			<rad:row property="login.username" label="Benutzername">
+					<f:form.textfield  additionalAttributes="{placeholder:'Benutzername'}" id="login.username" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][username]" />
+			</rad:row>
+			<rad:row property="login.password" label="Passwort">
+					<f:form.password additionalAttributes="{placeholder:'Passwort'}" id="login.password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][password]" />
+			</rad:row>
+			<f:form.submit class="btn btn-primary" value="Anmelden" />
+		</f:form>
+	</f:else>
+</f:security.ifHasRole>

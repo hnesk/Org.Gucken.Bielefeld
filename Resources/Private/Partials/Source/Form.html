@@ -1,0 +1,34 @@
+{namespace rad=Org\Gucken\Rad\ViewHelpers}
+<fieldset class="well">
+	<rad:row property="source.name" label="Name">
+		<f:form.textfield id="source.name" property="name" />
+	</rad:row>
+
+	<rad:row property="source.active" label="Aktiv">
+		<f:form.checkbox id="source.active" property="active" value="1" />
+	</rad:row>
+
+	<rad:row property="source.implementationClass" label="Implementierung">
+		<f:form.select id="source.implementationClass" property="implementationClass" options="{implementations}">
+			<option value="">---</option>
+		</f:form.select>
+	</rad:row>
+
+</fieldset>
+<f:if condition="{source.implementationClass}">
+	<h4>Parameter für {source.implementationClass}</h4>
+	<fieldset class="well">
+		<f:for each="{source.parameterProperties}" key="field" as="property">
+			<rad:field propertyValue="{property}" propertyName="parameters.{field}"/>
+		</f:for>
+	</fieldset>	
+</f:if>
+
+<script type="text/javascript">
+	document.getElementById('source.implementationClass').addEventListener(
+	'change',
+	function(ev) {
+		document.getElementById('source.defaultSubmit').click();
+	}
+);
+</script>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Admin.html" />
+
+<f:section name="content">
+    <h2>Neuen Ort erstellen</h2>
+	<f:form class="form-horizontal" action="save" name="location" object="{location}" absolute="1">
+		<f:render partial="Location/Form" arguments="{location:location}"/>
+		<fieldset class="well">
+            <f:form.submit class="btn btn-primary" value="Speichern" />
+		</fieldset>
+	</f:form>
+</f:section>

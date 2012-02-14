@@ -1,0 +1,24 @@
+
+<ul class="nav nav-list">
+	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Source">
+		<li class="nav-header"><i class="icon-magnet"></i> Quellen</li>
+		<li><f:link.action action="index" controller="Source"><i class="icon-list-alt"></i> Liste</f:link.action></li>
+		<li><f:link.action action="add" controller="Source"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
+	</f:security.ifAccess>
+	<f:security.ifAccess resource="Org_Gucken_Events_Controller_FactoidConvert">
+		<li class="nav-header"><i class="icon-exclamation-sign"></i> Faktoide</li>
+		<li><f:link.action action="index" controller="FactoidConvert"><i class="icon-share"></i> Events live stellen</f:link.action></li>
+	</f:security.ifAccess>
+	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Location">
+		<li class="nav-header"><i class="icon-map-marker"></i> Orte</li>
+
+		<li><f:link.action action="index" controller="Location"><i class="icon-list-alt"></i> Liste</f:link.action></li>
+		<li><f:link.action action="add" controller="Location"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
+	</f:security.ifAccess>
+	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Type">
+		<li class="nav-header"><i class="icon-tags"></i> Veranstaltungsarten</li>
+		<li><f:link.action action="index" controller="Type"><i class="icon-list-alt"></i> Liste</f:link.action></li>
+		<li><f:link.action action="add" controller="Type"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
+	</f:security.ifAccess>	
+</ul>
+

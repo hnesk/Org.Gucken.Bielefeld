@@ -1,0 +1,33 @@
+{namespace rad=Org\Gucken\Rad\ViewHelpers}
+<fieldset class="well">
+	<rad:row property="location.name" label="Name">
+		<f:form.textfield class="span4" id="location.name" property="name" />
+	</rad:row>
+	<rad:row property="location.description" label="Beschreibung">
+		<f:form.textarea class="span4" id="location.description" property="description" rows="3" cols="30"/>
+	</rad:row>
+	<rad:row property="location.url" label="Link">
+		<f:form.textfield class="span4" id="location.url" property="url" />
+	</rad:row>
+	<rad:row property="location.email" label="E-Mail">
+		<f:form.textfield class="span4" id="location.email" property="email" />
+	</rad:row>
+	<rad:row property="location.telephone" label="Telefon">
+		<f:form.textfield id="location.telephone" property="telephone" />
+	</rad:row>
+	<rad:row property="location.faxNumber" label="Fax">
+		<f:form.textfield id="location.faxNumber" property="faxNumber" />
+	</rad:row>
+</fieldset>
+	<h4>Addresse</h4>
+<fieldset class="well">
+	<rad:row property="location.address.streetAddress" label="Strasse">
+		<f:form.textfield class="span4" id="location.address.streetAddress" property="address.streetAddress" />
+	</rad:row>	
+	<rad:row property="location.address.postalCode" label="PLZ / Stadt">
+		<div class="row-fluid">
+		<f:form.textfield class="span1" id="location.address.postalCode" property="address.postalCode" />
+		<f:form.textfield class="span3" id="location.address.addressLocality" property="address.addressLocality" />
+		</div>
+	</rad:row>	
+</fieldset>

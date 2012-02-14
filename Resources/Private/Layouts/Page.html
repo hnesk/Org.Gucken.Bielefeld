@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Backend bielefeld.gucken.org</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="http://projects.localhost/gucken-bt/css/layout.css">	
+	<link rel="stylesheet"  type="text/css" media="all" href="{f:uri.resource(path:'css/jquery.cluetip.css')}" />
+	<link rel="stylesheet"  type="text/css" media="all" href="{f:uri.resource(path:'css/ui/unity/jquery-ui-1.8.16.custom.css')}" />
+        
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{f:uri.resource(path:'js/jquery.hoverIntent.js')}"></script>
+	<script type="text/javascript" src="{f:uri.resource(path:'js/jquery.cluetip.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path:'js/init.js')}"></script>
+
+    <link rel="shortcut icon" href="gfx/favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="topbar-inner fill">
+        <div class="container-fluid">
+			<a class="brand" href="{f:uri.action(controller:'Standard',action:'index')}">bielefeld<span>.</span>gucken<span>.</span>org</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Veranstaltungen</a></li>
+            <li><a href="#about">Quellen</a></li>
+            <li><a href="#contact">Orte</a></li>
+			<li><a href="#contact">Typen</a></li>
+          </ul>
+			<i class="being"></i>
+			
+          <form action="" class="pull-right">
+            <input class="input-small" type="text" placeholder="Username">
+            <input class="input-small" type="password" placeholder="Password">
+            <button class="btn" type="submit">Sign in</button>
+          </form>
+		  <!--
+          <p class="pull-right">Logged in as <a href="#">username</a></p>
+		  -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+			<f:render section="right" />
+        </div>
+      </div>
+      <div class="content">
+			<div id="ajax-indicator">...</div>
+			<div id="messages">
+				<f:flashMessages />
+			</div>
+
+			<f:render section="content" />
+		  
+        <footer>
+          <p>&copy; Company 2012</p>
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>

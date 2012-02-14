@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<select name="location[externalIdentifiers][{position}][id]">
+    <f:for each="{externalIdentifierCandidates}" as="externalIdentifierCandidate">
+        <option value="{externalIdentifierCandidate.id}">{externalIdentifierCandidate.label}</option>
+    </f:for>
+</select>

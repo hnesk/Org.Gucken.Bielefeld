@@ -1,0 +1,67 @@
+{namespace m=Org\Gucken\Markdown\ViewHelpers}
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Admin.html" />
+
+
+<f:section name="content">
+	<h2>Veranstaltungen: Die nächsten 14 Tage</h2>
+
+	<dl class="calendarList vcalender clearfix">
+		<f:groupedFor each="{events}" as="eventsToday" groupBy="day" groupKey="day">
+			<dt class="calendarSheet">
+				{day.date -> f:format.date(format:'D')}
+				<span>, der </span>
+				<b>{day.date -> f:format.date(format:'d')}</b>
+				<span>. </span>
+				<em>{day.date -> f:format.date(format:'M')}</em>
+				<span>.</span>
+			</dt>
+			<dd>
+				<table class="daylist">
+					<thead>
+						<tr>
+							<th>Uhrzeit</th>
+							<th>Veranstaltung</th>
+							<th>Art</th>
+							<th>Ort</th>
+						</tr>
+					</thead>
+					<tbody>
+						<f:for each="{eventsToday}" as="event">
+							<f:cycle values="{0:'odd', 1: ''}" as="zebraClass">
+								<tr class="vevent {zebraClass}">
+									<td class="time">
+										<abbr class="dtstart" title="{event.startDateTime -> f:format.date(format:'Y-m-d\TH:i:sO')}">
+											{event.startDateTime -> f:format.date(format:'H:i')}
+										</abbr>
+									</td>
+									<td class="title summary">
+										<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
+											<f:link.action action="edit" arguments="{event:event}">~</f:link.action>
+										</f:security.ifAccess>
+										<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
+											<f:link.action action="delete" arguments="{event:event}">-</f:link.action>
+										</f:security.ifAccess>
+										<f:link.action class="url" action="show" arguments="{event:event}"><span title="{event.title}">{event.title}</span></f:link.action>
+									</td>
+									<td class="type">
+										<f:for each="{event.types}" as="type">
+											{type}
+										</f:for>
+									</td>
+									<td class="location">{event.location.name} {event.location.address.addressLocality}</td>
+								</tr>
+							</f:cycle>
+						</f:for>
+					</tbody>
+				</table>
+				<hr />
+			</dd>
+		</f:groupedFor>
+	</dl>
+	<f:security.ifHasRole role="User">
+		<f:link.action action="add">add an event</f:link.action>
+	</f:security.ifHasRole>
+</f:section>
+
+<f:section name="right">---</f:section>
