@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Admin.html" />
+
+
+<f:section name="content">
+    <h2><i class="icon-calendar"></i> Veranstaltungen</h2>
+    <f:link.action action="add"><i class="icon-plus-sign"></i> Neue Veranstaltung erstellen</f:link.action>
+
+    <table class="eventlist table table-striped table-condensed">
+        <thead>
+            <tr>
+				<th>Aktionen</th>
+				<th>Datum</th>
+                <th>Titel</th>
+                <th>Ort</th>
+            </tr>
+        </thead>
+        <tbody>
+        <f:for each="{events}" as="event">
+			<tr>
+				<td class="actions">
+					<div class="btn-group">
+						<f:link.action class="btn" action="edit" arguments="{event:event}"><i class="icon-pencil"></i></f:link.action><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<f:link.action action="edit" arguments="{event:event}">
+									<i class="icon-pencil"></i> Bearbeiten
+								</f:link.action>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<f:link.action action="delete" arguments="{event:event}">
+									<i class="icon-trash"></i> Löschen
+								</f:link.action>
+							</li>
+						</ul>
+					</div>					
+				</td>
+				<td class="date">
+					{event.startDateTime -> f:format.date(format:'d.m.Y H:i')}
+				</td>
+				<td class="city">
+					{event.title}
+				</td>
+				<td class="location">
+					{event.location.name} {event.location.address.addressLocality}
+				</td>								
+			</tr>
+        </f:for>
+        </tbody>
+    </table>
+</f:section>
+
+<f:section name="right">---</f:section>

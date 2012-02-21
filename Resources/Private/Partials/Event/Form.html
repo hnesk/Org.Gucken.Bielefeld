@@ -1,0 +1,48 @@
+{namespace rad=Org\Gucken\Rad\ViewHelpers}
+<fieldset class="well">
+	<rad:row property="event.title" label="Titel">
+		<f:form.textfield class="span4" id="event.title" property="title" />
+	</rad:row>
+
+	<rad:row property="event.startDateTime" label="Start">
+		<input class="span1" type="date" name="event[startDateTime][date]" id="startDateTime" size="10" maxlength="10" value="{event.startDateTime -> f:format.date(format:'d.m.Y')}"/>
+		<f:form.hidden name="event[startDateTime][dateFormat]" value="d.m.Y" />
+		<input class="span1" type="time" name="event[startDateTime][time]" id="startDateTime_time" size="5" maxlength="5" value="{event.startDateTime -> f:format.date(format:'H:i')}"/>
+		<f:form.hidden name="event[startDateTime][timeFormat]" value="H:i" />
+	</rad:row>
+
+	<rad:row property="event.endDateTime" label="Ende">
+		<input class="span1" type="date" name="event[endDateTime][date]" id="endDateTime" size="10" maxlength="10" value="{event.endDateTime -> f:format.date(format:'d.m.Y')}"/>
+		<f:form.hidden name="event[endDateTime][dateFormat]" value="d.m.Y" />
+		<input class="span1" type="text" name="event[endDateTime][time]" id="endDateTime_time" size="5" maxlength="5" value="{event.endDateTime -> f:format.date(format:'H:i')}"/>
+		<f:form.hidden name="event[endDateTime][timeFormat]" value="H:i" />
+	</rad:row>
+
+	<rad:row property="event.shortDescription" label="Kurztext">
+		<f:form.textarea class="span4" cols="20" rows="3" id="event.shortDescription" property="shortDescription" />
+	</rad:row>
+
+	<rad:row property="event.description" label="Text">
+		<f:form.textarea class="span6" cols="20" rows="6" id="event.description" property="description" />
+	</rad:row>
+
+	<rad:row property="event.location" label="Ort">
+		<f:form.select class="span4" id="event.location" property="location" options="{locations}" />
+	</rad:row>
+
+	<rad:row property="event.types" label="Veranstaltungsarten">
+		<f:form.select id="types" property="types" options="{types}" multiple="true" size="{types -> f:count()}"/>
+	</rad:row>
+
+	<rad:row property="event.url" label="Link">
+		<f:form.textfield class="span6" id="event.url" property="url" />
+	</rad:row>
+
+	<rad:row property="event.links" label="Links">
+		<ul>			
+			<f:for each="{event.links}" as="link">
+				<li><a href="{link}">{link}</a></li>
+			</f:for>
+		</ul>
+	</rad:row>
+</fieldset>	

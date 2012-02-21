@@ -1,0 +1,33 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Admin.html" />
+
+<f:section name="content">	
+    <h2><i class="icon-exclamation-sign"></i> Faktoide</h2>
+	<f:for each="{eventsAndIdentities}" as="eventsAndIdentitiesByDay"> 
+		<div class="events-and-factoids">
+			<div class="row-fluid">
+				<h2 class="span12">
+					<f:link.action class="title" action="index" controller="factoidConvert" arguments="{startDateTime:eventsAndIdentitiesByDay.startDateTime,endDateTime:eventsAndIdentitiesByDay.endDateTime}" title="{event.title}">
+						{eventsAndIdentitiesByDay.date -> f:format.date(format:'D, d.m.Y')}
+					</f:link.action>
+					<e:anchor target="{eventsAndIdentitiesByDay.date -> f:format.date(format:'Ymd')}" class="anchor" />					
+				</h2>
+			</div>
+			<div class="row-fluid">
+				<div class="events span6" id="events_{eventsAndIdentitiesByDay.date -> f:format.date(format:'Ymd')}">
+					<f:for each="{eventsAndIdentitiesByDay.events}" as="event">
+						<f:render partial="Factoid/Event" arguments="{event:event}" />
+					</f:for>						
+					&nbsp;
+				</div>
+				<div class="factoids span6">		
+					<f:for each="{eventsAndIdentitiesByDay.identities}" as="identity">
+						<f:render partial="Factoid/Identity" arguments="{identity:identity}" />
+					</f:for>
+					&nbsp;
+				</div>	
+			</div>
+		</div>
+	</f:for>
+</f:section>

@@ -1,0 +1,10 @@
+{namespace r=Org\Gucken\Rad\ViewHelpers}
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<r:jsonArray>
+	<r:jsonField key="replace.identity_{e:identifier(object:identity)}">
+		<f:render partial="Factoid/Identity" arguments="{identity:identity}" />
+	</r:jsonField>
+	<r:jsonField key="append.message-drawer">
+		<f:render partial="Tools/Messages" />
+	</r:jsonField>
+</r:jsonArray>

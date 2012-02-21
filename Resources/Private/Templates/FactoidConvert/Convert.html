@@ -1,0 +1,14 @@
+{namespace r=Org\Gucken\Rad\ViewHelpers}
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<r:jsonArray>
+	<r:jsonField key="update.events_{identity.startDateTime -> f:format.date(format:'Ymd')}">
+		<f:for each="{events}" as="event">
+			<f:render partial="Factoid/Event" arguments="{event:event}" />
+		</f:for>
+		&nbsp;			
+	</r:jsonField>
+	<r:jsonField key="remove.identity_{e:identifier(object:identity)}" forceOutput="1" />
+	<r:jsonField key="append.message-drawer">
+		<f:render partial="Tools/Messages" />
+	</r:jsonField>
+</r:jsonArray>

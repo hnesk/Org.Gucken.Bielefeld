@@ -1,0 +1,23 @@
+<div class="item event well" data-identity='{f:identity.json(object:event)}'>
+	<div class="head row-fluid well-header">
+		<span class="startdatetime span2">{event.startDateTime -> f:format.date(format:'d.m. H:i')}</span>
+		<span class="title span6">
+			<div class="btn-group tiny">
+				<f:link.action class="btn"title="Bearbeiten" controller="event" action="edit" arguments="{event:event}">
+					<i class="icon-pencil"></i>
+				</f:link.action>
+				<f:link.action class="btn" title="Ansehen" controller="standard" action="show" arguments="{event:event}">
+					<i class="icon-eye-open"></i>
+				</f:link.action>
+			</div>		
+			<f:link.action action="show" controller="standard" arguments="{event:event}" title="{event.title}">{event.title -> f:format.crop(maxCharacters:40,append:'…')}</f:link.action>										
+		</span>
+		<span class="location span4">{event.location.name}</span>
+	</div>
+
+	<div class="identities">
+		<f:for each="{event.links}" as="link">						
+			<f:render partial="Factoid/Identity" arguments="{identity:link.factoidIdentity}" />
+		</f:for>
+	</div>
+</div>					

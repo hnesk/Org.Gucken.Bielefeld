@@ -26,23 +26,23 @@
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li>
-								<f:link.action action="edit" arguments="{source : source}">
+								<f:link.action action="edit" title="die Quelle {source.name} bearbeiten" arguments="{source : source}">
 									<i class="icon-pencil"></i> Bearbeiten
 								</f:link.action>
 								</li>
 								<li>
-								<f:link.action action="source" controller="Import" arguments="{source:source, redirect:'{f:uri.action(action:\"index\")}'}">
+								<f:link.action action="source" controller="Import" title="die Quelle {source.name} importieren" arguments="{source:source, redirect:'{f:uri.action(action:\"index\")}'}">
 									<i class="icon-arrow-left"></i> Importieren
 								</f:link.action>
 								</li>
 								<li>
-								<f:link.action action="view" arguments="{source : source}">
+								<f:link.action action="view" title="die Quelle {source.name} ansehen" arguments="{source : source}">
 									<i class="icon-eye-open"></i> Ansehen
 								</f:link.action>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<f:link.action action="delete" arguments="{source : source}">
+								<f:link.action action="delete" class="btn-danger" title="die Quelle {source.name} löschen" arguments="{source : source}">
 									<i class="icon-trash"></i> Löschen
 								</f:link.action>
 								</li>

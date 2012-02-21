@@ -79,10 +79,10 @@ class Theaterlabor extends AbstractEventSource implements EventSourceInterface {
 					->css('div#inhalt_gross table.contentpaneopen')->asXml()->item(1);
 			
 		}
-		$date = $tr->xpath('td[1]')->asString()->normalizeSpace();
-		return !$date->is() ? null : new \Type\Record(array(
+		$date = $tr->xpath('td[1]')->asString()->normalizeSpace()->asDate('%d.%m.\s*%H[:.]%M');
+		return !($date->is() && $date instanceof \Type\Date) ? null : new \Type\Record(array(
 				'title' => $tr->xpath('td[3]')->asString()->normalizeSpace(),
-				'date' => $date->asDate('%d.%m.\s*%H[:.]%M'),
+				'date' => $date,
 				'location' => $this->getLocation(),
 				'type' => $this->getType(),
 				'short' => $short,

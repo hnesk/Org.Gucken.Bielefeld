@@ -5,6 +5,10 @@
 
 <f:section name="content">
 	<h2>Veranstaltungen: Die nächsten 14 Tage</h2>
+	
+	<f:security.ifAccess resource="Org_Gucken_Events_Actions_Create">
+		<f:link.action controller="event" action="add" arguments="{event:event}">+</f:link.action>
+	</f:security.ifAccess>
 
 	<dl class="calendarList vcalender clearfix">
 		<f:groupedFor each="{events}" as="eventsToday" groupBy="day" groupKey="day">
@@ -37,10 +41,10 @@
 									</td>
 									<td class="title summary">
 										<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
-											<f:link.action action="edit" arguments="{event:event}">~</f:link.action>
+											<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
 										</f:security.ifAccess>
 										<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
-											<f:link.action action="delete" arguments="{event:event}">-</f:link.action>
+											<f:link.action controller="event" action="delete" arguments="{event:event}">-</f:link.action>
 										</f:security.ifAccess>
 										<f:link.action class="url" action="show" arguments="{event:event}"><span title="{event.title}">{event.title}</span></f:link.action>
 									</td>
@@ -58,10 +62,7 @@
 				<hr />
 			</dd>
 		</f:groupedFor>
-	</dl>
-	<f:security.ifHasRole role="User">
-		<f:link.action action="add">add an event</f:link.action>
-	</f:security.ifHasRole>
+	</dl>	
 </f:section>
 
 <f:section name="right">---</f:section>

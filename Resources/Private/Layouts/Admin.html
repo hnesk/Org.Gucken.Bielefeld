@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-dropdown.js"></script>
 		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-tooltip.js"></script>
 		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-popover.js"></script>
+		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-collapse.js"></script>
 
 		<script type="text/javascript" src="{f:uri.resource(path:'js/init.js')}"></script>
 
@@ -42,7 +43,9 @@
 				</div>
 			</div>
 		</div>
-	<f:render partial="Tools/Messages" />		  
+		<div id="message-drawer" class="alert-messages">
+			<f:render partial="Tools/Messages" />		  			
+		</div>
 
 	<div class="container-fluid">
 		<div class="row-fluid">

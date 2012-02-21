@@ -1,0 +1,8 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+{namespace r=Org\Gucken\Rad\ViewHelpers}
+<r:jsonArray>
+	<r:jsonField key="remove.identity_{e:identifier(object:identity)}" forceOutput="1" />
+	<r:jsonField key="append.message-drawer">
+		<f:render partial="Tools/Messages" />
+	</r:jsonField>
+</r:jsonArray>
