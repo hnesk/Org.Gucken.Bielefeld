@@ -34,11 +34,20 @@ class Kunsthalle extends AbstractEventSource implements EventSourceInterface {
 		return $this->location;
 	}
 
+	
 	/**
 	 * @return \Type\Record\Collection
 	 */
 	public function getEvents() {
-		return $this->getUrl()->loadBadHtml()->getContent()->css('#content div.event')->asXml()->map(array($this, 'getEvent'));
+		return $this->getUrl()->load('badhtml')->getContent()
+			->css('div.event_catmenu select')->xpath('/option/@value')->asUrl()
+			->filter(function (\Type\Url $url) {
+				$categoryId = (string)$url->getQueryObject()->jpath('tx_ttnews/cat');
+				// 26 = Führungen, viel zu viele und nicht so interessant
+				return $categoryId && $categoryId != '26';
+			})
+			->load('badhtml')->getContent()
+			->css('#content div.event')->asXml()->map(array($this, 'getEvent'));
 	}
 
 	/**
@@ -47,12 +56,17 @@ class Kunsthalle extends AbstractEventSource implements EventSourceInterface {
 	 * @return \Type\Record 
 	 */
 	public function getEvent(\Type\Xml $xml) {
+		$short = $xml->css('div.col_right p')->xpath('/preceding-sibling::text()')->asString()->normalizeSpace();
+		$title = pick($xml->css('div.col_right>strong')->asString()->normalizeSpace(), $short);
+		// @TODO: mehrere Types
+		$typeString = $short->equals('Groß und Klein') || $short->equals('Familienzeit!') ? 'Kinder' : 'Kunst';
 		return new \Type\Record(array(
-			'title'         => $xml->css('div.col_right>strong')->asString()->normalizeSpace(),
+			'title'         => $title,
+			'short'         => $short,
 			'date'          => $xml->css('div.col_left')->asString()->normalizeSpace()->asDate('%d\|%m\D+%H:%M'),
 			'enddate'       => $xml->css('div.col_left')->asString()->normalizeSpace()->asDate('%d\|%m[^-]+-\s*%H:%M'),
 			'description'   => $xml->css('div.col_right p')->asXml()->join('div')->formattedText(),
-			'type'          => $this->getTypeRepository()->findOneByKeywordString('Kunst'),
+			'type'          => $this->getTypeRepository()->findOneByKeywordString($typeString),
 			'location'      => $this->getLocation(),
 			'url'           => $xml->getBaseUri(),
 		));

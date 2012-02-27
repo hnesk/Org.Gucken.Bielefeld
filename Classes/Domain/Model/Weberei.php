@@ -56,7 +56,7 @@ class Weberei extends AbstractEventSource implements EventSourceInterface {
 	 * @return void
 	 */
 	protected function prepareWebsiteEvents() {
-		$urlCollection = \newdate()->getMonthRange(3)->map(function (\Type\Date $d) {
+		$urlCollection = \newdate()->getMonthRange(2)->map(function (\Type\Date $d) {
 			return \url('http://www.die-weberei.de/index.html?site=PROGRAMM&suchdat=%s')->sprintf($d->strftime('%d.%m.%Y'));
 		});
 		$websiteEventCollection = $urlCollection->load()->getContent('iconv.Windows-1252=ISO-8859-1')
@@ -67,7 +67,7 @@ class Weberei extends AbstractEventSource implements EventSourceInterface {
 					'id' => $xml->xpath('.//plusone/@href')->asUrl()->first()->getQueryVar('eventid'),
 					'starttime' => $text->asDate('(Einlass|Beginn)\s*:</b>\s*%H:%m\s*Uhr'),
 					'endtime' => $text->asDate('Ende</b>\s*%H:%m\s*Uhr'),
-					'description' => $xml->css('.PRO_Admintool_accordionContent')->asXml()->first()->formattedText()->normalizeParagraphs(),
+					'description' => $xml->css('.PRO_Admintool_accordionContent')->asXml()->first()->formattedText()->normalizeParagraphs()->substringBefore('weiterführende Links:'),
 				));
 			});
 
@@ -120,8 +120,6 @@ class Weberei extends AbstractEventSource implements EventSourceInterface {
 			if ($websiteEvent->get('endtime') && $websiteEvent->get('endtime')->is()) {
 				$event['enddate'] = $date->timed($websiteEvent->get('endtime'))->guaranteeAfter($startDate);
 			}
-			
-			
 			
 			return $title->toLower()->contains('geschlossen') ? null : new \Type\Record($event);
 		}

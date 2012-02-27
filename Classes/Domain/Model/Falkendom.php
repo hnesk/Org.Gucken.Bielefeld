@@ -49,7 +49,7 @@ class Falkendom extends AbstractEventSource implements EventSourceInterface {
 	public function getEvent(Feed\Item $item) {
 		$content = $item->url()->load(o('maxAge=7200'))->getContent();
 		/* @var $content Xml */
-		$description = $content->css('table.dsR13')->xpath('//tr[1]/td[2]')->asXml()->join('div')->formattedText()->normalizeParagraphs();
+		$description = $content->css('table.dsR13')->xpath('//tr[1]/td[2]')->asXml()->join('div')->formattedText()->normalizeParagraphs()->replace('Share [http://www.facebook.com/sharer.php]','');
 		$type = $item->title()->substringAfter('-')->substringBefore(':');
 		return new \Type\Record(array(
 				'title' => $item->title()->substringAfter('-')->substringAfter(':')->normalizeSpace(),

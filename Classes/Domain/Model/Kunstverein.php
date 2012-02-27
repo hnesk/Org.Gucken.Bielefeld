@@ -74,7 +74,7 @@ class Kunstverein extends AbstractEventSource implements EventSourceInterface {
 				'date' => $item->modifiedDate(),
 				'location' => $this->getLocation(),
 				'type' => $this->getType(),
-				'description' => $item->content()->normalizeParagraphs(),
+				'description' => $item->contentAsXml()->formattedText()->normalizeParagraphs(),
 				'url' => $item->url(),
 			));
 	}

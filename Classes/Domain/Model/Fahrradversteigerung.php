@@ -80,7 +80,7 @@ class Fahrradversteigerung extends AbstractEventSource implements EventSourceInt
 		return new \Type\Record(array(
 			'title' => 'Fahradversteigerung',
 			'short' => $td2,
-			'date' => $td1->append($td2)->asDate('%d.%m.%Y.+(%H[:.]%M\s*Uhr)?'),
+			'date' => $td1->append($td2)->asDate('%d.\s*%B\s*%Y\D+%H[:.]%M\s*Uhr'),
 			'url' => $xml->getBaseUri(),
 			'type' => $this->getType(),
 			'location' => $this->getLocation(),			

@@ -75,12 +75,15 @@ class Stereo extends AbstractEventSource implements EventSourceInterface {
 		$moreXml = $moreUrl->trim(\Type\Url::NOFRAGMENT)->loadBadHtml()->getContent();
 		/* @var $moreXml Type\Xml */
 		
+		$description = $moreXml->fragment($moreUrl->getFragment())->xpath('./following-sibling::div[1]//div[contains(@class,"textbox1")]')->asXml()->slice(2)->join('div')->formattedText();
+		$description = $description->remove('[]')->normalizeParagraphs();
+		
 		/** @todo evtl über die veranstaltungen loopen ? */
 		return new \Type\Record(array(
 				'title' => $xml->xpath('td[3]')->css('.linkliste')->asString()->first(),
 				// @todo ist noch halbgar: uhrzeit ziehen
 				'date' => $xml->xpath('td[2]')->asString()->first()->normalizeSpace()->asDate('%d.%m.%y'),
-				'description' => $moreXml->fragment($moreUrl->getFragment())->xpath('./following-sibling::div[1]//div[contains(@class,"textbox1")]')->asXml()->slice(2)->join('div')->formattedText(),
+				'description' => $description,
 				'url' => $moreUrl,
 				'location' => $this->getLocation(),
 				'type'  => $this->getType(),

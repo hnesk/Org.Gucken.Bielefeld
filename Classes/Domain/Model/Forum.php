@@ -81,9 +81,13 @@ class Forum extends AbstractEventSource implements EventSourceInterface {
 	 * @param \Type\Xml $xml 
 	 */
 	public function convertEventWithPartyLayout(Xml $xml) {
-		$title = $xml->xpath('td[3]/text()[1]')->asString()->first();
+		$title = \pick(
+			$xml->xpath('td[3]/text()[1]')->asString()->first(), 
+			$xml->xpath('td[3]/p[1]')->asString()->first()
+		);
+		
 		$date = $xml->xpath('./td[2]')->asString()->first();
-		$short = $xml->xpath('td[3]/text()')->asString()->join("\n")->remove($title)->normalizeSpace();
+		$short = $xml->xpath('td[3]')->asString()->join("\n")->remove($title)->normalizeSpace();
 		
 		return new \Type\Record(array(
 			'title' => $title->normalizeSpace(),
