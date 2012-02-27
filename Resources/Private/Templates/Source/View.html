@@ -48,7 +48,7 @@
 
 	<f:for each="{source.eventFactoids}" as="eventFactoid">
 		<div class="eventfactoid well">
-			<h5 class="well-header" data-toggle="collapse" data-target="#details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
+			<h5 class="well-header" data-target="#details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
 				<i class="icon-exclamation-sign"></i>
 				{eventFactoid.startDateTime -> f:format.date(format:'d.m.y H:i')}:
 				<f:link.external uri="{eventFactoid.url}">				
@@ -56,9 +56,9 @@
 				</f:link.external>
 				{eventFactoid.type}, {eventFactoid.location}
 			</h5>
-			<div class="collapse" id="details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
+			<div id="details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
 				<p><b>{eventFactoid.shortDescription}</b></p>
-				<m:markdown>{eventFactoid.description}</m:markdown>					
+				<div class="pre"><m:markdown>{eventFactoid.description}</m:markdown></div>
 			</div>
 		</div>
 	</f:for>
