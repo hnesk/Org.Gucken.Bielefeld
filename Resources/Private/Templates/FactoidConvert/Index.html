@@ -21,7 +21,7 @@
 					</f:for>						
 					&nbsp;
 				</div>
-				<div class="factoids span6">		
+				<div class="factoids span6" id="identities_{eventsAndIdentitiesByDay.date -> f:format.date(format:'Ymd')}">		
 					<f:for each="{eventsAndIdentitiesByDay.identities}" as="identity">
 						<f:render partial="Factoid/Identity" arguments="{identity:identity}" />
 					</f:for>

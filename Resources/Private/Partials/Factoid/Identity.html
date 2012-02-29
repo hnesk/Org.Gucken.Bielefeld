@@ -5,16 +5,28 @@
 			<span class="grip ui-icon ui-icon-grip-dotted-vertical"> </span>
 			<!-- <input type="checkbox"  name="arguments[][__identity]" id="action_{e:identifier(object:identity)}" value="{e:identifier(object:identity)}" />-->		
 			<div class="btn-group">
-				<f:link.action class="btn convert ajaxable"title="Live stellen" controller="factoidConvert" action="convert" arguments="{identity:identity}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
-					<i class="icon-arrow-left"></i>
-				</f:link.action>
+				<f:if condition="{link}">
+					<f:then>
+						<f:link.action class="btn unlink ajaxable" title="Verknüpfung aufheben" controller="factoidConvert" action="unlink" arguments="{link:link}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+							<i class="icon-arrow-right"></i>
+						</f:link.action>						
+						
+					</f:then>
+					<f:else>
+						<f:link.action class="btn convert ajaxable" title="Live stellen" controller="factoidConvert" action="convert" arguments="{identity:identity}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+							<i class="icon-arrow-left"></i>
+						</f:link.action>						
+					</f:else>
+				</f:if>
 				<f:link.action class="btn ajaxable" title="Löschen" controller="factoidConvert" action="skip" arguments="{identity:identity}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
 					<i class="icon-trash"></i>
 				</f:link.action>
 			</div>
 		</span>
 		<span class="startdatetime span2">{identity.startDateTime -> f:format.date(format:'d.m. H:i')}</span>
-		<span class="source span4">{identity.source.name}</span>
+		<f:link.action class="source span4" controller="source" action="view" title="die Quelle {source.name} ansehen" arguments="{source : identity.source}">
+			{identity.source.name}
+		</f:link.action>
 		<span class="location span4">
 			<f:if condition="{identity.location}">
 				<f:then>{identity.location.name}</f:then>

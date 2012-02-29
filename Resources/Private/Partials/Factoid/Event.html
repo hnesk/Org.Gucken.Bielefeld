@@ -17,7 +17,7 @@
 
 	<div class="identities">
 		<f:for each="{event.links}" as="link">						
-			<f:render partial="Factoid/Identity" arguments="{identity:link.factoidIdentity}" />
+			<f:render partial="Factoid/Identity" arguments="{link:link,identity:link.factoidIdentity}" />
 		</f:for>
 	</div>
 </div>					

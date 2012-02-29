@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+	<f:alias map="{templatePackage:'Org.Gucken.Bielefeld'}">
 	<head>
-		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Backend: bielefeld.gucken.org</title>
 		<meta name="description" content="" />
 		<meta name="author" content="" />
@@ -9,23 +10,10 @@
 		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-		<link rel="stylesheet" type="text/css" href="http://projects.localhost/bootstrap/docs/assets/css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="http://projects.localhost/bootstrap/docs/assets/css/bootstrap-responsive.css" />
-		<link rel="stylesheet"  type="text/css" media="all" href="{f:uri.resource(path:'css/ui/unity/jquery-ui-1.8.16.custom.css')}" />
+		<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap.css',package:templatePackage)}" />
+		<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap-responsive.css',package:templatePackage)}" />
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-
-		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-collapse.js"></script>
-		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-alert.js"></script>
-		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-dropdown.js"></script>
-		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-tooltip.js"></script>
-		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-popover.js"></script>
-		<script type="text/javascript" src="http://projects.localhost/bootstrap/js/bootstrap-collapse.js"></script>
-
-		<script type="text/javascript" src="{f:uri.resource(path:'js/init.js')}"></script>
-
-		<link rel="shortcut icon" href="gfx/favicon.ico">
+		<link rel="shortcut icon" href="{f:uri.resource(path:'img/favicon.ico',package:templatePackage)}" />
 	</head>
 
 	<body>
@@ -68,5 +56,18 @@
 		</footer>
 
 	</div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-collapse.js',package:templatePackage)}"></script>
+	<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-alert.js',package:templatePackage)}"></script>
+	<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-dropdown.js',package:templatePackage)}"></script>
+	<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-tooltip.js',package:templatePackage)}"></script>
+	<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-popover.js',package:templatePackage)}"></script>
+
+	<script type="text/javascript" src="{f:uri.resource(path:'js/init.js',package:templatePackage)}"></script>
+		
 </body>
+</f:alias>
 </html>
+
