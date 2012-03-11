@@ -1,17 +1,4 @@
 <ul class="nav">
-	<f:security.ifAccess resource="Org_Gucken_Events_Controller_FactoidConvert">		
-		<li><f:link.action action="index" controller="FactoidConvert"><i class="icon-exclamation-sign"></i> Faktoide</f:link.action></li>
-	</f:security.ifAccess>
-
-	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Source">
-		<li class="dropdown" id="sources">
-			<a href="#sources" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-magnet"></i> Quellen <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><f:link.action action="index" controller="Source"><i class="icon-list-alt"></i> Liste</f:link.action></li>
-				<li><f:link.action action="add" controller="Source"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
-			</ul>
-		</li>
-	</f:security.ifAccess>
 	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Event">
 		<li class="dropdown" id="events">
 			<a href="#events" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar"></i> Events <b class="caret"></b></a>
@@ -21,24 +8,12 @@
 			</ul>
 		</li>
 	</f:security.ifAccess>
-	
-	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Location">
-		<li class="dropdown" id="locations">
-			<a href="#locations" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i> Orte <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><f:link.action action="index" controller="Location"><i class="icon-list-alt"></i> Liste</f:link.action></li>
-				<li><f:link.action action="add" controller="Location"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
-			</ul>
+	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Admin">
+		<li>
+			<f:link.action action="index" controller="Admin">Admin</f:link.action>
 		</li>
 	</f:security.ifAccess>
-	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Type">
-		<li class="dropdown" id="types">
-			<a href="#types" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-tags"></i> Typen <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><f:link.action action="index" controller="Type"><i class="icon-list-alt"></i> Liste</f:link.action></li>
-				<li><f:link.action action="add" controller="Type"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
-			</ul>
-		</li>
-	</f:security.ifAccess>	
+	
+	
 </ul>
 

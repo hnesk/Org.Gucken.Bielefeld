@@ -12,6 +12,7 @@
 				<th>Aktionen</th>
 				<th>Datum</th>
                 <th>Titel</th>
+				<th>Art</th>
                 <th>Ort</th>
             </tr>
         </thead>
@@ -38,10 +39,15 @@
 				</td>
 				<td class="date">
 					{event.startDateTime -> f:format.date(format:'d.m.Y H:i')}
-				</td>
-				<td class="city">
+				</td>				
+				<td class="name">
 					{event.title}
 				</td>
+				<td class="type">
+					<f:for each="{event.types}" as="type">				
+						{type}
+					</f:for>
+				</td>				
 				<td class="location">
 					{event.location.name} {event.location.address.addressLocality}
 				</td>								

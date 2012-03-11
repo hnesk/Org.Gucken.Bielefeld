@@ -1,19 +1,6 @@
 $(document).ready(function($) {
-	
-	var initializeExternalIdLookup = function() {
-		$('.externalIdentifierScheme').change(function() {
-			var $selectHolder = $(this).nextAll('span.selectHolder').first();			
-			$selectHolder.load($selectHolder.data('url'), {type:$(this).val()});
-		});		
-	}
-	
-	var initializeAjaxLoadingIndicator = function() {			
-		$('#ajax-indicator').
-			ajaxStart(function() {$(this).text('loading...');}).
-			ajaxStop(function() {$(this).text(' ');});
-	}
-	
-	
+	var initializeDragAndDrop = function() {};
+
 	var update = function(data) {
 		if(data.update) {
 			$.each(data.update, function(id, html) {$('#'+id).html(html);});
@@ -28,9 +15,23 @@ $(document).ready(function($) {
 			$.each(data.append, function(id, html) {$('#'+id).html($('#'+id).html() + html)});
 		}
 		
-		
-		$('.ui-draggable').draggable('enable');
+		initializeDragAndDrop();
 	};	
+
+
+
+	var initializeExternalIdLookup = function() {
+		$('.externalIdentifierScheme').change(function() {
+			var $selectHolder = $(this).nextAll('span.selectHolder').first();			
+			$selectHolder.load($selectHolder.data('url'), {type:$(this).val()});
+		});		
+	}
+	
+	var initializeAjaxLoadingIndicator = function() {			
+		$('#ajax-indicator').
+			ajaxStart(function() {$(this).text('loading...');}).
+			ajaxStop(function() {$(this).text(' ');});
+	}	
 	
 	
 	var initializePopover = function() {
@@ -64,8 +65,9 @@ $(document).ready(function($) {
 		});
 	}
 	
+
 	var initializeAjaxableActions = function() {
-		$('a.ajaxable').click(function (e) {		 	
+		$('body').on('click','a.ajaxable',function (e) {		 	
 			$.ajax({
 				url: $(this).attr('href'),
 				success:update,
@@ -76,7 +78,7 @@ $(document).ready(function($) {
 	}
 	
 	var initializeDangerousButtons = function() {
-		$('.btn-danger').click(function (e) {		 	
+		$('body').on('click', '.btn-danger', function (e) {		 	
 			var what = $(this).attr('title');
 			what = what ? what : 'das';
 			if (!window.confirm('Bist du sicher, dass du ' + what + ' willst?')) {
@@ -122,7 +124,7 @@ $(document).ready(function($) {
 		
 	}
 
-	var initializeDragAndDrop = function() {
+	initializeDragAndDrop = function() {
 
 		$('.identities').droppable({
 			accept: '.identity',

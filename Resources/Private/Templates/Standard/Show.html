@@ -1,0 +1,32 @@
+{namespace m=Org\Gucken\Markdown\ViewHelpers}
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<?xml version="1.0" encoding="UTF-8"?>
+<f:layout name="Page.html" />
+
+<f:section name="content">
+	<p>{event.startDateTime -> e:format.strftime(format:'%A, %d.%m %H:%M')}</p>
+	<h2>
+		<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
+			<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
+		</f:security.ifAccess>
+		<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
+			<f:link.action controller="event" action="delete" arguments="{event:event}">-</f:link.action>
+		</f:security.ifAccess>		
+		{event.title} <span>{event.location.name}, {event.location.address.addressLocality}</span>
+	</h2>
+	
+	<div id="content">
+		<h4>{event.shortDescription}</h4>
+		<m:markdown>{event.description}</m:markdown>
+		<ul>
+			<f:for each="{event.types}" as="type">
+				<li>{type}</li>
+			</f:for>
+		</ul>
+		<ul>
+			<f:for each="{event.links}" as="link">
+				<li class="link {link.class}"><a href="{link.url}">{link}</a></li>
+			</f:for>
+		</ul>
+	</div>
+</f:section>

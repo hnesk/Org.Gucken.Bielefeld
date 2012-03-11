@@ -1,72 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Backend bielefeld.gucken.org</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<html lang="de">
+	<f:alias map="{templatePackage:'Org.Gucken.Bielefeld'}">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<title>bielefeld.gucken.org</title>
+			<meta name="description" content="" />
+			<meta name="author" content="" />
+			<!--[if lt IE 9]>
+			  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->
 
-	<link rel="stylesheet" type="text/css" href="http://projects.localhost/gucken-bt/css/layout.css">	
-	<link rel="stylesheet"  type="text/css" media="all" href="{f:uri.resource(path:'css/jquery.cluetip.css')}" />
-	<link rel="stylesheet"  type="text/css" media="all" href="{f:uri.resource(path:'css/ui/unity/jquery-ui-1.8.16.custom.css')}" />
-        
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="{f:uri.resource(path:'js/jquery.hoverIntent.js')}"></script>
-	<script type="text/javascript" src="{f:uri.resource(path:'js/jquery.cluetip.js')}"></script>
-    <script type="text/javascript" src="{f:uri.resource(path:'js/init.js')}"></script>
+			<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap.css',package:templatePackage)}" />
+			<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap-responsive.css',package:templatePackage)}" />
 
-    <link rel="shortcut icon" href="gfx/favicon.ico">
-  </head>
+			<link rel="shortcut icon" href="{f:uri.resource(path:'img/favicon.ico',package:templatePackage)}" />
+		</head>	
+		<body>
+			<div class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
 
-  <body>
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+						<f:link.action controller="Standard" action="index" class="brand">bielefeld<span>.</span>gucken<span>.</span>org</f:link.action>
+						<div class="nav-collapse">
+							<f:render partial="Navigation/Top" />
+							<f:render partial="Account/Login" />		  
+						</div><!--/.nav-collapse -->
+					</div>
+				</div>
 
-    <div class="topbar">
-      <div class="topbar-inner fill">
-        <div class="container-fluid">
-			<a class="brand" href="{f:uri.action(controller:'Standard',action:'index')}">bielefeld<span>.</span>gucken<span>.</span>org</a>
-          <ul class="nav">
-            <li class="active"><a href="#">Veranstaltungen</a></li>
-            <li><a href="#about">Quellen</a></li>
-            <li><a href="#contact">Orte</a></li>
-			<li><a href="#contact">Typen</a></li>
-          </ul>
-			<i class="being"></i>
-			
-          <form action="" class="pull-right">
-            <input class="input-small" type="text" placeholder="Username">
-            <input class="input-small" type="password" placeholder="Password">
-            <button class="btn" type="submit">Sign in</button>
-          </form>
-		  <!--
-          <p class="pull-right">Logged in as <a href="#">username</a></p>
-		  -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="sidebar">
-        <div class="well">
-			<f:render section="right" />
-        </div>
-      </div>
-      <div class="content">
-			<div id="ajax-indicator">...</div>
-			<div id="messages">
-				<f:flashMessages />
+			</div>
+			<div id="message-drawer" class="alert-messages">
+				<f:render partial="Tools/Messages" />		  			
 			</div>
 
-			<f:render section="content" />
-		  
-        <footer>
-          <p>&copy; Company 2012</p>
-        </footer>
-      </div>
-    </div>
+			<div class="container content">
+				<f:render section="content" />
+				<footer>
+					<p>&copy; Company 2012</p>
+				</footer>
 
-  </body>
+			</div>
+
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-collapse.js',package:templatePackage)}"></script>
+			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-alert.js',package:templatePackage)}"></script>
+			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-dropdown.js',package:templatePackage)}"></script>
+			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-tooltip.js',package:templatePackage)}"></script>
+			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-popover.js',package:templatePackage)}"></script>
+
+			<script type="text/javascript" src="{f:uri.resource(path:'js/init.js',package:templatePackage)}"></script>
+			
+			
+		</body>
+	</f:alias>
 </html>

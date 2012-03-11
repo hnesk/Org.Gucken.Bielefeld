@@ -1014,7 +1014,7 @@ table {
   border-radius: 0 0 4px 0;
 }
 .table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 table .span1 {
   float: none;
@@ -3210,3 +3210,37 @@ h2 [class^="icon-"] {
     padding: 0px !important;
   }
 }
+
+body {
+	background-color:#fff;
+}
+.content {
+    background-color: #F8F8F8;
+    border: 1px solid #E4E4E4;
+    box-shadow: 1px 1px 2px #CCCCCC;
+    padding: 12px;	
+}
+
+body.admin {
+	background-color:#fff;
+}
+body.admin .content {
+    background-color: #F8F8F8;
+    border: 1px solid #E4E4E4;
+    box-shadow: 1px 1px 2px #CCCCCC;
+    padding: 12px;	
+}
+
+
+
+.calendarSheet{margin-left:-3px;margin-bottom:1.5em;display:block;height:83px;width:84px;position:relative;background-image:url(http://static.gucken.org/fileadmin/templates/gehweg/gfx/kalender-red.png);background-repeat:no-repeat;font-family:Georgia,serif;font-variant:small-caps;font-size:1.75em;color:white;text-align:center;padding-top:6px}
+.calendarSheet span{display:none}
+.calendarSheet em{display:block;width:84px;position:absolute;bottom:10px;left:0px;font-style:normal;font-size:0.6em;color:#666}
+.calendarSheet b{display:block;width:84px;position:absolute;bottom:37px;left:0px;font-size:1.4em;font-variant:small-caps;color:#000}
+table.daylist{width:100%}
+table.daylist thead{position:absolute;top:-1000em}
+table.daylist tbody tr.cancelled td{text-decoration:line-through}
+table.daylist tbody td.time{font-weight:bold;width:5%}
+table.daylist tbody td.title{width:60%}
+table.daylist tbody td.location{width:35%}
+table.daylist abbr{letter-spacing:normal;border-bottom:none;cursor:auto}

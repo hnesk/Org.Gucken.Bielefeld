@@ -73,14 +73,14 @@ class Eulenspiegel extends AbstractEventSource implements EventSourceInterface {
 	public function getEvent(Xml $xml) {
 		// cleanup recursive stacked xml
 		$xml = $xml->xpath('./div[@class!="buecherLine"]')->asXml()->join('div')->semantify();
-		$description = $xml->css('.inhalt')->asXml()->join()->formattedText();
+		$description = $xml->css('.fliesstext')->asXml()->join()->formattedText();
+		
 		$data = array(
 			'title' => $xml->css('.titel')->asString()->filter()->join(': ')->normalizeSpace(),
-			'short_description' => $xml->css('.anlass')->asXml()->join()->formattedText(),
 			'description' => $description,
 			'url' => $this->getLinkUrl(),
 			'type' => $this->getType(),
-			'proof' => $xml
+			'proof' => $xml,
 		);
 
 		$dateAndLocation = $xml->css('.termindaten')->asString()->first();
@@ -88,11 +88,12 @@ class Eulenspiegel extends AbstractEventSource implements EventSourceInterface {
 			$data['date'] = $dateAndLocation->substringAfter('--')->asDate('%d.%m.%y\s*--\s*%H([.+]%M)?\s*Uhr');
 			$data['location'] = $this->getLocationRepository()->findOneByKeywordString($dateAndLocation->substringBefore('--')->normalizeSpace());
 		} else {
-			$strongLines = $xml->css('.inhalt p strong')->asString()->join(' ');
-			$data['date'] = $strongLines->asDate('%d\.\s*(%B|%m\.)\s*%Y\s+%H.%M');
+			$strongLines = $xml->css('.fliesstext p strong')->asString()->join(' ');
+			$data['date'] = $strongLines->asDate('%d\.\s*(%B|%m\.)\s*%Y\s*%H.%M');
 			$data['location'] = $this->getLocationRepository()->findOneByKeywordString('Eulenspiegel');
 		}
-		return new \Type\Record($data);
+		
+		return (is($data['date']) && $data['date'] instanceof \Type\Date) ? new \Type\Record($data) : null;
 	}
 
 }

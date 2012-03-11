@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 	<f:alias map="{templatePackage:'Org.Gucken.Bielefeld'}">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,7 +16,7 @@
 		<link rel="shortcut icon" href="{f:uri.resource(path:'img/favicon.ico',package:templatePackage)}" />
 	</head>
 
-	<body>
+	<body class="admin">
 
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -25,7 +25,7 @@
 					<f:link.action controller="Standard" action="index" class="brand">bielefeld<span>.</span>gucken<span>.</span>org</f:link.action>
 					<div class ="navbar-text pull-right" id="ajax-indicator"></div>
 					<div class="nav-collapse">
-						<f:render partial="Navigation/Top" />
+						<f:render partial="Navigation/Admin" />
 						<f:render partial="Account/Login" />		  
 					</div><!--/.nav-collapse -->
 				</div>
@@ -35,7 +35,7 @@
 			<f:render partial="Tools/Messages" />		  			
 		</div>
 
-	<div class="container-fluid">
+	<div class="container-fluid content">
 		<div class="row-fluid">
 			<f:comment>
 			<div class="span2">

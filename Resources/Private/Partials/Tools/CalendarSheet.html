@@ -1,0 +1,10 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<div class="calendarSheet">
+	{date -> e:format.strftime(format:'%a')}
+	<span>, der </span>
+	<b>{date -> e:format.strftime(format:'%d')}</b>
+	<span>. </span>
+	<em>{date -> e:format.strftime(format:'%b')}</em>
+	<span>.</span>
+</div>
+
