@@ -38,7 +38,7 @@
 			</f:if>
 		</span>
 	</div>
-	<f:for each="{identity.sortedFactoids}" as="factoid">
+	<f:alias map="{factoid:identity.factoid}">
 		<div class="factoid row-fluid" id="factoid_{e:identifier(object:factoid)}">
 			<span class="span2">
 				<div class="btn-group icon">
@@ -54,8 +54,5 @@
 			<span class="type span2">{factoid.type.title}</span>
 			<span class="importdatetime span2">{factoid.importDateTime -> f:format.date(format:'d.m. H:i')}</span>							
 		</div>
-		
-	</f:for>
-	<f:alias map="{factoid:identity.factoid}">
-	</f:alias>
+	</f:alias>			
 </div>
