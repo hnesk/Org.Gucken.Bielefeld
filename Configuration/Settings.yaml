@@ -5,4 +5,9 @@
 Org:
   Gucken:
     Events:
-      this: that
+      views:
+        bielefeld:
+          layoutRootPath: resource://Org.Gucken.Bielefeld/Private/Layouts
+          templateRootPath: resource://Org.Gucken.Bielefeld/Private/Templates
+          partialRootPath: resource://Org.Gucken.Bielefeld/Private/Partials
+          skinPackage: Org.Gucken.Bielefeld

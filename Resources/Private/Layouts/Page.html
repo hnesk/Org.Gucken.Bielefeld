@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="de">
-	<f:alias map="{templatePackage:'Org.Gucken.Bielefeld'}">
-		<head>
-			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>bielefeld.gucken.org</title>
-			<meta name="description" content="" />
-			<meta name="author" content="" />
-			<!--[if lt IE 9]>
-			  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-			<![endif]-->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>bielefeld.gucken.org</title>
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 
-			<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap.css',package:templatePackage)}" />
-			<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap-responsive.css',package:templatePackage)}" />
+		<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap.css',package:skinPackage)}" />
+		<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/bootstrap-responsive.css',package:skinPackage)}" />
 
-			<link rel="shortcut icon" href="{f:uri.resource(path:'img/favicon.ico',package:templatePackage)}" />
-		</head>	
-		<body>
-			<div class="navbar navbar-fixed-top">
-				<div class="navbar-inner">
-					<div class="container">
+		<link rel="shortcut icon" href="{f:uri.resource(path:'img/favicon.ico',package:skinPackage)}" />
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
 
-						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-						<f:link.action controller="Standard" action="index" class="brand">bielefeld<span>.</span>gucken<span>.</span>org</f:link.action>
-						<div class="nav-collapse">
-							<f:render partial="Navigation/Top" />
-							<f:render partial="Account/Login" />		  
-						</div><!--/.nav-collapse -->
-					</div>
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+					<f:link.action controller="Standard" action="index" class="brand">bielefeld<span>.</span>gucken<span>.</span>org</f:link.action>
+					<div class="nav-collapse">
+						<f:render partial="Navigation/Top" />
+						<f:render partial="Account/Login" />
+					</div><!--/.nav-collapse -->
 				</div>
-
-			</div>
-			<div id="message-drawer" class="alert-messages">
-				<f:render partial="Tools/Messages" />		  			
 			</div>
 
-			<div class="container content">
-				<f:render section="content" />
-				<footer>
-					<p>bielefeld.gucken.org <f:format.date format="Y" date="now" /></p>
-				</footer>
+		</div>
+		<div id="message-drawer" class="alert-messages">
+			<f:render partial="Tools/Messages" />
+		</div>
 
-			</div>
+		<div class="container content">
+			<f:render section="content" />
+			<hr />
+			<footer>
+				<p>
+					bielefeld.gucken.org <f:format.date format="Y" date="now" /> -
+					<f:link.action action="impressum" controller="Static">Impressum</f:link.action> -
+					<f:link.action action="kontakt" controller="Static">Kontakt</f:link.action>
+				</p>
+			</footer>
 
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		</div>
 
-			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-collapse.js',package:templatePackage)}"></script>
-			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-alert.js',package:templatePackage)}"></script>
-			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-dropdown.js',package:templatePackage)}"></script>
-			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-tooltip.js',package:templatePackage)}"></script>
-			<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-popover.js',package:templatePackage)}"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
-			<script type="text/javascript" src="{f:uri.resource(path:'js/init.js',package:templatePackage)}"></script>
-			
-			
-		</body>
-	</f:alias>
+		<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-collapse.js',package:skinPackage)}"></script>
+		<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-alert.js',package:skinPackage)}"></script>
+		<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-dropdown.js',package:skinPackage)}"></script>
+		<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-tooltip.js',package:skinPackage)}"></script>
+		<script type="text/javascript" src="{f:uri.resource(path:'js/bootstrap-popover.js',package:skinPackage)}"></script>
+
+		<script type="text/javascript" src="{f:uri.resource(path:'js/init.js',package:skinPackage)}"></script>
+
+
+	</body>
 </html>

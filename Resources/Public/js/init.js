@@ -1,21 +1,36 @@
-$(document).ready(function($) {
-	var initializeDragAndDrop = function() {};
+/*
+* Delegation for your jQuery UI widgets
+* https://github.com/aglemann/jquery-delegate/
+* Copyright (c) 2011 Aeron Glemann
+* Version: 1.0 (02/29/2011)
+* Licensed under the MIT licenses:
+* http://www.opensource.org/licenses/mit-license.php
+* Requires: jQuery UI v1.8 or later
+*/
 
-	var update = function(data) {
+$(document).ready(function($) {
+
+	var update = function(data, noReInit) {
 		if(data.update) {
-			$.each(data.update, function(id, html) {$('#'+id).html(html);});
+			$.each(data.update, function(id, html) {
+				$('#'+id).html(html);
+			});
 		}
 		if(data.replace) {
-			$.each(data.replace, function(id, html) {$('#'+id).replaceWith(html);});
+			$.each(data.replace, function(id, html) {
+				$('#'+id).replaceWith(html);
+			});
 		}
 		if(data.remove) {
-			$.each(data.remove, function(id, html) {$('#'+id).replaceWith('');});
+			$.each(data.remove, function(id, html) {
+				$('#'+id).replaceWith('');
+			});
 		}
 		if(data.append) {
-			$.each(data.append, function(id, html) {$('#'+id).html($('#'+id).html() + html)});
+			$.each(data.append, function(id, html) {
+				$('#'+id).html($('#'+id).html() + html);
+			});
 		}
-		
-		initializeDragAndDrop();
 	};	
 
 
@@ -23,20 +38,28 @@ $(document).ready(function($) {
 	var initializeExternalIdLookup = function() {
 		$('.externalIdentifierScheme').change(function() {
 			var $selectHolder = $(this).nextAll('span.selectHolder').first();			
-			$selectHolder.load($selectHolder.data('url'), {type:$(this).val()});
+			$selectHolder.load($selectHolder.data('url'), {
+				type:$(this).val()
+			});
 		});		
 	}
 	
 	var initializeAjaxLoadingIndicator = function() {			
 		$('#ajax-indicator').
-			ajaxStart(function() {$(this).text('loading...');}).
-			ajaxStop(function() {$(this).text(' ');});
+		ajaxStart(function() {
+			$(this).text('loading...');
+		}).
+		ajaxStop(function() {
+			$(this).text(' ');
+		});
 	}	
 	
 	
 	var initializePopover = function() {
 		$('a[rel=popover]').popover({
-			content: function () {return $($(this).attr('href')).html();},
+			content: function () {
+				return $($(this).attr('href')).html();
+			},
 			placement:'left',
 			trigger:'manual'
 		}).click(function() {
@@ -122,52 +145,65 @@ $(document).ready(function($) {
 			$prototype = $self.clone(true,true);
 		});
 		
-	}
+	};
 
 	initializeDragAndDrop = function() {
 
-		$('.identities').droppable({
-			accept: '.identity',
-			greedy:true,
-			activeClass: "dropaccept",
-			hoverClass: "drophover",
-			drop: function( event, ui ) {
-				var $identity = $(ui.draggable);
-				$identity.appendTo(this);
-				$('.ui-draggable').draggable('disable');			
-				var ajaxOptions = {
-					url: $identity.data('mergeurl'),
-					data: {event:$(this).parents('.event').data('identity')},
-					success:update,
-					dataType:'json'
-				};
-				$.ajax(ajaxOptions);						
-			}		
+		$('body').on('mouseenter', '.factoids .identity',function() {
+			var $this = $(this);
+			if(!$this.is(':data(draggable)')) {
+				$this.draggable({
+					handle:'span.grip', 
+					revert:true,
+					distance:20
+				});
+			}
 		});
 
-		$('.factoids .identity').draggable({
-			handle:'span.grip', 
-			revert:true,
-			distance:20
+		$('body').on('mouseenter', '.identities',function() {
+			var $this = $(this);
+			if(!$this.is(':data(droppable)')) {
+				$this.droppable({
+					accept: '.identity',
+					greedy:true,
+					activeClass: "dropaccept",
+					hoverClass: "drophover",
+					drop: function( event, ui ) {
+						var $identity = $(ui.draggable);
+						$identity.appendTo(this);
+						$('.ui-draggable').draggable('disable');			
+						$.ajax({
+							url: $identity.data('mergeurl'),
+							data: {event:$(this).parents('.event').data('identity')},
+							success:update,
+							dataType:'json'
+						});						
+					}		
+				});
+			}
 		});
 
-		$('.events').droppable({
-			accept: '.identity',
-			activeClass: "dropaccept",
-			hoverClass: "drophover",
-			drop: function( event, ui ) {
-				$(ui.draggable).appendTo(this);
-				$('.ui-draggable').draggable('disable');
-				var convertActionLink = $(ui.draggable).find('a.convert').first().attr('href');
-				var ajaxOptions = {
-					url: convertActionLink,
-					data: {event:$(this).parents('.event').data('identity')},
-					success:update,
-					dataType:'json'
-				};
-				$.ajax(ajaxOptions);						
-			}		
-		});		
+
+		$('body').on('mouseenter', '.events',function() {
+			var $this = $(this);
+			if(!$this.is(':data(droppable)')) {
+				$this.droppable({
+					accept: '.identity',
+					activeClass: "dropaccept",
+					hoverClass: "drophover",
+					drop: function( event, ui ) {
+						$(ui.draggable).appendTo(this);
+						$('.ui-draggable').draggable('disable');
+						$.ajax({
+							url: $(ui.draggable).find('a.convert').first().attr('href'),
+							data: {event:$(this).parents('.event').data('identity')},
+							success:update,
+							dataType:'json'
+						});
+					}							
+				});
+			}
+		});
 	}
 	
 
@@ -179,6 +215,6 @@ $(document).ready(function($) {
 	initializeExternalIdLookup();
 	initializeDangerousButtons();
 	
-	//$(".collapse").collapse();
+//$(".collapse").collapse();
 
 });
