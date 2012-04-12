@@ -1,48 +1,56 @@
 {namespace rad=Org\Gucken\Rad\ViewHelpers}
+{namespace media=TYPO3\Media\ViewHelpers}
 <fieldset class="well">
-	<rad:row property="event.title" label="Titel">
-		<f:form.textfield class="span4" id="event.title" property="title" />
+	<rad:row id="event_title" property="title" label="Titel">
+		<f:form.textfield class="span4" id="event_title" property="title" />
 	</rad:row>
 
-	<rad:row property="event.startDateTime" label="Start">
-		<input class="span1" type="date" name="event[startDateTime][date]" id="startDateTime" size="10" maxlength="10" value="{event.startDateTime -> f:format.date(format:'d.m.Y')}"/>
+	<rad:row id="event_startDateTime" property="startDateTime" label="Start">
+		<input class="span1" type="date" name="event[startDateTime][date]" id="event_startDateTime" size="10" maxlength="10" value="{event.startDateTime -> f:format.date(format:'d.m.Y')}"/>
 		<f:form.hidden name="event[startDateTime][dateFormat]" value="d.m.Y" />
 		<input class="span1" type="time" name="event[startDateTime][time]" id="startDateTime_time" size="5" maxlength="5" value="{event.startDateTime -> f:format.date(format:'H:i')}"/>
 		<f:form.hidden name="event[startDateTime][timeFormat]" value="H:i" />
 	</rad:row>
 
-	<rad:row property="event.endDateTime" label="Ende">
-		<input class="span1" type="date" name="event[endDateTime][date]" id="endDateTime" size="10" maxlength="10" value="{event.endDateTime -> f:format.date(format:'d.m.Y')}"/>
+	<rad:row id="event_endDateTime" property="endDateTime" label="Ende">
+		<input class="span1" type="date" name="event[endDateTime][date]" id="event_endDateTime" size="10" maxlength="10" value="{event.endDateTime -> f:format.date(format:'d.m.Y')}"/>
 		<f:form.hidden name="event[endDateTime][dateFormat]" value="d.m.Y" />
 		<input class="span1" type="text" name="event[endDateTime][time]" id="endDateTime_time" size="5" maxlength="5" value="{event.endDateTime -> f:format.date(format:'H:i')}"/>
 		<f:form.hidden name="event[endDateTime][timeFormat]" value="H:i" />
 	</rad:row>
 
-	<rad:row property="event.shortDescription" label="Kurztext">
-		<f:form.textarea class="span4" cols="20" rows="3" id="event.shortDescription" property="shortDescription" />
+	<rad:row id="event_shortDescription" property="shortDescription" label="Kurztext">
+		<f:form.textarea class="span4" cols="20" rows="3" id="event_shortDescription" property="shortDescription" />
 	</rad:row>
 
-	<rad:row property="event.description" label="Text">
-		<f:form.textarea class="span6" cols="20" rows="6" id="event.description" property="description" />
+	<rad:row id="event_description" property="description" label="Text">
+		<f:form.textarea class="span6" cols="20" rows="6" id="event_description" property="description" />
 	</rad:row>
 
-	<rad:row property="event.location" label="Ort">
-		<f:form.select class="span4" id="event.location" property="location" options="{locations}" />
+	<rad:row id="event_location" property="location" label="Ort">
+		<f:form.select class="span4" id="event_location" property="location" options="{locations}" />
 	</rad:row>
 
-	<rad:row property="event.types" label="Veranstaltungsarten">
-		<f:form.select id="types" property="types" options="{types}" multiple="true" size="{types -> f:count()}"/>
+	<rad:row id="event_types" property="types" label="Veranstaltungsarten">
+		<f:form.select id="event_types" property="types" options="{types}" multiple="true" size="{types -> f:count()}"/>
 	</rad:row>
 
-	<rad:row property="event.url" label="Link">
-		<f:form.textfield class="span6" id="event.url" property="url" />
+	<rad:row id="event_url" property="url" label="Link">
+		<f:form.textfield class="span6" id="event_url" property="url" />
 	</rad:row>
 
-	<rad:row property="event.links" label="Links">
-		<ul>			
+	<rad:row id="event_image" property="image" label="Bilddatei">
+		<f:if condition="{event.image}">
+			<media:image image="{event.image}" alt="Bild zum Event" maximumWidth="50" />
+		</f:if>
+		<f:form.upload class="span6" id="event_image" property="image.resource" />
+	</rad:row>
+
+	<rad:row id="event_links" property="links" label="Links">
+		<ul>
 			<f:for each="{event.links}" as="link">
 				<li><a href="{link}">{link}</a></li>
 			</f:for>
 		</ul>
 	</rad:row>
-</fieldset>	
+</fieldset>

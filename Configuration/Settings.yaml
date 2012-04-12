@@ -2,6 +2,13 @@
 # Security policy definition                                             #
 #                                                                        #
 # Settings for the Events package                                        #
+TYPO3:
+  Fluid:
+    view:
+      widget:
+        'TYPO3\Fluid\ViewHelpers\Widget\PaginateViewHelper':
+          templateRootPath: resource://Org.Gucken.Bielefeld/Private/Templates
+
 Org:
   Gucken:
     Events:

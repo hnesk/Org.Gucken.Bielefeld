@@ -713,11 +713,14 @@ textarea[readonly] {
 .control-group.error > label, .control-group.error .help-block, .control-group.error .help-inline {
   color: #b94a48;
 }
-.control-group.error input, .control-group.error select, .control-group.error textarea {
+.control-group.error input, .control-group.error select, .control-group.error textarea,
+input.f3-form-error , select.f3-form-error, textarea.f3-form-error
+{
   color: #b94a48;
   border-color: #b94a48;
 }
-.control-group.error input:focus, .control-group.error select:focus, .control-group.error textarea:focus {
+.control-group.error input:focus, .control-group.error select:focus, .control-group.error textarea:focus,
+input.f3-form-error:focus , select.f3-form-error:focus, textarea.f3-form-error:focus {
   border-color: #953b39;
   -webkit-box-shadow: 0 0 6px #d59392;
   -moz-box-shadow: 0 0 6px #d59392;
@@ -1016,62 +1019,62 @@ table {
 .table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
   background-color: #fff;
 }
-table .span1 {
+table td.span1, table th.span1 {
   float: none;
   width: 44px;
   margin-left: 0;
 }
-table .span2 {
+table td.span2, table th.span2 {
   float: none;
   width: 124px;
   margin-left: 0;
 }
-table .span3 {
+table td.span3, table th.span3 {
   float: none;
   width: 204px;
   margin-left: 0;
 }
-table .span4 {
+table td.span4,table th.span4 {
   float: none;
   width: 284px;
   margin-left: 0;
 }
-table .span5 {
+table td.span5,table th.span5 {
   float: none;
   width: 364px;
   margin-left: 0;
 }
-table .span6 {
+table td.span6,table th.span6 {
   float: none;
   width: 444px;
   margin-left: 0;
 }
-table .span7 {
+table td.span7,table th.span7 {
   float: none;
   width: 524px;
   margin-left: 0;
 }
-table .span8 {
+table td.span8,table th.span8 {
   float: none;
   width: 604px;
   margin-left: 0;
 }
-table .span9 {
+table td.span9,table th.span9 {
   float: none;
   width: 684px;
   margin-left: 0;
 }
-table .span10 {
+table td.span10,table th.span10 {
   float: none;
   width: 764px;
   margin-left: 0;
 }
-table .span11 {
+table td.span11,table th.span11 {
   float: none;
   width: 844px;
   margin-left: 0;
 }
-table .span12 {
+table td.span12,table th.span12 {
   float: none;
   width: 924px;
   margin-left: 0;
@@ -3244,10 +3247,217 @@ table.daylist tbody td.time{font-weight:bold;width:5%}
 table.daylist tbody td.title{width:60%}
 table.daylist tbody td.location{width:35%}
 table.daylist abbr{letter-spacing:normal;border-bottom:none;cursor:auto}
-
+table.daylist td.title a.url { font-weight:bold;}
 
 h1,h2,h3,h4,h5,h6 {
 	font-family: Georgia,Times,"Times New Roman",serif;
 	text-shadow: 1px 1px 2px rgba(51, 51, 51, 0.22);
+	color: #111;
 	/*box-shadow: 0px 4px 2px -2px rgba(176,176,176,0.32);*/
+}
+
+/*!
+* Datepicker for Bootstrap
+*
+* Copyright 2012 Stefan Petre
+* Licensed under the Apache License v2.0
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+*/
+.datepicker {
+top: 0;
+left: 0;
+padding: 4px;
+margin-top: 1px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+/*.dow {
+border-top: 1px solid #ddd !important;
+}*/
+}
+
+
+.datepicker input.span1 {
+	width:54px !important;
+}
+
+.datepicker:before {
+content: '';
+display: inline-block;
+border-left: 7px solid transparent;
+border-right: 7px solid transparent;
+border-bottom: 7px solid #ccc;
+border-bottom-color: rgba(0, 0, 0, 0.2);
+position: absolute;
+top: -7px;
+left: 6px;
+}
+.datepicker:after {
+content: '';
+display: inline-block;
+border-left: 6px solid transparent;
+border-right: 6px solid transparent;
+border-bottom: 6px solid #ffffff;
+position: absolute;
+top: -6px;
+left: 7px;
+}
+.datepicker > div {
+display: none;
+}
+.datepicker table {
+width: 100%;
+margin: 0;
+}
+.datepicker td, .datepicker th {
+text-align: center;
+width: 20px;
+height: 20px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+.datepicker td.day:hover {
+background: #eeeeee;
+cursor: pointer;
+}
+.datepicker td.old, .datepicker td.new {
+color: #999999;
+}
+.datepicker td.active, .datepicker td.active:hover {
+  background-color: #e69100;
+  background-image: -moz-linear-gradient(top, #e57300, #e5bf00);
+  background-image: -ms-linear-gradient(top, #e57300, #e5bf00);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e57300), to(#e5bf00));
+  background-image: -webkit-linear-gradient(top, #e57300, #e5bf00);
+  background-image: -o-linear-gradient(top, #e57300, #e5bf00);
+  background-image: linear-gradient(top, #e57300, #e5bf00);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e57300', endColorstr='#e5bf00', GradientType=0);
+  border-color: #e5bf00 #e5bf00 #997f00;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.datepicker td.active:hover,
+.datepicker td.active:hover:hover,
+.datepicker td.active:active,
+.datepicker td.active:hover:active,
+.datepicker td.active.active,
+.datepicker td.active:hover.active,
+.datepicker td.active.disabled,
+.datepicker td.active:hover.disabled,
+.datepicker td.active[disabled],
+.datepicker td.active:hover[disabled] {
+background-color: #0044cc;
+}
+.datepicker td.active:active,
+.datepicker td.active:hover:active,
+.datepicker td.active.active,
+.datepicker td.active:hover.active {
+background-color: #003399 \9;
+}
+.datepicker td span {
+display: block;
+width: 47px;
+height: 54px;
+line-height: 54px;
+float: left;
+margin: 2px;
+cursor: pointer;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+.datepicker td span:hover {
+background: #eeeeee;
+}
+.datepicker td span.active {
+  background-color: #e69100;
+  background-image: -moz-linear-gradient(top, #e57300, #e5bf00);
+  background-image: -ms-linear-gradient(top, #e57300, #e5bf00);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e57300), to(#e5bf00));
+  background-image: -webkit-linear-gradient(top, #e57300, #e5bf00);
+  background-image: -o-linear-gradient(top, #e57300, #e5bf00);
+  background-image: linear-gradient(top, #e57300, #e5bf00);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e57300', endColorstr='#e5bf00', GradientType=0);
+  border-color: #e5bf00 #e5bf00 #997f00;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.datepicker td span.active:hover,
+.datepicker td span.active:active,
+.datepicker td span.active.active,
+.datepicker td span.active.disabled,
+.datepicker td span.active[disabled] {
+background-color: #0044cc;
+}
+.datepicker td span.active:active, .datepicker td span.active.active {
+background-color: #003399 \9;
+}
+.datepicker td span.old {
+color: #999999;
+}
+.datepicker th.switch {
+width: 145px;
+}
+.datepicker thead tr:first-child th {
+cursor: pointer;
+}
+.datepicker thead tr:first-child th:hover {
+background: #eeeeee;
+}
+.input-append.date .add-on i, .input-prepend.date .add-on i {
+display: block;
+cursor: pointer;
+width: 16px;
+height: 16px;
+}
+
+
+thead tr.filter th {
+	font-weight: normal;
+	white-space: nowrap;
+	border-bottom:3px double #999;
+}
+
+thead tr.filter th input{
+	vertical-align: baseline;
+}
+
+body .FLOW3-Error-Debugger-VarDump-Floating {
+	float:none;
+	position: static;
+}
+
+.sortlinks a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.sortlinks .caret {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  margin:7px 0px;
+}
+
+.caret.up {
+  border-bottom: 4px solid #000000;
+  border-top: 0px;
+}
+
+
+.sortlinks.activeColumn a.activeDirection .caret, a:hover .caret {
+	border-bottom-color:#E57300;
+	border-top-color:#F89406;
+}
+
+.dropdown-menu {
+	max-width: 368px;
+	overflow: hidden;
 }

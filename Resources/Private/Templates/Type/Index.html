@@ -6,7 +6,7 @@
     <h2><i class="icon-tags"></i> Veranstaltungstypen</h2>
 	<p><f:link.action action="add"><i class="icon-plus-sign"></i> Veranstaltungstyp hinzufügen</f:link.action></p>
 
-    <table class="typelist table table-striped table-condensed">
+    <table class="typelist actiontable table table-striped table-condensed">
         <thead>
             <tr>
 				<th>Aktionen</th>
@@ -34,14 +34,14 @@
 										</f:link.action>
 									</li>
 								</ul>
-							</div>					
+							</div>
 						</td>
 						<td class="title">
 							{type.title}
 						</td>
 						<td class="pluralTitle">
 							{type.pluralTitle}
-						</td>					
+						</td>
 						<td class="keywords">
 							<f:for each="{type.keywords}" as="keyword" iteration="i">{keyword}{f:if(condition:i.isLast,then:'',else:', ')}</f:for>
 						</td>

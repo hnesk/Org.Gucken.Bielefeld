@@ -3,7 +3,7 @@
 <f:section name="content">
     <h3>Quelle "{source.name}" bearbeiten</h3>
 	<f:form class="form-horizontal" action="update" name="source" object="{source}" absolute="1">
-		<f:render partial="Source/Form" arguments="{source:source,types:types,implementations:implementations}"/>
+		<f:render partial="Source/Form" arguments="{_all}"/>
 		<fieldset>
 			<f:form.submit class="btn btn-primary" name="redirectButton[{f:uri.action(action:'view',arguments:{source : source},absolute:1)}]" value="Speichern & Vorschau" />
 			<f:form.submit class="btn" name="submit" value="Speichern & zurück" />

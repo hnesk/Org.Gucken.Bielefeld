@@ -1,16 +1,17 @@
 {namespace m=Org\Gucken\Markdown\ViewHelpers}
+{namespace e=Org\Gucken\Events\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
 <f:layout name="Page.html" />
 
 
 <f:section name="content">
 	<h2>Veranstaltungen: Die nächsten 14 Tage</h2>
-	
+
 	<f:security.ifAccess resource="Org_Gucken_Events_Actions_Create">
 		<f:link.action controller="event" action="add" arguments="{event:event}">+</f:link.action>
 	</f:security.ifAccess>
 
-		<f:groupedFor each="{events}" as="eventsToday" groupBy="day" groupKey="day">	
+		<f:groupedFor each="{events}" as="eventsToday" groupBy="day" groupKey="day">
 			<dl class="calendarList vcalender clearfix row">
 
 				<dt class="span2">
@@ -37,23 +38,24 @@
 										</td>
 										<td class="title summary">
 											<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
-												<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
+						 						<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
 											</f:security.ifAccess>
 											<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
 												<f:link.action controller="event" action="delete" arguments="{event:event}">-</f:link.action>
 											</f:security.ifAccess>
-											<f:link.action class="url" action="show" arguments="{event:event}"><span title="{event.title}">{event.title}</span></f:link.action>
+											<f:link.action additionalAttributes="{data-toggle:'collapse',data-target:'#event_{e:identifier(object:event)}'}" class="url ajaxable" action="show" arguments="{event:event}"><span title="{event.title}">{event.title}</span></f:link.action>
+											<div class="collapse" id="event_{e:identifier(object:event)}"></div>
 										</td>
 										<td class="location">{event.location.name} {event.location.address.addressLocality}</td>
 									</tr>
 								</f:for>
 							</tbody>
-						</table>				
+						</table>
 					</f:groupedFor>
 					<hr />
 
 				</dd>
-			</dl>	
+			</dl>
 		</f:groupedFor>
 </f:section>
 

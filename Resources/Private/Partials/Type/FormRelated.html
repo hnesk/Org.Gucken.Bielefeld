@@ -1,15 +1,15 @@
 {namespace rad=Org\Gucken\Rad\ViewHelpers}
 <fieldset class="well">
-	<rad:row property="keywords_{type.keywords -> f:count()}_keyword" label="Suchworte">
-	    <ol>            
+	<rad:row id="keywords_{type.keywords -> f:count()}_keyword" property="keywords" label="Suchworte">
+	    <ol>
             <f:for each="{type.keywords}" as="keyword" key="i">
-                <li>{keyword}</li>                                 
-            </f:for> 
+                <li>{keyword}</li>
+            </f:for>
             <li class="autoadd" data-autoadd='{"selector":"input.autoadd-listen","event":"change"}'>
                 <f:form.textfield property="keywords.{type.keywords -> f:count()}.keyword" id="keywords_{type.keywords -> f:count()}_keyword" class="autoadd-listen" />
                 <f:form.hidden  property="keywords.{type.keywords -> f:count()}.type" value="{type}" />
 				<f:form.hidden  property="keywords.{type.keywords -> f:count()}.typeId" value="{type.title}" />
-            </li>                        
+            </li>
         </ol>
 	</rad:row>
-</fieldset>	
+</fieldset>

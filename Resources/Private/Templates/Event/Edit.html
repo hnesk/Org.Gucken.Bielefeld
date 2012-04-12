@@ -4,11 +4,11 @@
 <f:section name="content">
 	<h2>Veranstaltung "{event.title}" bearbeiten</h2>
 	<div id="content">
-		<f:form class="form-horizontal" action="update" name="event" object="{event}" absolute="1">
+		<f:form class="form-horizontal" enctype="multipart/form-data" action="update" name="event" object="{event}" absolute="1">
 			<f:render partial="Event/Form" arguments="{event:event,locations:locations,types:types}"/>
 			<fieldset class="well">
 				<f:form.submit value="Speichern" />
-			</fieldset>			
+			</fieldset>
 		</f:form>
 	</div>
 </f:section>

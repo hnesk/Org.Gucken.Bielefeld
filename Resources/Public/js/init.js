@@ -8,9 +8,17 @@
 * Requires: jQuery UI v1.8 or later
 */
 
+DPGlobal.dates = {
+	days: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+	daysShort: ["Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam", "Son"],
+	daysMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+	months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+	monthsShort: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+};
+
 $(document).ready(function($) {
 
-	var update = function(data, noReInit) {
+	var update = function(data, link, noReInit) {
 		if(data.update) {
 			$.each(data.update, function(id, html) {
 				$('#'+id).html(html);
@@ -31,20 +39,40 @@ $(document).ready(function($) {
 				$('#'+id).html($('#'+id).html() + html);
 			});
 		}
-	};	
+		if(data.run) {
+			$.each(data.run, function(fn, data) {
+				update[fn](data,link);
+			});
+		}
+	};
+
+	update.toggleEvent = function(data, $link) {
+		$('#event_'+data.event).collapse('show');
+	};
+
+	$('.datepicker').datepicker({
+		'weekStart':1
+	});
+
+	//$('.typeahead').typeahead({});
 
 
+	$('table.actiontable tbody').one('click','tr', function(e) {
+		var $firstLink = $(this).find('a').first();
+		window.document.location = $firstLink.attr('href');
+
+	});
 
 	var initializeExternalIdLookup = function() {
 		$('.externalIdentifierScheme').change(function() {
-			var $selectHolder = $(this).nextAll('span.selectHolder').first();			
+			var $selectHolder = $(this).nextAll('span.selectHolder').first();
 			$selectHolder.load($selectHolder.data('url'), {
 				type:$(this).val()
 			});
-		});		
+		});
 	}
-	
-	var initializeAjaxLoadingIndicator = function() {			
+
+	var initializeAjaxLoadingIndicator = function() {
 		$('#ajax-indicator').
 		ajaxStart(function() {
 			$(this).text('loading...');
@@ -52,9 +80,9 @@ $(document).ready(function($) {
 		ajaxStop(function() {
 			$(this).text(' ');
 		});
-	}	
-	
-	
+	}
+
+
 	var initializePopover = function() {
 		$('a[rel=popover]').popover({
 			content: function () {
@@ -71,7 +99,7 @@ $(document).ready(function($) {
 			trigger:'manual'
 		}).click(function(event) {
 			var el = $(this);
-			if (!el.attr('data-content') && el.attr('href')) {			
+			if (!el.attr('data-content') && el.attr('href')) {
 				$.ajax({
 					url: el.attr('href'),
 					dataType: 'json',
@@ -82,26 +110,35 @@ $(document).ready(function($) {
 					}
 				});
 			} else {
-				el.popover('toggle');				
+				el.popover('toggle');
 			}
 			event.preventDefault();
 		});
 	}
-	
 
 	var initializeAjaxableActions = function() {
-		$('body').on('click','a.ajaxable',function (e) {		 	
-			$.ajax({
-				url: $(this).attr('href'),
-				success:update,
-				dataType:'json'
-			});
+		$('body').on('click','a.ajaxable', function (e) {
+			if (e.ctrlKey) {
+				return;
+			}
+			var $self = $(this);
+			var target = $self.attr('target');
+			if (!$self.data('ajaxed')) {
+				$.ajax({
+					url: $self.attr('href'),
+					success:function(data) {
+						$self.data('ajaxed',true) ;
+						update(data,$self,target);
+					},
+					dataType:'json'
+				});
+			}
 			e.preventDefault();
 		});
-	}
-	
+	};
+
 	var initializeDangerousButtons = function() {
-		$('body').on('click', '.btn-danger', function (e) {		 	
+		$('body').on('click', '.btn-danger', function (e) {
 			var what = $(this).attr('title');
 			what = what ? what : 'das';
 			if (!window.confirm('Bist du sicher, dass du ' + what + ' willst?')) {
@@ -112,9 +149,9 @@ $(document).ready(function($) {
 
 	var initializeAutoAdd = function() {
 		$('.autoadd').each(function() {
-			var $self = $(this);		
+			var $self = $(this);
 			var $prototype = null;
-			var $insertAfter = $self;		
+			var $insertAfter = $self;
 			var data = $self.data('autoadd');
 			var $observedElements = $self.find(data.selector);
 			var initialNumber = 1 * $observedElements.first().attr('name').replace(/^.+\[(\d+)\].+$/,'$1');
@@ -123,7 +160,7 @@ $(document).ready(function($) {
 			$observedElements.each(function () {
 				$self.bind(data.event,function() {
 					currentNumber++;
-					var $newElement = $prototype.clone(true,true);				
+					var $newElement = $prototype.clone(true,true);
 					$newElement.find('input, select, textarea').each(function() {
 						var $formElement = $(this);
 
@@ -132,19 +169,19 @@ $(document).ready(function($) {
 						}
 						if ($formElement.attr('id')) {
 							$formElement.attr('id', $formElement.attr('id').replace('_'+initialNumber+'_', '_'+currentNumber+'_'));
-						}					
-					});		
-					$insertAfter.after($newElement);							
+						}
+					});
+					$insertAfter.after($newElement);
 					$insertAfter = $newElement;
 
 					$focusElement = $newElement.find(data.selector).first();
 					$focusElement.focus();
 					$focusElement.val('');
-				});						
+				});
 			});
 			$prototype = $self.clone(true,true);
 		});
-		
+
 	};
 
 	initializeDragAndDrop = function() {
@@ -153,7 +190,7 @@ $(document).ready(function($) {
 			var $this = $(this);
 			if(!$this.is(':data(draggable)')) {
 				$this.draggable({
-					handle:'span.grip', 
+					handle:'span.grip',
 					revert:true,
 					distance:20
 				});
@@ -171,14 +208,14 @@ $(document).ready(function($) {
 					drop: function( event, ui ) {
 						var $identity = $(ui.draggable);
 						$identity.appendTo(this);
-						$('.ui-draggable').draggable('disable');			
+						$('.ui-draggable').draggable('disable');
 						$.ajax({
 							url: $identity.data('mergeurl'),
 							data: {event:$(this).parents('.event').data('identity')},
 							success:update,
 							dataType:'json'
-						});						
-					}		
+						});
+					}
 				});
 			}
 		});
@@ -200,12 +237,12 @@ $(document).ready(function($) {
 							success:update,
 							dataType:'json'
 						});
-					}							
+					}
 				});
 			}
 		});
 	}
-	
+
 
 	initializeDragAndDrop();
 	initializeAutoAdd();
@@ -214,7 +251,7 @@ $(document).ready(function($) {
 	initializeAjaxableActions();
 	initializeExternalIdLookup();
 	initializeDangerousButtons();
-	
+
 //$(".collapse").collapse();
 
 });

@@ -11,12 +11,12 @@
 	</f:then>
 	<f:else>
 		<h1>Anmeldung</h1>
-		<f:form class="form-horizontal" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">		
-			<rad:row property="login.username" label="Benutzername">
-					<f:form.textfield  additionalAttributes="{placeholder:'Benutzername'}" id="login.username" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][username]" />
+		<f:form class="form-horizontal" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">
+			<rad:row id="login_username" property="username" label="Benutzername">
+					<f:form.textfield  additionalAttributes="{placeholder:'Benutzername'}" id="login_username" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][username]" />
 			</rad:row>
-			<rad:row property="login.password" label="Passwort">
-					<f:form.password additionalAttributes="{placeholder:'Passwort'}" id="login.password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][password]" />
+			<rad:row id="login_password" property="password" label="Passwort">
+					<f:form.password additionalAttributes="{placeholder:'Passwort'}" id="login_password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][password]" />
 			</rad:row>
 			<f:form.submit class="btn btn-primary" value="Anmelden" />
 		</f:form>

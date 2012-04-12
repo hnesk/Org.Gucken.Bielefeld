@@ -3,58 +3,86 @@
 
 
 <f:section name="content">
-    <h2><i class="icon-calendar"></i> Veranstaltungen</h2>
     <f:link.action action="add"><i class="icon-plus-sign"></i> Neue Veranstaltung erstellen</f:link.action>
 
-    <table class="eventlist table table-striped table-condensed">
-        <thead>
-            <tr>
-				<th>Aktionen</th>
-				<th>Datum</th>
-                <th>Titel</th>
-				<th>Art</th>
-                <th>Ort</th>
-            </tr>
-        </thead>
-        <tbody>
-        <f:for each="{events}" as="event">
-			<tr>
-				<td class="actions">
-					<div class="btn-group">
-						<f:link.action class="btn" action="edit" arguments="{event:event}"><i class="icon-pencil"></i></f:link.action><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li>
-								<f:link.action action="edit" arguments="{event:event}">
-									<i class="icon-pencil"></i> Bearbeiten
-								</f:link.action>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<f:link.action action="delete" arguments="{event:event}">
-									<i class="icon-trash"></i> Löschen
-								</f:link.action>
-							</li>
-						</ul>
-					</div>					
-				</td>
-				<td class="date">
-					{event.startDateTime -> f:format.date(format:'d.m.Y H:i')}
-				</td>				
-				<td class="name">
-					{event.title}
-				</td>
-				<td class="type">
-					<f:for each="{event.types}" as="type">				
-						{type}
-					</f:for>
-				</td>				
-				<td class="location">
-					{event.location.name} {event.location.address.addressLocality}
-				</td>								
-			</tr>
-        </f:for>
-        </tbody>
-    </table>
+	<f:form action="index" name="searchRequest" object="{searchRequest}" absolute="1">
+
+		<f:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 15, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks:5}">
+		<h2><i class="icon-calendar"></i> Zeige Veranstaltungen {searchRequest}</h2>
+
+		<table class="eventlist actiontable table table-striped table-condensed">
+			<thead>
+				<tr class="header">
+					<th>Aktionen</th>
+					<th><f:render partial="Tools/SortLinks" arguments="{label:'Datum',column:'startDateTime',request:searchRequest}" /></th>
+					<th><f:render partial="Tools/SortLinks" arguments="{label:'Title',column:'title',request:searchRequest}" /></th>
+					<th>Art</th>
+					<th><f:render partial="Tools/SortLinks" arguments="{label:'Ort',column:'location',request:searchRequest}" /></th>
+					<th></th>
+				</tr>
+				<tr class="filter">
+					<th></th>
+					<th>
+						<input type="date" name="searchRequest[startDate][date]" value="{searchRequest.startDate -> f:format.date(format:'d.m.y')}" class="span3 datepicker" data-date-format="dd.mm.yy"  maxlength="8" size="16" />
+						<f:form.hidden name="searchRequest[startDate][dateFormat]" value="d.m.y" />
+						-
+						<input type="date" name="searchRequest[endDate][date]" value="{searchRequest.endDate -> f:format.date(format:'d.m.y')}" class="span3 datepicker" data-date-format="dd.mm.yy" maxlength="8" size="16" />
+						<f:form.hidden name="searchRequest[endDate][dateFormat]" value="d.m.y" />
+					</th>
+					<th>
+						<f:form.textfield class="span6" size="" property="title" />
+					</th>
+					<th><f:form.select property="type" options="{types}" /></th>
+					<th><f:form.select property="location" options="{locations}" /></th>
+					<th>
+						<f:link.action class="btn" title="alle Filter zurücksetzen" action="index" arguments="{reset:1}">&times;</f:link.action>
+						<f:form.submit class="btn" value="Suche" />
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			<f:for each="{paginatedEvents}" as="event">
+				<tr>
+					<td class="actions">
+						<div class="btn-group">
+							<f:link.action class="btn" action="edit" arguments="{event:event}"><i class="icon-pencil"></i></f:link.action><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<f:link.action action="edit" arguments="{event:event}">
+										<i class="icon-pencil"></i> Bearbeiten
+									</f:link.action>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<f:link.action action="delete" arguments="{event:event}">
+										<i class="icon-trash"></i> Löschen
+									</f:link.action>
+								</li>
+							</ul>
+						</div>
+					</td>
+					<td class="date">
+						{event.startDateTime -> f:format.date(format:'d.m.Y H:i')}
+					</td>
+					<td class="name">
+						{event.title}
+					</td>
+					<td class="type">
+						<f:for each="{event.types}" as="type">
+							{type}
+						</f:for>
+					</td>
+					<td class="location">
+						{event.location.name} {event.location.address.addressLocality}
+					</td>
+					<td></td>
+				</tr>
+			</f:for>
+			</tbody>
+		</table>
+		</f:widget.paginate>
+	</f:form>
+
 </f:section>
 
 <f:section name="right">---</f:section>

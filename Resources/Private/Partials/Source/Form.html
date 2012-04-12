@@ -1,15 +1,28 @@
 {namespace rad=Org\Gucken\Rad\ViewHelpers}
 <fieldset class="well">
-	<rad:row property="source.name" label="Name">
-		<f:form.textfield id="source.name" property="name" />
+	<rad:row id="source_name" property="name" label="Name">
+		<f:form.textfield id="source_name" property="name" />
 	</rad:row>
 
-	<rad:row property="source.active" label="Aktiv">
-		<f:form.checkbox id="source.active" property="active" value="1" />
+	<rad:row id="source_active" property="active" label="Aktiv">
+		<f:form.checkbox id="source_active" property="active" value="1" />
 	</rad:row>
 
-	<rad:row property="source.implementationClass" label="Implementierung">
-		<f:form.select id="source.implementationClass" property="implementationClass" options="{implementations}">
+	<rad:row id="source_code" property="code" label="Code">
+		<f:form.textfield class="span1" id="source_code" property="code" />
+	</rad:row>
+
+	<rad:row id="source_style" property="style" label="Stil">
+		<f:for each="{0:'',1:'label-success',2:'label-warning', 3:'label-important', 4:'label-info', 5:'label-inverse'}" as="style" key="nr">
+			<label class="checkbox inline label {style}">
+				<f:form.radio name="source[style]" value="{style}" checked="{source.style} == {style}" /> Stil {nr}
+			</label>
+		</f:for>
+
+	</rad:row>
+
+	<rad:row id="source_implementationClass" property="implementationClass" label="Implementierung">
+		<f:form.select id="source_implementationClass" property="implementationClass" options="{implementations}">
 			<option value="">---</option>
 		</f:form.select>
 	</rad:row>
@@ -21,7 +34,7 @@
 		<f:for each="{source.parameterProperties}" key="field" as="property">
 			<rad:field propertyValue="{property}" propertyName="parameters.{field}"/>
 		</f:for>
-	</fieldset>	
+	</fieldset>
 </f:if>
 
 <script type="text/javascript">

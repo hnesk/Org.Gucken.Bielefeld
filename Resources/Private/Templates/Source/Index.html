@@ -6,13 +6,13 @@
 	<h2><i class="icon-magnet"></i> Quellen</h2>
 	<p><f:link.action action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\"index\")}'}"><i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)</f:link.action></p>
 	<p><f:link.action action="add"><i class="icon-plus-sign"></i> Quelle hinzufügen</f:link.action></p>
-	<table class="sourcelist table table-condensed table-striped">
+	<table class="sourcelist actiontable table table-condensed table-striped">
 		<thead>
-			<tr>				
+			<tr>
 				<th>Aktionen</th>
-				<th>Name</th>				
+				<th>Name</th>
 				<th>Implementierung</th>
-				<th>Import: Datum</th>				
+				<th>Import: Datum</th>
 				<th>Import: #</th>
 				<th>Import: Fehler</th>
 			</tr>
@@ -47,10 +47,10 @@
 								</f:link.action>
 								</li>
 							</ul>
-						</div>					
+						</div>
 					</td>
 					<td class="name {f:if(condition:source.active,then:'',else:'inactive')}">
-						<i class="icon-magnet"></i> {source.name}
+						<span class="label {source.style}"><i class="icon-magnet"></i></span> {source.name}
 					</td>
 					<td class="implementation">{source.implementationClass}</td>
 					<td class="logStartTime">
@@ -58,12 +58,12 @@
 					</td>
 					<td class="logImportCount">
 						{source.lastLogEntry.importCount}
-					</td>						
+					</td>
 					<td class="logImportError">
 						<f:render partial="Tools/TooltipList" arguments="{list:source.lastLogEntry.errors,title:'Errors'}" />
 					</td>
 				</tr>
 		</f:for>
 		</tbody>
-	</table>	
+	</table>
 </f:section>

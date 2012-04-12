@@ -1,8 +1,9 @@
 <div class="alert alert-{severityClass} fade in">
 	<a data-dismiss="alert" class="close">×</a>
 	<strong>{f:if(condition:flashMessage.title, then: flashMessage.title, else: severityLabel)}!</strong>
-	{flashMessage.message}
-	<f:if condition="{flashMessage.code}">					
+	{flashMessage -> f:translate(id: flashMessage.code, arguments: flashMessage.arguments, package: 'Org.Gucken.Bielefeld', source: 'ValidationErrors')}
+
+	<f:if condition="{flashMessage.code}">
 		<strong>[Error Code: {flashMessage.code}]</strong>
 	</f:if>
-</div>	
+</div>

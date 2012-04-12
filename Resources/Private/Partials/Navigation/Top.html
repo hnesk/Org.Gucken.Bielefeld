@@ -1,19 +1,16 @@
 <ul class="nav">
-	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Event">
-		<li class="dropdown" id="events">
-			<a href="#events" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar"></i> Events <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><f:link.action action="index" controller="Event"><i class="icon-list-alt"></i> Liste</f:link.action></li>
-				<li><f:link.action action="add" controller="Event"><i class="icon-plus-sign"></i> Neu</f:link.action></li>
-			</ul>
-		</li>
-	</f:security.ifAccess>
+	<li><f:link.action action="index" controller="Proposal"><i class="icon-calendar"></i> Veranstaltung einreichen</f:link.action></li>
 	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Admin">
-		<li>
-			<f:link.action action="index" controller="Admin">Admin</f:link.action>
-		</li>
+		<f:then>
+			<li>
+				<f:link.action action="index" controller="Admin">Admin</f:link.action>
+			</li>
+		</f:then>
+		<f:else>
+			<li>
+				<f:link.action action="index" controller="Admin">Login</f:link.action>
+			</li>
+		</f:else>
 	</f:security.ifAccess>
-	
-	
 </ul>
 
