@@ -2501,7 +2501,7 @@ button.btn.small, input[type="submit"].btn.small {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .navbar .nav > li > a:hover {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.5);
   color: #ffffff;
   text-decoration: none;
 }
@@ -3460,4 +3460,8 @@ body .FLOW3-Error-Debugger-VarDump-Floating {
 .dropdown-menu {
 	max-width: 368px;
 	overflow: hidden;
+}
+
+.dropdown-form {
+	margin:5px 15px;
 }

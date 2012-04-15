@@ -1,0 +1,21 @@
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<f:security.ifHasRole role="User">
+	<f:then>
+		<e:account as="account">
+          <p class="navbar-text pull-right">
+			  Eingelogged als <a href="#">{account.accountIdentifier}</a>
+			  <f:link.action class="btn gucken" action="logout" controller="Account">Logout</f:link.action>
+		  </p>
+		</e:account>
+	</f:then>
+	<f:else>
+		<f:form class="pull-right dropdown-form form-vertical" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">
+			<label for="login_username">Benutzer</label>
+            <f:form.textfield  class="input-medium" placeholder="Benutzername" id="login_username" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][username]" />
+            <label for="login_username">Passwort</label>
+			<f:form.password class="input-medium" additionalAttributes="{placeholder:'Passwort'}" id="login_password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][password]" />
+            <button class="pull-right btn btn-primary" type="submit">Einloggen</button>
+		</f:form>
+	</f:else>
+</f:security.ifHasRole>
+

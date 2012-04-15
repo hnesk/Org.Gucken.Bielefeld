@@ -1,5 +1,5 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
-{namespace m=Org\Gucken\Markdown\ViewHelpers}		
+{namespace r=Org\Gucken\Rad\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
 <f:layout name="Admin.html" />
 
@@ -8,19 +8,19 @@
 	<p class="btn-toolbar">
 		<f:link.action class="btn btn-primary" action="source" controller="import" arguments="{source:source, redirect:'{f:uri.action(action:\"view\",arguments:{source:source})}'}"><i class="icon-arrow-left"></i> Importieren</f:link.action>
 		<f:link.action class="btn" title="'{source.name}' bearbeiten" action="edit" controller="source" arguments="{source:source}"><i class="icon-pencil"></i> Bearbeiten</f:link.action>
-		<f:link.action class="btn btn-danger" title="'{source.name}' löschen" action="delete" controller="source" arguments="{source:source}"><i class="icon-trash"></i> Löschen</f:link.action>		
+		<f:link.action class="btn btn-danger" title="'{source.name}' löschen" action="delete" controller="source" arguments="{source:source}"><i class="icon-trash"></i> Löschen</f:link.action>
 	</p>
-    <p>Implementierung: {source.implementationClass}</p>	
-    <h3>Parameter</h3>	
+    <p>Implementierung: {source.implementationClass}</p>
+    <h3>Parameter</h3>
 	<dl>
 		<f:for each="{source.parameterProperties}" key="key" as="property">
 			<dt>{key}:</dt>
 			<dd>{property}</dd>
 		</f:for>
-	</dl>			
-	
+	</dl>
+
 	<h3>Import-Log</h3>
-	
+
 	<table class="table table-condensed table-striped">
 		<thead>
 			<tr>
@@ -40,25 +40,25 @@
 					<td><f:render partial="Tools/TooltipList" arguments="{list:logEntry.messages,title:'Info'}" /></td>
 					<td><f:render partial="Tools/TooltipList" arguments="{list:logEntry.errors,title:'Fehler'}" /></td>
 				</tr>
-			</f:for>						
+			</f:for>
 		</tbody>
 	</table>
 
-	<h3>Faktoide:</h3>	
+	<h3>Faktoide:</h3>
 
 	<f:for each="{source.eventFactoids}" as="eventFactoid">
 		<div class="eventfactoid well">
 			<h5 class="well-header" data-target="#details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
 				<i class="icon-exclamation-sign"></i>
 				{eventFactoid.startDateTime -> f:format.date(format:'d.m.y H:i')}:
-				<f:link.external uri="{eventFactoid.url}">				
+				<f:link.external uri="{eventFactoid.url}">
 				{eventFactoid.title}
 				</f:link.external>
 				{eventFactoid.type}, {eventFactoid.location}
 			</h5>
 			<div id="details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
 				<p><b>{eventFactoid.shortDescription}</b></p>
-				<div class="pre"><m:markdown>{eventFactoid.description}</m:markdown></div>
+				<div class="pre"><r:markdown>{eventFactoid.description}</r:markdown></div>
 			</div>
 		</div>
 	</f:for>

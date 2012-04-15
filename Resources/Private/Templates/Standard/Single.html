@@ -1,12 +1,11 @@
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
-{namespace m=Org\Gucken\Markdown\ViewHelpers}
 <r:jsonArray>
 	<r:jsonField key="update.event_{e:identifier(object:event)}">
 		<f:if condition="{event.shortDescription}">
 			<p><strong>{event.shortDescription}</strong></p>
 		</f:if>
-		<m:markdown>{event.description}</m:markdown>
+		<r:markdown>{event.description}</r:markdown>
 		<ul>
 			<f:for each="{event.types}" as="type">
 				<li>{type}</li>

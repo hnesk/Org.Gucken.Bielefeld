@@ -1,5 +1,8 @@
 <ul class="nav">
 	<li><f:link.action action="index" controller="Proposal"><i class="icon-calendar"></i> Veranstaltung einreichen</f:link.action></li>
+</ul>
+<ul class="nav pull-right">
+	<li class="divider-vertical"></li>
 	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Admin">
 		<f:then>
 			<li>
@@ -7,10 +10,16 @@
 			</li>
 		</f:then>
 		<f:else>
-			<li>
-				<f:link.action action="index" controller="Admin">Login</f:link.action>
+			<li class="dropdown">
+				<a data-toggle="dropdown" class="dropdown-toggle" href="#">Login <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				<li>
+					<f:render partial="Account/LoginDropdown" />
+				</li>
+				</ul>
 			</li>
 		</f:else>
 	</f:security.ifAccess>
 </ul>
+
 
