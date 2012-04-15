@@ -57,10 +57,11 @@ $(document).ready(function($) {
 	//$('.typeahead').typeahead({});
 
 
-	$('table.actiontable tbody').one('click','tr', function(e) {
+	$('table.actiontable tbody').on('click','tr', function(e) {
 		var $firstLink = $(this).find('a').first();
-		window.document.location = $firstLink.attr('href');
-
+		if (!$(e.target).is('a')) {
+			window.document.location = $firstLink.attr('href');
+		}
 	});
 
 	var initializeExternalIdLookup = function() {

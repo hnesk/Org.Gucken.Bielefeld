@@ -5,9 +5,9 @@
     <h2>Ort "{location.name}" bearbeiten</h2>
 	<f:form class="form-horizontal" action="update" name="location" object="{location}" absolute="true">
 		<f:render partial="Location/Form" arguments="{location:location}"/>
-		<f:render partial="Location/FormRelated" arguments="{location:location,externalIdentifiers:externalIdentifiers}"/>		
-		<fieldset class="well">
-            <f:form.submit class="btn" name="redirectButton[{f:uri.action(action:'edit',arguments:{location : location})}]" value="Speichern & weiter bearbeiten" />            
+		<f:render partial="Location/FormRelated" arguments="{location:location,externalIdentifiers:externalIdentifiers}"/>
+		<fieldset class="form-actions">
+            <f:form.submit class="btn" name="redirectButton[{f:uri.action(action:'edit',arguments:{location : location})}]" value="Speichern & weiter bearbeiten" />
             <f:form.submit class="btn btn-primary" name="submit" value="Speichern & zurück" />
 		</fieldset>
 	</f:form>
