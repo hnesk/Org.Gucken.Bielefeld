@@ -1,9 +1,9 @@
 {namespace rad=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
 {namespace media=TYPO3\Media\ViewHelpers}
-<fieldset class="well">
+<fieldset>
 	<rad:row id="factoid_title" property="title" label="Veranstaltungsname">
-		<f:form.textfield class="span4" id="factoid_title" property="title" />
+		<f:form.textfield class="span6" id="factoid_title" property="title" />
 	</rad:row>
 	<rad:row id="factoid_startDateTime" property="startDateTime" label="Datum / Uhrzeit">
 		<e:form.dateTime property="startDateTime" additionalAttributes="{data-date-format: 'dd.mm.yy'}" placeholder="dd.mm.jj" dateFormat="d.m.y" timeFormat="H:i" class="span1" id="factoid_startDateTime" size="8" maxlength="8" />
@@ -11,23 +11,23 @@
 	<rad:row id="factoid_location" property="locationText" label="Veranstaltungsort">
 		<f:if condition="{proposedLocations}">
 			<f:then>
-				<f:form.select property="location" class="span4" id="factoid_location" options="{proposedLocations}"/>
+				<f:form.select property="location" class="span3" id="factoid_location" options="{proposedLocations}"/>
 			</f:then>
 			<f:else>
-				<f:form.textfield property="locationText" placeholder="Tippen und auswählen..." id="factoid_location" class="span4 typeahead"
+				<f:form.textfield property="locationText" placeholder="Tippen und auswählen..." id="factoid_location" class="span3 typeahead"
 						  additionalAttributes="{data-source:'{locationJson}', data-provide:'typeahead',autocomplete:'off'}" />
 			</f:else>
 		</f:if>
-		<f:form.textfield class="span4" id="factoid_locationDetail" property="locationDetail" placeholder="genauer Ort, wenn nötig, z.B: Hörsaal 1, Audimin, Innenhof,..." />
+		<f:form.textfield class="span4" id="factoid_locationDetail" property="locationDetail" placeholder="genauerer Ort, optional, z.B: Hörsaal 1, Audimin, Innenhof,..." />
 	</rad:row>
 	<rad:row id="factoid_type" property="type" label="Veranstaltungsart">
-		<f:form.select class="span4" id="factoid_type" property="type" options="{types}" />
+		<f:form.select class="span3" id="factoid_type" property="type" options="{types}" />
 	</rad:row>
 	<rad:row id="factoid_description" property="description" label="Beschreibung">
-		<f:form.textarea class="span8" cols="40" rows="8" id="factoid_description" property="description" />
+		<f:form.textarea class="span6" cols="40" rows="8" id="factoid_description" property="description" />
 	</rad:row>
 	<rad:row id="factoid_url" property="url" label="Link">
-		<f:form.textfield class="span8"  id="factoid_url" property="url" />
+		<f:form.textfield class="span6"  id="factoid_url" property="url" />
 	</rad:row>
 
 </fieldset>

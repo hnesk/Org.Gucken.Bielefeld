@@ -6,6 +6,9 @@
 	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Admin">
 		<f:then>
 			<li>
+				<f:link.action action="logout" controller="Account">Logout</f:link.action>
+			</li>
+			<li>
 				<f:link.action action="index" controller="Admin">Admin</f:link.action>
 			</li>
 		</f:then>

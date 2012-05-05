@@ -4,17 +4,29 @@
 <f:section name="title">Veranstaltung vorschlagen: </f:section>
 
 <f:section name="content">
-	<h2>Veranstaltung vorschlagen</h2>
-	<!--
-	<p>Hier kannst du fehlende Veranstaltungen einstellen, bzw. bereits bestehende fehlerhafte Termine korrigieren.</p>
-	<p>Die Termine erscheinen nach der Freigabe auf der Seite.</p>
-	<p>Bitte benutze das Formular nur für jeweils einen Termin, auch wenn das bei vielen Terminen eventuell nervig ist.</p>
-	<p>Ansonsten gibt es immer die für alle Beteiligten viel einfachere Möglichkeit: Ihr veröffentlicht die Termine bei euch auf eurer Webseite oder auf Myspace, und wir klauen sie von da, ok?</p>
- -->
-	<f:form class="form-horizontal" action="validate" name="proposal" object="{proposal}" absolute="1">
-		<f:render partial="Proposal/Form" arguments="{_all}"/>
-		<fieldset class="form-actions">
-			<f:form.submit class="btn btn-primary" value="Ab dafür" />
-		</fieldset>
-	</f:form>
+	<div class="row">
+		<div class="span9">
+			<div class="content">
+				<h2>Veranstaltung vorschlagen</h2>
+				<!--
+				<p>Hier kannst du fehlende Veranstaltungen einstellen, bzw. bereits bestehende fehlerhafte Termine korrigieren.</p>
+				<p>Die Termine erscheinen nach der Freigabe auf der Seite.</p>
+				<p>Bitte benutze das Formular nur für jeweils einen Termin, auch wenn das bei vielen Terminen eventuell nervig ist.</p>
+				<p>Ansonsten gibt es immer die für alle Beteiligten viel einfachere Möglichkeit: Ihr veröffentlicht die Termine bei euch auf eurer Webseite oder auf Myspace, und wir klauen sie von da, ok?</p>
+			-->
+				<f:form class="form-horizontal" action="validate" name="proposal" object="{proposal}" absolute="1">
+					<f:render partial="Proposal/Form" arguments="{_all}"/>
+					<fieldset class="form-actions">
+						<f:form.submit class="btn btn-primary" value="Ab dafür" />
+					</fieldset>
+				</f:form>
+			</div>
+		</div>
+		<div class="span3">
+			<div class="content">
+				<h4>Wann kann man was sehen?</h4>
+				<p>Die eingetragene Veranstaltung wird spätestens innerhalb von 24h live gestellt.</p>
+			</div>
+		</div>
+	</div>
 </f:section>
