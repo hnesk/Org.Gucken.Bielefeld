@@ -6,10 +6,10 @@ use Org\Gucken\Events\Domain\Model\EventSource\AbstractEventSource,
 	Org\Gucken\Events\Domain\Model\EventSource\EventSourceInterface;
 use Type\Xml;
 use Org\Gucken\Events\Annotations as Events,
-	TYPO3\FLOW3\Annotations as FLOW3;
+	TYPO3\Flow\Annotations as Flow;
 
 /**
- * @FLOW3\Scope("prototype")
+ * @Flow\Scope("prototype")
  */
 class Stadtbibliothek extends AbstractEventSource implements EventSourceInterface {
 

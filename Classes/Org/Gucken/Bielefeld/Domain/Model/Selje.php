@@ -9,10 +9,10 @@ use Type\Url,
 	Type\Date,
 	Type\Record;
 use Org\Gucken\Events\Annotations as Events,
-	TYPO3\FLOW3\Annotations as FLOW3;
+	TYPO3\Flow\Annotations as Flow;
 
 /**
- * @FLOW3\Scope("prototype")
+ * @Flow\Scope("prototype")
  */
 class Selje extends AbstractEventSource implements EventSourceInterface {
 

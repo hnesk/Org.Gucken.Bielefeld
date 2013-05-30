@@ -11,10 +11,10 @@ use Type\Url,
 	Util\Lookup,
 	Util\Lookup\Source;
 use Org\Gucken\Events\Annotations as Events,
-	TYPO3\FLOW3\Annotations as FLOW3;
+	TYPO3\Flow\Annotations as Flow;
 
 /**
- * @FLOW3\Scope("prototype")
+ * @Flow\Scope("prototype")
  */
 class Weberei extends AbstractEventSource implements EventSourceInterface {
 

@@ -1,7 +1,7 @@
 <?php
 namespace Org\Gucken\Bielefeld\Tests\Unit\Domain\Model;
 
-require_once FLOW3_PATH_PACKAGES.'/Application/Org.Gucken.Events/Tests/EventSourceUnitTestCase.php';
+require_once FLOW_PATH_PACKAGES.'/Application/Org.Gucken.Events/Tests/EventSourceUnitTestCase.php';
 
 class ForumTest extends \Org\Gucken\Events\Tests\EventSourceUnitTestCase {
 		

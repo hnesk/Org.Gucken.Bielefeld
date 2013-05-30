@@ -7,10 +7,10 @@ use Org\Gucken\Events\Domain\Model\EventSource\AbstractEventSource,
 use Type\Feed,
 	Type\Xml;
 use Org\Gucken\Events\Annotations as Events,
-	TYPO3\FLOW3\Annotations as FLOW3;
+	TYPO3\Flow\Annotations as Flow;
 
 /**
- * @FLOW3\Scope("prototype")
+ * @Flow\Scope("prototype")
  */
 class Falkendom extends AbstractEventSource implements EventSourceInterface {
 
