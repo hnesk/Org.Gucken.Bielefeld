@@ -11,9 +11,11 @@
 	<f:else>
 		<f:form class="pull-right dropdown-form form-vertical" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">
 			<label for="login_username">Benutzer</label>
-            <f:form.textfield  class="input-medium" placeholder="Benutzername" id="login_username" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][username]" />
+            <f:form.textfield  class="input-medium" placeholder="Benutzername" id="login_username" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" />
+
+
             <label for="login_username">Passwort</label>
-			<f:form.password class="input-medium" additionalAttributes="{placeholder:'Passwort'}" id="login_password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][password]" />
+			<f:form.password class="input-medium" additionalAttributes="{placeholder:'Passwort'}" id="login_password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" />
             <button class="pull-right btn btn-primary" type="submit">Einloggen</button>
 		</f:form>
 	</f:else>

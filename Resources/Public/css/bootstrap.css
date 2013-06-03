@@ -3416,7 +3416,7 @@ thead tr.filter th input{
 	vertical-align: baseline;
 }
 
-body .FLOW3-Error-Debugger-VarDump-Floating {
+body .Flow-Error-Debugger-VarDump-Floating {
 	float:none;
 	position: static;
 }
