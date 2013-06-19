@@ -1,12 +1,13 @@
+{namespace r=Org\Gucken\Rad\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
 <f:layout name="Admin.html" />
 
 
 <f:section name="content">
 
+    <f:widget.paginate objects="{locations}" as="paginatedLocations" configuration="{itemsPerPage: 15, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks:5}">
 	<f:form action="index" name="searchRequest" object="{searchRequest}" absolute="1">
 
-		<f:widget.paginate objects="{locations}" as="paginatedLocations" configuration="{itemsPerPage: 15, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks:5}">
 		<h2><i class="icon-map-marker"></i> Zeige Orte {searchRequest}</h2>
 
 		<f:link.action action="add"><i class="icon-plus-sign"></i> Neuen Ort erstellen</f:link.action>
@@ -33,45 +34,46 @@
 					</th>
 				</tr>
 			</thead>
-
-			<tbody>
-			<f:for each="{paginatedLocations}" as="location">
-				<tr>
-					<td class="actions">
-						<div class="btn-group">
-							<f:link.action class="btn" action="edit" arguments="{location : location}"><i class="icon-pencil"></i></f:link.action><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<f:link.action action="edit" arguments="{location : location}">
-										<i class="icon-pencil"></i> Bearbeiten
-									</f:link.action>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<f:link.action action="delete" arguments="{location : location}">
-										<i class="icon-trash"></i> Löschen
-									</f:link.action>
-								</li>
-							</ul>
-						</div>
-					</td>
-					<td class="name">
-						{location.name}
-					</td>
-					<td class="city">
-						{location.address.addressLocality}
-					</td>
-					<td class="reviewed">
-						{f:if(condition:location.reviewed, then: 'Ja', else: 'Nein')}
-					</td>
-					<td class="url">
-						<f:link.external uri="{location.url}">{location.url}</f:link.external>
-					</td>
-					<td></td>
-				</tr>
-			</f:for>
-			</tbody>
-		</table>
-		</f:widget.paginate>
-	</f:form>
+        </table>
+    </f:form>
+    <table class="locationlist actiontable table table-striped table-condensed">
+        <tbody>
+        <f:for each="{paginatedLocations}" as="location">
+            <tr>
+                <td class="actions">
+                    <div class="btn-group">
+                        <f:link.action class="btn" action="edit" arguments="{location : location}"><i class="icon-pencil"></i></f:link.action><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <f:link.action action="edit" arguments="{location : location}">
+                                    <i class="icon-pencil"></i> Bearbeiten
+                                </f:link.action>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <r:link.action action="delete" arguments="{location : location}">
+                                    <i class="icon-trash"></i> Löschen
+                                </r:link.action>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="name">
+                    {location.name}
+                </td>
+                <td class="city">
+                    {location.address.addressLocality}
+                </td>
+                <td class="reviewed">
+                    {f:if(condition:location.reviewed, then: 'Ja', else: 'Nein')}
+                </td>
+                <td class="url">
+                    <f:link.external uri="{location.url}">{location.url}</f:link.external>
+                </td>
+                <td></td>
+            </tr>
+        </f:for>
+        </tbody>
+    </table>
+    </f:widget.paginate>
 </f:section>

@@ -1,4 +1,5 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
+{namespace r=Org\Gucken\Rad\ViewHelpers}
 <div class="item identity" id="identity_{e:identifier(object:identity)}" data-mergeurl="{f:uri.action(controller:'factoidConvert',action:'merge',arguments:{identity:identity},absolute:1)}">
 	<div class="head row-fluid">
 		<span class="span2">
@@ -43,9 +44,9 @@
 		<div class="factoid row-fluid" id="factoid_{e:identifier(object:factoid)}">
 			<span class="span2">
 				<div class="btn-group icon">
-					<f:link.action class="btn ajaxable" controller="factoidConvert" action="deleteFactoid" arguments="{identity:identity,factoid:factoid}" title="Löschen" name="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+					<r:link.action class="btn ajaxable" controller="factoidConvert" action="deleteFactoid" arguments="{identity:identity,factoid:factoid}" title="Löschen" name="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
 						<i class="icon-trash"></i>
-					</f:link.action>
+					</r:link.action>
 					<f:link.action class="btn" rel="ajaxpopover" controller="factoidConvert" action="detailFactoid" arguments="{identity:identity,factoid:factoid}" title="Details">
 						<i class="icon-eye-open"></i>
 					</f:link.action>

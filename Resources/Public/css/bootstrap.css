@@ -1622,6 +1622,7 @@ table td.span12,table th.span12 {
 }
 .btn {
   display: inline-block;
+  vertical-align: middle;
   padding: 4px 10px 4px;
   font-size: 13px;
   line-height: 18px;
@@ -3454,4 +3455,37 @@ body .Flow-Error-Debugger-VarDump-Floating {
 
 footer {
 	margin-top:10px;
+}
+
+
+.postlink {
+    margin: 0 0;
+    padding: 0 0;
+    border: 0;
+    text-align: inherit;
+    background-color: inherit;
+    display: inline-block;
+}
+
+.postlink .btn {
+    display: inline-block;
+}
+
+.dropdown-menu li > .postlink > button {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+
+}
+
+.dropdown-menu li > .postlink > button:hover,
+.dropdown-menu .active > .postlink > button a,
+.dropdown-menu .active > .postlink > button:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #e57300;
 }

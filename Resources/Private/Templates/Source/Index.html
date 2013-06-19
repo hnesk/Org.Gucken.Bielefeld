@@ -1,10 +1,11 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
+{namespace r=Org\Gucken\Rad\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
 <f:layout name="Admin.html" />
 
 <f:section name="content">
 	<h2><i class="icon-magnet"></i> Quellen</h2>
-	<p><f:link.action action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\"index\")}'}"><i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)</f:link.action></p>
+	<p><r:link.action class="btn" action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\"index\")}'}"><i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)</r:link.action></p>
 	<p><f:link.action action="add"><i class="icon-plus-sign"></i> Quelle hinzufügen</f:link.action></p>
 	<table class="sourcelist actiontable table table-condensed table-striped">
 		<thead>
@@ -31,9 +32,9 @@
 								</f:link.action>
 								</li>
 								<li>
-								<f:link.action action="source" controller="Import" title="die Quelle {source.name} importieren" arguments="{source:source, redirect:'{f:uri.action(action:\"index\")}'}">
+								<r:link.action action="source" controller="Import" title="die Quelle {source.name} importieren" arguments="{source:source, redirect:'{f:uri.action(action:\"index\")}'}">
 									<i class="icon-arrow-left"></i> Importieren
-								</f:link.action>
+								</r:link.action>
 								</li>
 								<li>
 								<f:link.action action="view" title="die Quelle {source.name} ansehen" arguments="{source : source}">
@@ -42,9 +43,9 @@
 								</li>
 								<li class="divider"></li>
 								<li>
-								<f:link.action action="delete" class="btn-danger" title="die Quelle {source.name} löschen" arguments="{source : source}">
+								<r:link.action action="delete" class="btn-danger" title="die Quelle {source.name} löschen" arguments="{source : source}">
 									<i class="icon-trash"></i> Löschen
-								</f:link.action>
+								</r:link.action>
 								</li>
 							</ul>
 						</div>

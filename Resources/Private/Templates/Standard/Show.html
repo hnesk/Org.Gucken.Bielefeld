@@ -12,7 +12,7 @@
 			<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
 		</f:security.ifAccess>
 		<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
-			<f:link.action controller="event" action="delete" arguments="{event:event}">-</f:link.action>
+			<r:link.action controller="event" action="delete" arguments="{event:event}">-</r:link.action>
 		</f:security.ifAccess>
 		{event.title} <span>{event.location.name}, {event.location.address.addressLocality}</span>
 	</h2>
