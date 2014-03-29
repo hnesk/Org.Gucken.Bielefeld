@@ -21,7 +21,7 @@ class ForumTest extends \Org\Gucken\Events\Tests\EventSourceUnitTestCase {
 	 * @dataProvider getConcertData
 	 */
 	public function concertsHaveCorrectData($file, $nr, $data) {
-		return $this->assertEventDataIsCorrect($file, $nr, $data);
+		$this->assertEventDataIsCorrect($file, $nr, $data);
 	}	
 
 	/**
@@ -29,7 +29,7 @@ class ForumTest extends \Org\Gucken\Events\Tests\EventSourceUnitTestCase {
 	 * @dataProvider getPartyData
 	 */
 	public function partysHaveCorrectData($file, $nr, $data) {
-		return $this->assertEventDataIsCorrect($file, $nr, $data);
+		$this->assertEventDataIsCorrect($file, $nr, $data);
 	}
 	
 	

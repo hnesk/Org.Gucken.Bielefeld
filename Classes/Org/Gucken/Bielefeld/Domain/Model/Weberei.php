@@ -122,7 +122,9 @@ class Weberei extends AbstractEventSource implements EventSourceInterface {
 			}
 			
 			return $title->toLower()->contains('geschlossen') ? null : new \Type\Record($event);
-		}
+		} else {
+            return null;
+        }
 	}
 
 }

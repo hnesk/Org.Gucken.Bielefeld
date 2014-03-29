@@ -36,7 +36,7 @@ class MovieTest extends \Org\Gucken\Events\Tests\EventSourceUnitTestCase {
 	 * @dataProvider getData
 	 */
 	public function eventsHaveCorrectData($file, $nr, $data) {
-		return $this->assertEventDataIsCorrect($file, $nr, $data);
+		$this->assertEventDataIsCorrect($file, $nr, $data);
 	}	
 
 	
