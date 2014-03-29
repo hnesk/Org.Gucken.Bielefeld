@@ -64,17 +64,17 @@ class Theaterlabor extends AbstractEventSource implements EventSourceInterface {
 				->asXml()->map(array($this, 'getEvent'));
 	}
 
-	/**
-	 *
-	 * @param \Type\Xml $xml
-	 * @return \Type\Record 
-	 */
+    /**
+     *
+     * @param \Type\Xml $tr
+     * @return \Type\Record
+     */
 	public function getEvent(\Type\Xml $tr) {
 		$short = $tr->xpath('td[4]')->toString()->trim()->append(', ')->append($tr->xpath('td[2]'))->normalizeSpace();
 		$link = $tr->xpath('td[3]/a')->asUrl()->first();
 		/* @var $link \Type\Url */
 		$description = '';
-		if (is($link) && $link->sameDomain($tr->getBaseUri())) {
+		if (is($link) && !$link->getPath()->endsWith('.pdf') && $link->sameDomain($tr->getBaseUri())) {
 			$description = $link->load('badhtml')->getContent()
 					->css('div#inhalt_gross table.contentpaneopen')->asXml()->item(1);
 			

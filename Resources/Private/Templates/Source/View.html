@@ -46,7 +46,7 @@
 
 	<h3>Faktoide:</h3>
 
-	<f:for each="{source.eventFactoids}" as="eventFactoid">
+	<f:for each="{eventFactoids}" as="eventFactoid">
 		<div class="eventfactoid well">
 			<h5 class="well-header" data-target="#details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
 				<i class="icon-exclamation-sign"></i>

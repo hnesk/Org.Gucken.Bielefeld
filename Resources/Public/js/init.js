@@ -50,9 +50,7 @@ $(document).ready(function($) {
 		$('#event_'+data.event).collapse('show');
 	};
 
-	$('.datepicker').datepicker({
-		'weekStart':1
-	});
+	//$('.datepicker').datepicker({'weekStart':1});
 
 	//$('.typeahead').typeahead({});
 
