@@ -60,7 +60,7 @@ class Movie extends AbstractEventSource implements EventSourceInterface {
 	 * @return Url\Collection
 	 */
 	public function getUrls() {
-		return $this->getUrl()->load('badhtml')->getContent()->css('#spalteBreit div.eventText a')->asUrl();
+		return $this->getUrl()->load()->getContent()->css('#spalteBreit div.eventText a')->asUrl();
 	}
 	
 	/**
