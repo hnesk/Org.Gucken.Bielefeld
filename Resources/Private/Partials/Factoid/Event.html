@@ -1,4 +1,5 @@
-<div class="item event well" data-identity='{f:identity.json(object:event)}'>
+{namespace e=Org\Gucken\Events\ViewHelpers}
+<div class="item event well" data-identity='{e:identifier(object:event)}'>
 	<div class="head row-fluid well-header">
 		<span class="startdatetime span2">{event.startDateTime -> f:format.date(format:'d.m. H:i')}</span>
 		<span class="title span6">
