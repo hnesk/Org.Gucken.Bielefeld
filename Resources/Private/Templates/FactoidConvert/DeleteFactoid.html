@@ -1,6 +1,8 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 <r:jsonArray>
-	<r:jsonField key="remove.factoid_{e:identifier(object:factoid)}" forceOutput="1" />
-	<r:jsonField key="append.message-drawer"><f:render partial="Tools/Messages" /></r:jsonField>
+    <r:jsonField key="remove.factoid_{e:identifier(object:factoid)}" forceOutput="1"/>
+    <r:jsonField key="append.message-drawer">
+        <f:render partial="Tools/Messages"/>
+    </r:jsonField>
 </r:jsonArray>

@@ -1,65 +1,81 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
-<f:layout name="Admin.html" />
+<f:layout name="Admin.html"/>
 
 <f:section name="content">
     <h2><i class="icon-magnet"></i> Quelle: {source.name}</h2>
-	<p class="btn-toolbar">
-		<r:link.action class="btn btn-primary" action="source" controller="import" arguments="{source:source, redirect:'{f:uri.action(action:\"view\",arguments:{source:source})}'}"><i class="icon-arrow-left"></i> Importieren</r:link.action>
-		<f:link.action class="btn" title="'{source.name}' bearbeiten" action="edit" controller="source" arguments="{source:source}"><i class="icon-pencil"></i> Bearbeiten</f:link.action>
-		<r:link.action class="btn btn-danger" title="'{source.name}' löschen" action="delete" controller="source" arguments="{source:source}"><i class="icon-trash"></i> Löschen</r:link.action>
-	</p>
+
+    <p class="btn-toolbar">
+        <r:link.action class="btn btn-primary" action="source" controller="import"
+                       arguments="{source:source, redirect:'{f:uri.action(action:\" view\
+        ",arguments:{source:source})}'}"><i class="icon-arrow-left"></i> Importieren</r:link.action>
+        <f:link.action class="btn" title="'{source.name}' bearbeiten" action="edit" controller="source"
+                       arguments="{source:source}"><i class="icon-pencil"></i> Bearbeiten
+        </f:link.action>
+        <r:link.action class="btn btn-danger" title="'{source.name}' löschen" action="delete" controller="source"
+                       arguments="{source:source}"><i class="icon-trash"></i> Löschen
+        </r:link.action>
+    </p>
     <p>Implementierung: {source.implementationClass}</p>
+
     <h3>Parameter</h3>
-	<dl>
-		<f:for each="{source.parameterProperties}" key="key" as="property">
-			<dt>{key}:</dt>
-			<dd>{property}</dd>
-		</f:for>
-	</dl>
+    <dl>
+        <f:for each="{source.parameterProperties}" key="key" as="property">
+            <dt>{key}:</dt>
+            <dd>{property}</dd>
+        </f:for>
+    </dl>
 
-	<h3>Import-Log</h3>
+    <h3>Import-Log</h3>
 
-	<table class="table table-condensed table-striped">
-		<thead>
-			<tr>
-				<th>Datum</th>
-				<th>Importiert</th>
-				<th>Duplikate</th>
-				<th>Info</th>
-				<th>Fehler</th>
-			</tr>
-		</thead>
-		<tbody>
-			<f:for each="{source.logEntries}" as="logEntry">
-				<tr>
-					<td>{logEntry.startTime -> f:format.date(format:'d.m.y H:i')}</td>
-					<td>{logEntry.importCount}</td>
-					<td>{logEntry.duplicateCount}</td>
-					<td><f:render partial="Tools/TooltipList" arguments="{list:logEntry.messages,title:'Info'}" /></td>
-					<td><f:render partial="Tools/TooltipList" arguments="{list:logEntry.errors,title:'Fehler'}" /></td>
-				</tr>
-			</f:for>
-		</tbody>
-	</table>
+    <table class="table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Importiert</th>
+            <th>Duplikate</th>
+            <th>Info</th>
+            <th>Fehler</th>
+        </tr>
+        </thead>
+        <tbody>
+        <f:for each="{source.logEntries}" as="logEntry">
+            <tr>
+                <td>{logEntry.startTime -> f:format.date(format:'d.m.y H:i')}</td>
+                <td>{logEntry.importCount}</td>
+                <td>{logEntry.duplicateCount}</td>
+                <td>
+                    <f:render partial="Tools/TooltipList" arguments="{list:logEntry.messages,title:'Info'}"/>
+                </td>
+                <td>
+                    <f:render partial="Tools/TooltipList" arguments="{list:logEntry.errors,title:'Fehler'}"/>
+                </td>
+            </tr>
+        </f:for>
+        </tbody>
+    </table>
 
-	<h3>Faktoide:</h3>
+    <h3>Faktoide:</h3>
 
-	<f:for each="{eventFactoids}" as="eventFactoid">
-		<div class="eventfactoid well">
-			<h5 class="well-header" data-target="#details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
-				<i class="icon-exclamation-sign"></i>
-				{eventFactoid.startDateTime -> f:format.date(format:'d.m.y H:i')}:
-				<f:link.external uri="{eventFactoid.url}">
-				{eventFactoid.title}
-				</f:link.external>
-				{eventFactoid.type}, {eventFactoid.location}
-			</h5>
-			<div id="details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
-				<p><b>{eventFactoid.shortDescription}</b></p>
-				<div class="pre"><r:markdown>{eventFactoid.description}</r:markdown></div>
-			</div>
-		</div>
-	</f:for>
+    <f:for each="{eventFactoids}" as="eventFactoid">
+        <div class="eventfactoid well">
+            <h5 class="well-header"
+                data-target="#details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
+                <i class="icon-exclamation-sign"></i>
+                {eventFactoid.startDateTime -> f:format.date(format:'d.m.y H:i')}:
+                <f:link.external uri="{eventFactoid.url}">
+                    {eventFactoid.title}
+                </f:link.external>
+                {eventFactoid.type}, {eventFactoid.location}
+            </h5>
+            <div id="details-{eventFactoid.startDateTime -> f:format.date(format:'YmdHi')}">
+                <p><b>{eventFactoid.shortDescription}</b></p>
+
+                <div class="pre">
+                    <r:markdown>{eventFactoid.description}</r:markdown>
+                </div>
+            </div>
+        </div>
+    </f:for>
 </f:section>

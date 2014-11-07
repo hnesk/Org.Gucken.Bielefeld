@@ -1,70 +1,82 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
-<f:layout name="Admin.html" />
+<f:layout name="Admin.html"/>
 
 <f:section name="content">
-	<h2><i class="icon-magnet"></i> Quellen</h2>
-	<p><r:link.action class="btn" action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\"index\")}'}"><i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)</r:link.action></p>
-	<p><f:link.action action="add"><i class="icon-plus-sign"></i> Quelle hinzufügen</f:link.action></p>
-	<table class="sourcelist actiontable table table-condensed table-striped">
-		<thead>
-			<tr>
-				<th>Aktionen</th>
-				<th>Name</th>
-				<th>Implementierung</th>
-				<th>Import: Datum</th>
-				<th>Import: #</th>
-				<th>Import: Fehler</th>
-			</tr>
-		</thead>
-		<tbody>
-		<f:for each="{sources}" as="source">
-				<tr class="vevent">
-					<td class="actions">
-						<div class="btn-group">
-							<f:link.action class="btn" action="edit" arguments="{source : source}"><i class="icon-pencil"></i></f:link.action>
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-								<f:link.action action="edit" title="die Quelle {source.name} bearbeiten" arguments="{source : source}">
-									<i class="icon-pencil"></i> Bearbeiten
-								</f:link.action>
-								</li>
-								<li>
-								<r:link.action action="source" controller="Import" title="die Quelle {source.name} importieren" arguments="{source:source, redirect:'{f:uri.action(action:\"index\")}'}">
-									<i class="icon-arrow-left"></i> Importieren
-								</r:link.action>
-								</li>
-								<li>
-								<f:link.action action="view" title="die Quelle {source.name} ansehen" arguments="{source : source}">
-									<i class="icon-eye-open"></i> Ansehen
-								</f:link.action>
-								</li>
-								<li class="divider"></li>
-								<li>
-								<r:link.action action="delete" class="btn-danger" title="die Quelle {source.name} löschen" arguments="{source : source}">
-									<i class="icon-trash"></i> Löschen
-								</r:link.action>
-								</li>
-							</ul>
-						</div>
-					</td>
-					<td class="name {f:if(condition:source.active,then:'',else:'inactive')}">
-						<span class="label {source.style}"><i class="icon-magnet"></i></span> {source.name}
-					</td>
-					<td class="implementation">{source.implementationClass}</td>
-					<td class="logStartTime">
-						{source.lastLogEntry.startTime -> f:format.date(format:'d.m.y H:i')}
-					</td>
-					<td class="logImportCount">
-						{source.lastLogEntry.importCount}
-					</td>
-					<td class="logImportError">
-						<f:render partial="Tools/TooltipList" arguments="{list:source.lastLogEntry.errors,title:'Errors'}" />
-					</td>
-				</tr>
-		</f:for>
-		</tbody>
-	</table>
+    <h2><i class="icon-magnet"></i> Quellen</h2>
+
+    <p>
+        <r:link.action class="btn" action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\" index\
+        ")}'}"><i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)</r:link.action></p>
+    <p>
+        <f:link.action action="add"><i class="icon-plus-sign"></i> Quelle hinzufügen</f:link.action>
+    </p>
+    <table class="sourcelist actiontable table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th>Aktionen</th>
+            <th>Name</th>
+            <th>Implementierung</th>
+            <th>Import: Datum</th>
+            <th>Import: #</th>
+            <th>Import: Fehler</th>
+        </tr>
+        </thead>
+        <tbody>
+        <f:for each="{sources}" as="source">
+            <tr class="vevent">
+                <td class="actions">
+                    <div class="btn-group">
+                        <f:link.action class="btn" action="edit" arguments="{source : source}"><i
+                                class="icon-pencil"></i></f:link.action>
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <f:link.action action="edit" title="die Quelle {source.name} bearbeiten"
+                                               arguments="{source : source}">
+                                    <i class="icon-pencil"></i> Bearbeiten
+                                </f:link.action>
+                            </li>
+                            <li>
+                                <r:link.action action="source" controller="Import"
+                                               title="die Quelle {source.name} importieren"
+                                               arguments="{source:source, redirect:'{f:uri.action(action:\" index\
+                                ")}'}">
+                                <i class="icon-arrow-left"></i> Importieren
+                                </r:link.action>
+                            </li>
+                            <li>
+                                <f:link.action action="view" title="die Quelle {source.name} ansehen"
+                                               arguments="{source : source}">
+                                    <i class="icon-eye-open"></i> Ansehen
+                                </f:link.action>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <r:link.action action="delete" class="btn-danger"
+                                               title="die Quelle {source.name} löschen" arguments="{source : source}">
+                                    <i class="icon-trash"></i> Löschen
+                                </r:link.action>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="name {f:if(condition:source.active,then:'',else:'inactive')}">
+                    <span class="label {source.style}"><i class="icon-magnet"></i></span> {source.name}
+                </td>
+                <td class="implementation">{source.implementationClass}</td>
+                <td class="logStartTime">
+                    {source.lastLogEntry.startTime -> f:format.date(format:'d.m.y H:i')}
+                </td>
+                <td class="logImportCount">
+                    {source.lastLogEntry.importCount}
+                </td>
+                <td class="logImportError">
+                    <f:render partial="Tools/TooltipList" arguments="{list:source.lastLogEntry.errors,title:'Errors'}"/>
+                </td>
+            </tr>
+        </f:for>
+        </tbody>
+    </table>
 </f:section>

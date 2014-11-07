@@ -1,18 +1,22 @@
-{namespace e=Org\Gucken\Events\ViewHelpers}
-<f:if condition="{list}">
-	<f:then>
-		<a rel="popover" title="{title}" href="#errors_{e:objectHash(object:list)}">
-			<f:count subject="{list}" />
-		</a>
-		<div class="tooltip-holder" id="errors_{e:objectHash(object:list)}">
-			<ul>
-				<f:for each="{list}" as="line">
-					<li><pre>{line}</pre></li>
-				</f:for>
-			</ul>
-		</div>
-	</f:then>
-	<f:else>
-		<f:count subject="{list}" />
-	</f:else>
-</f:if>
+<span xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:e="http://typo3.org/ns/Org/Gucken/Events/ViewHelpers">
+    <f:if condition="{list}">
+        <f:then>
+            <a rel="popover" title="{title}" href="#errors_{e:objectHash(object:list)}">
+                <f:count subject="{list}"/>
+            </a>
+
+            <div class="tooltip-holder" id="errors_{e:objectHash(object:list)}">
+                <ul>
+                    <f:for each="{list}" as="line">
+                        <li>
+                            <pre>{line}</pre>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </f:then>
+        <f:else>
+            <f:count subject="{list}"/>
+        </f:else>
+    </f:if>
+</span>

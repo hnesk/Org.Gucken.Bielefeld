@@ -1,60 +1,75 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
 {namespace r=Org\Gucken\Rad\ViewHelpers}
-<div class="item identity" id="identity_{e:identifier(object:identity)}" data-mergeurl="{f:uri.action(controller:'factoidConvert',action:'merge',arguments:{identity:identity},absolute:1)}">
-	<div class="head row-fluid">
+<div class="item identity" id="identity_{e:identifier(object:identity)}"
+     data-mergeurl="{f:uri.action(controller:'factoidConvert',action:'merge',arguments:{identity:identity},absolute:1)}">
+    <div class="head row-fluid">
 		<span class="span2">
 			<span class="grip ui-icon ui-icon-grip-dotted-vertical"> </span>
 			<!-- <input type="checkbox"  name="arguments[][__identity]" id="action_{e:identifier(object:identity)}" value="{e:identifier(object:identity)}" />-->
 			<div class="btn-group">
-				<f:if condition="{link}">
-					<f:then>
-						<f:link.action class="btn unlink ajaxable" title="Verknüpfung aufheben" controller="factoidConvert" action="unlink" arguments="{link:link}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
-							<i class="icon-arrow-right"></i>
-						</f:link.action>
+                <f:if condition="{link}">
+                    <f:then>
+                        <f:link.action class="btn unlink ajaxable" title="Verknüpfung aufheben"
+                                       controller="factoidConvert" action="unlink" arguments="{link:link}"
+                                       section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+                            <i class="icon-arrow-right"></i>
+                        </f:link.action>
 
-					</f:then>
-					<f:else>
-						<f:link.action class="btn convert ajaxable" title="Live stellen" controller="factoidConvert" action="convert" arguments="{identity:identity}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
-							<i class="icon-arrow-left"></i>
-						</f:link.action>
-					</f:else>
-				</f:if>
-				<f:link.action class="btn ajaxable" title="Löschen" controller="factoidConvert" action="skip" arguments="{identity:identity}" section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
-					<i class="icon-trash"></i>
-				</f:link.action>
-			</div>
+                    </f:then>
+                    <f:else>
+                        <f:link.action class="btn convert ajaxable" title="Live stellen" controller="factoidConvert"
+                                       action="convert" arguments="{identity:identity}"
+                                       section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+                            <i class="icon-arrow-left"></i>
+                        </f:link.action>
+                    </f:else>
+                </f:if>
+                <f:link.action class="btn ajaxable" title="Löschen" controller="factoidConvert" action="skip"
+                               arguments="{identity:identity}"
+                               section="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+                    <i class="icon-trash"></i>
+                </f:link.action>
+            </div>
 		</span>
-		<span class="startdatetime span2">{identity.startDateTime -> f:format.date(format:'d.m. H:i')}</span>
+        <span class="startdatetime span2">{identity.startDateTime -> f:format.date(format:'d.m. H:i')}</span>
 
-		<f:link.action class="source span4" controller="source" action="view" title="die Quelle {source.name} ansehen" arguments="{source : identity.source}">
-			<span class="label {identity.source.style}">{identity.source.name}</span>
-		</f:link.action>
+        <f:link.action class="source span4" controller="source" action="view" title="die Quelle {source.name} ansehen"
+                       arguments="{source : identity.source}">
+            <span class="label {identity.source.style}">{identity.source.name}</span>
+        </f:link.action>
 		<span class="location span4">
 			<f:if condition="{identity.location}">
-				<f:then>{identity.location.name}</f:then>
-				<f:else>
-					<f:if condition="{identity.source.canConvertLocation}">
-						<f:link.action controller="location" action="addFromSource" arguments="{source:identity.source,factoid:identity.factoids.0}" style="float:right;">###<i class="icon-arrow-left"></i></f:link.action>
-					</f:if>
-				</f:else>
-			</f:if>
+                <f:then>{identity.location.name}</f:then>
+                <f:else>
+                    <f:if condition="{identity.source.canConvertLocation}">
+                        <f:link.action controller="location" action="addFromSource"
+                                       arguments="{source:identity.source,factoid:identity.factoids.0}"
+                                       style="float:right;">###<i class="icon-arrow-left"></i></f:link.action>
+                    </f:if>
+                </f:else>
+            </f:if>
 		</span>
-	</div>
-	<f:alias map="{factoid:identity.factoid}">
-		<div class="factoid row-fluid" id="factoid_{e:identifier(object:factoid)}">
+    </div>
+    <f:alias map="{factoid:identity.factoid}">
+        <div class="factoid row-fluid" id="factoid_{e:identifier(object:factoid)}">
 			<span class="span2">
 				<div class="btn-group icon">
-					<r:link.action class="btn ajaxable" controller="factoidConvert" action="deleteFactoid" arguments="{identity:identity,factoid:factoid}" title="Löschen" name="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
-						<i class="icon-trash"></i>
-					</r:link.action>
-					<f:link.action class="btn" rel="ajaxpopover" controller="factoidConvert" action="detailFactoid" arguments="{identity:identity,factoid:factoid}" title="Details">
-						<i class="icon-eye-open"></i>
-					</f:link.action>
-				</div>
+                    <r:link.action class="btn ajaxable" controller="factoidConvert" action="deleteFactoid"
+                                   arguments="{identity:identity,factoid:factoid}" title="Löschen"
+                                   name="d{identity.startDateTime -> f:format.date(format:'Ymd')}">
+                        <i class="icon-trash"></i>
+                    </r:link.action>
+                    <f:link.action class="btn" rel="ajaxpopover" controller="factoidConvert" action="detailFactoid"
+                                   arguments="{identity:identity,factoid:factoid}" title="Details">
+                        <i class="icon-eye-open"></i>
+                    </f:link.action>
+                </div>
 			</span>
-			<f:link.external class="title span6" uri="{factoid.url}" title="{factoid.title}">{factoid.title -> f:format.crop(maxCharacters:40,append:'…')}</f:link.external>
-			<span class="type span2">{factoid.type.title}</span>
-			<span class="importdatetime span2">{factoid.importDateTime -> f:format.date(format:'d.m. H:i')}</span>
-		</div>
-	</f:alias>
+            <f:link.external class="title span6" uri="{factoid.url}" title="{factoid.title}">{factoid.title ->
+                f:format.crop(maxCharacters:40,append:'…')}
+            </f:link.external>
+            <span class="type span2">{factoid.type.title}</span>
+            <span class="importdatetime span2">{factoid.importDateTime -> f:format.date(format:'d.m. H:i')}</span>
+        </div>
+    </f:alias>
 </div>

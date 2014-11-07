@@ -1,20 +1,26 @@
+<div xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
 <f:flashMessages severity="Error" as="flashMessages">
-	<f:for each="{flashMessages}" as="flashMessage">
-		<f:render partial="Tools/Message" arguments="{flashMessage:flashMessage, severityClass:'error',severityLabel:'Fehler'}" />
-	</f:for>		
+    <f:for each="{flashMessages}" as="flashMessage">
+        <f:render partial="Tools/Message"
+                  arguments="{flashMessage:flashMessage, severityClass:'error',severityLabel:'Fehler'}"/>
+    </f:for>
 </f:flashMessages>
 <f:flashMessages severity="Warning" as="flashMessages">
-	<f:for each="{flashMessages}" as="flashMessage">
-		<f:render partial="Tools/Message" arguments="{flashMessage:flashMessage, severityClass:'error',severityLabel:'Warnung'}" />
-	</f:for>		
+    <f:for each="{flashMessages}" as="flashMessage">
+        <f:render partial="Tools/Message"
+                  arguments="{flashMessage:flashMessage, severityClass:'error',severityLabel:'Warnung'}"/>
+    </f:for>
 </f:flashMessages>
 <f:flashMessages severity="Notice" as="flashMessages">
-	<f:for each="{flashMessages}" as="flashMessage">
-		<f:render partial="Tools/Message" arguments="{flashMessage:flashMessage, severityClass:'info',severityLabel:'Info'}" />
-	</f:for>		
+    <f:for each="{flashMessages}" as="flashMessage">
+        <f:render partial="Tools/Message"
+                  arguments="{flashMessage:flashMessage, severityClass:'info',severityLabel:'Info'}"/>
+    </f:for>
 </f:flashMessages>
 <f:flashMessages severity="OK" as="flashMessages">
-	<f:for each="{flashMessages}" as="flashMessage">
-		<f:render partial="Tools/Message" arguments="{flashMessage:flashMessage, severityClass:'success',severityLabel:'OK'}" />
-	</f:for>		
+    <f:for each="{flashMessages}" as="flashMessage">
+        <f:render partial="Tools/Message"
+                  arguments="{flashMessage:flashMessage, severityClass:'success',severityLabel:'OK'}"/>
+    </f:for>
 </f:flashMessages>
+</div>

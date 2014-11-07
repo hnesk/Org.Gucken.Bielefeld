@@ -1,8 +1,8 @@
-<span class="sortlinks {f:if(condition:'{0:column} == {0:request.orderColumn}', then:'activeColumn')}">
-	<f:link.action class="{f:if(condition:'{0:request.orderDirection} == {0:\"ASC\"}', then:'activeDirection')}" action="index" arguments="{orderColumn:column,orderDirection:'ASC'}">
+<span class="sortlinks {f:if(condition:'{0:column} == {0:request.orderColumn}', then:'activeColumn')}" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+	<f:link.action class="{f:if(condition:'{0:request.orderDirection} == {0:\" ASC\"}', then:'activeDirection')}" action="index" arguments="{orderColumn:column,orderDirection:'ASC'}">
 		{label} <i class="caret"></i>
-	</f:link.action>
-	<f:link.action class="{f:if(condition:'{0:request.orderDirection} == {0:\"DESC\"}', then:'activeDirection')}" action="index" arguments="{orderColumn:column,orderDirection:'DESC'}">
+    </f:link.action>
+    <f:link.action class="{f:if(condition:'{0:request.orderDirection} == {0:\" DESC\"}', then:'activeDirection')}" action="index" arguments="{orderColumn:column,orderDirection:'DESC'}">
 		<i class="caret up"></i>
-	</f:link.action>
+    </f:link.action>
 </span>

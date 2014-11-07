@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<f:layout name="Admin.html" />
+<f:layout name="Admin.html"/>
 <f:section name="content">
     <h3>Quelle "{source.name}" bearbeiten</h3>
-	<f:form class="form-horizontal" action="update" name="source" object="{source}" absolute="1">
-		<f:render partial="Source/Form" arguments="{_all}"/>
-		<fieldset class="form-actions">
-			<f:form.submit class="btn btn-primary" name="redirectButton[{f:uri.action(action:'view',arguments:{source : source},absolute:1)}]" value="Speichern & Vorschau" />
-			<f:form.submit class="btn" name="submit" value="Speichern & zurück" />
-			<f:form.submit id="source.defaultSubmit"  class="btn" name="redirectButton[{f:uri.action(action:'edit',arguments:{source : source},absolute:1)}]" value="Speichern & weiter bearbeiten" />
-			<f:form.submit class="btn btn-danger" title="die Quelle {source.name} löschen" name="redirectButton[{f:uri.action(action:'delete',arguments:{source : source},absolute:1)}]" value="Löschen" />
-		</fieldset>
-	</f:form>
+    <f:form class="form-horizontal" action="update" name="source" object="{source}" absolute="1">
+        <f:render partial="Source/Form" arguments="{_all}"/>
+        <fieldset class="form-actions">
+            <f:form.submit class="btn btn-primary"
+                           name="redirectButton[{f:uri.action(action:'view',arguments:{source : source},absolute:1)}]"
+                           value="Speichern & Vorschau"/>
+            <f:form.submit class="btn" name="submit" value="Speichern & zurück"/>
+            <f:form.submit id="source.defaultSubmit" class="btn"
+                           name="redirectButton[{f:uri.action(action:'edit',arguments:{source : source},absolute:1)}]"
+                           value="Speichern & weiter bearbeiten"/>
+            <f:form.submit class="btn btn-danger" title="die Quelle {source.name} löschen"
+                           name="redirectButton[{f:uri.action(action:'delete',arguments:{source : source},absolute:1)}]"
+                           value="Löschen"/>
+        </fieldset>
+    </f:form>
 </f:section>

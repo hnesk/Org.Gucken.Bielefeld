@@ -1,11 +1,16 @@
 {namespace e=Org\Gucken\Events\ViewHelpers}
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 <r:jsonArray>
-	<r:jsonField key="content">
-		<h3>{factoid.startDateTime -> f:format.date(format:'d.m.Y H:i')} - {factoid.endDateTime -> f:format.date(format:'d.m.Y H:i')}</h3>
-		<p><strong>{factoid.shortDescription}</strong></p>
-		<p>{factoid.description}</p>
-		<p><a href="{factoid.url}">{factoid.url}</a></p>
-		<p>Importiert am {factoid.importDateTime -> f:format.date(format:'d.m.Y H:i')}</p>	
-	</r:jsonField>
+    <r:jsonField key="content">
+        <h3>{factoid.startDateTime -> f:format.date(format:'d.m.Y H:i')} - {factoid.endDateTime ->
+            f:format.date(format:'d.m.Y H:i')}</h3>
+
+        <p><strong>{factoid.shortDescription}</strong></p>
+
+        <p>{factoid.description}</p>
+
+        <p><a href="{factoid.url}">{factoid.url}</a></p>
+
+        <p>Importiert am {factoid.importDateTime -> f:format.date(format:'d.m.Y H:i')}</p>
+    </r:jsonField>
 </r:jsonArray>

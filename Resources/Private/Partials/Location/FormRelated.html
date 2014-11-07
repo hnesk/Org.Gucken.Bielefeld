@@ -1,36 +1,39 @@
-{namespace rad=Org\Gucken\Rad\ViewHelpers}
-<fieldset class="well">
-	<rad:row id="location_externalIdentifiers_0_type" property="location.externalIdentifiers" label="Externe IDs">
+<fieldset class="well" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
+    <rad:row id="location_externalIdentifiers_0_type" property="location.externalIdentifiers" label="Externe IDs">
         <ol>
             <f:for each="{location.externalIdentifiers}" as="externalIdentifier" key="i">
                 <li>
-					<a href="{externalIdentifier.url}">{externalIdentifier}</a>
+                    <a href="{externalIdentifier.url}">{externalIdentifier}</a>
                 </li>
             </f:for>
             <li>
-				<f:alias map="{i:location.externalIdentifierCount}">
-					<f:form.select id="location_externalIdentifiers_0_type" class="externalIdentifierScheme" property="externalIdentifiers.{i}.__type"  options="{externalIdentifiers}" />
-					<f:form.textfield property="externalIdentifiers.{i}.id" />
-					<f:form.hidden property="externalIdentifiers.{i}.location" value="{location}"/>
-					<span class="selectHolder" data-url="{f:uri.action(action:'lookup',format:'html',arguments:{location:location, position:i, type:''},absolute:1)}">
+                <f:alias map="{i:location.externalIdentifierCount}">
+                    <f:form.select id="location_externalIdentifiers_0_type" class="externalIdentifierScheme"
+                                   property="externalIdentifiers.{i}.__type" options="{externalIdentifiers}"/>
+                    <f:form.textfield property="externalIdentifiers.{i}.id"/>
+                    <f:form.hidden property="externalIdentifiers.{i}.location" value="{location}"/>
+					<span class="selectHolder"
+                          data-url="{f:uri.action(action:'lookup',format:'html',arguments:{location:location, position:i, type:''},absolute:1)}">
 						{externalIdentifier.id}
 					</span>
-				</f:alias>
+                </f:alias>
             </li>
-		</ol>
-	</rad:row>
+        </ol>
+    </rad:row>
 </fieldset>
-<fieldset class="well">
-	<rad:row id="keywords_{location.keywords -> f:count()}_keyword" property="keywords" label="Keywords">
+<fieldset class="well" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
+    <rad:row id="keywords_{location.keywords -> f:count()}_keyword" property="keywords" label="Keywords">
         <ol>
             <f:for each="{location.keywords}" as="keyword" key="i">
                 <li>{keyword}</li>
             </f:for>
             <li class="autoadd" data-autoadd='{"selector":"input.autoadd-listen","event":"change"}'>
-                <f:form.textfield property="keywords.{location.keywords -> f:count()}.keyword" id="keywords_{location.keywords -> f:count()}_keyword" class="autoadd-listen" />
-                <f:form.hidden  property="keywords.{location.keywords -> f:count()}.location" value="{location}" />
-				<f:form.hidden  property="keywords.{location.keywords -> f:count()}.locationId" value="{location.name}{location.url}" />
+                <f:form.textfield property="keywords.{location.keywords -> f:count()}.keyword"
+                                  id="keywords_{location.keywords -> f:count()}_keyword" class="autoadd-listen"/>
+                <f:form.hidden property="keywords.{location.keywords -> f:count()}.location" value="{location}"/>
+                <f:form.hidden property="keywords.{location.keywords -> f:count()}.locationId"
+                               value="{location.name}{location.url}"/>
             </li>
         </ol>
-	</rad:row>
+    </rad:row>
 </fieldset>

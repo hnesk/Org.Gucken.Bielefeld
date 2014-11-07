@@ -1,24 +1,33 @@
-{namespace e=Org\Gucken\Events\ViewHelpers}
-{namespace rad=Org\Gucken\Rad\ViewHelpers}
-<f:security.ifHasRole role="User">
-	<f:then>
-		<e:account as="account">
-			<h1>Du bist angemeldet</h1>
-			<p>Herzlichen Glückwunsch!</p>
-			<p>Eingelogged als <a href="#">{account.accountIdentifier}</a></p>
-			<p><f:link.action class="btn gucken" action="logout" controller="Account">Logout</f:link.action></p>
-		</e:account>
-	</f:then>
-	<f:else>
-		<h1>Anmeldung</h1>
-		<f:form class="form-horizontal" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">
-			<rad:row id="login_username" property="username" label="Benutzername">
-					<f:form.textfield  additionalAttributes="{placeholder:'Benutzername'}" id="login_username" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" />
-			</rad:row>
-			<rad:row id="login_password" property="password" label="Passwort">
-					<f:form.password additionalAttributes="{placeholder:'Passwort'}" id="login_password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" />
-			</rad:row>
-			<f:form.submit class="btn btn-primary" value="Anmelden" />
-		</f:form>
-	</f:else>
-</f:security.ifHasRole>
+<div xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:e="http://typo3.org/ns/Org/Gucken/Events/ViewHelpers"
+    xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
+    <f:security.ifHasRole role="User">
+        <f:then>
+            <e:account as="account">
+                <h1>Du bist angemeldet</h1>
+                <p>Herzlichen Glückwunsch!</p>
+                <p>Eingelogged als <a href="#">{account.accountIdentifier}</a></p>
+                <p>
+                    <f:link.action class="btn gucken" action="logout" controller="Account">Logout</f:link.action>
+                </p>
+            </e:account>
+        </f:then>
+        <f:else>
+            <h1>Anmeldung</h1>
+            <f:form class="form-horizontal" method="post" name="loginform"
+                    action="authenticate" controller="Account" package="org.gucken.events" absolute="true">
+                <rad:row id="login_username" property="username" label="Benutzername">
+                    <f:form.textfield
+                            placeholder="Benutzername" id="login_username"
+                            name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]"/>
+                </rad:row>
+                <rad:row id="login_password" property="password" label="Passwort">
+                    <f:form.password
+                            placeholder="Passwort" id="login_password"
+                            name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]"/>
+                </rad:row>
+                <f:form.submit class="btn btn-primary" value="Anmelden"/>
+            </f:form>
+        </f:else>
+    </f:security.ifHasRole>
+</div>

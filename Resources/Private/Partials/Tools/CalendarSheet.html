@@ -1,10 +1,9 @@
-{namespace e=Org\Gucken\Events\ViewHelpers}
-<div class="calendarSheet">
-	{date -> e:format.strftime(format:'%a')}
-	<span>, der </span>
-	<b>{date -> e:format.strftime(format:'%d')}</b>
-	<span>. </span>
-	<em>{date -> e:format.strftime(format:'%b')}</em>
-	<span>.</span>
+<div class="calendarSheet" xmlns:e="http://typo3.org/ns/Org/Gucken/Events/ViewHelpers">
+    {date -> e:format.strftime(format:'%a')}
+    <span>, der </span>
+    <b>{date -> e:format.strftime(format:'%d')}</b>
+    <span>. </span>
+    <em>{date -> e:format.strftime(format:'%b')}</em>
+    <span>.</span>
 </div>
 

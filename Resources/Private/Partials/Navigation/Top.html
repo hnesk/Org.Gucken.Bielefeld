@@ -1,28 +1,30 @@
-<ul class="nav">
-	<li><f:link.action action="index" controller="Proposal"><i class="icon-calendar"></i> Veranstaltung einreichen</f:link.action></li>
+<ul class="nav" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+    <li>
+        <f:link.action action="index" controller="Proposal"><i class="icon-calendar"></i> Veranstaltung einreichen</f:link.action>
+    </li>
 </ul>
 <ul class="nav pull-right">
-	<li class="divider-vertical"></li>
-	<f:security.ifAccess resource="Org_Gucken_Events_Controller_Admin">
-		<f:then>
-			<li>
-				<f:link.action action="logout" controller="Account">Logout</f:link.action>
-			</li>
-			<li>
-				<f:link.action action="index" controller="Admin">Admin</f:link.action>
-			</li>
-		</f:then>
-		<f:else>
-			<li class="dropdown">
-				<a data-toggle="dropdown" class="dropdown-toggle" href="#">Login <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				<li>
-					<f:render partial="Account/LoginDropdown" />
-				</li>
-				</ul>
-			</li>
-		</f:else>
-	</f:security.ifAccess>
+    <li class="divider-vertical"></li>
+    <f:security.ifAccess resource="Org_Gucken_Events_Controller_Admin">
+        <f:then>
+            <li>
+                <f:link.action action="logout" controller="Account">Logout</f:link.action>
+            </li>
+            <li>
+                <f:link.action action="index" controller="Admin">Admin</f:link.action>
+            </li>
+        </f:then>
+        <f:else>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Login <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <f:render partial="Account/LoginDropdown"/>
+                    </li>
+                </ul>
+            </li>
+        </f:else>
+    </f:security.ifAccess>
 </ul>
 
 

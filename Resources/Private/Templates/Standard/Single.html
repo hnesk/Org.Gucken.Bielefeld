@@ -1,25 +1,25 @@
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
 <r:jsonArray>
-	<r:jsonField key="update.event_{e:identifier(object:event)}">
-		<f:if condition="{event.shortDescription}">
-			<p><strong>{event.shortDescription}</strong></p>
-		</f:if>
-		<r:markdown>{event.description}</r:markdown>
-		<ul>
-			<f:for each="{event.types}" as="type">
-				<li>{type}</li>
-			</f:for>
-		</ul>
-		<ul>
-			<f:for each="{event.links}" as="link">
-				<li class="link {link.class}"><a href="{link.url}">{link}</a></li>
-			</f:for>
-		</ul>
-	</r:jsonField>
-	<r:jsonField key="run.toggleEvent">
-		<r:jsonArray>
-			<r:jsonField key="event">{e:identifier(object:event)}</r:jsonField>
-		</r:jsonArray>
-	</r:jsonField>
+    <r:jsonField key="update.event_{e:identifier(object:event)}">
+        <f:if condition="{event.shortDescription}">
+            <p><strong>{event.shortDescription}</strong></p>
+        </f:if>
+        <r:markdown>{event.description}</r:markdown>
+        <ul>
+            <f:for each="{event.types}" as="type">
+                <li>{type}</li>
+            </f:for>
+        </ul>
+        <ul>
+            <f:for each="{event.links}" as="link">
+                <li class="link {link.class}"><a href="{link.url}">{link}</a></li>
+            </f:for>
+        </ul>
+    </r:jsonField>
+    <r:jsonField key="run.toggleEvent">
+        <r:jsonArray>
+            <r:jsonField key="event">{e:identifier(object:event)}</r:jsonField>
+        </r:jsonArray>
+    </r:jsonField>
 </r:jsonArray>

@@ -1,19 +1,21 @@
-{namespace e=Org\Gucken\Events\ViewHelpers}
-<f:security.ifHasRole role="User">
-	<f:then>
-		<e:account as="account">
-          <p class="navbar-text pull-right">
-			  Eingelogged als <a href="#">{account.accountIdentifier}</a>
-			  <f:link.action class="btn gucken" action="logout" controller="Account">Logout</f:link.action>
-		  </p>
-		</e:account>
-	</f:then>
-	<f:else>
-		<f:form class="pull-right navbar-form" action="authenticate" controller="Account" package="org.gucken.events" absolute="true" method="post" name="loginform">
-            <f:form.textfield  class="input-small"  additionalAttributes="{placeholder:'Benutzername'}" id="login_username" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" />
-            <f:form.password class="input-small" additionalAttributes="{placeholder:'Passwort'}" id="login_password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" />
-            <button class="btn gucken" type="submit">Einloggen</button>
-		</f:form>
-	</f:else>
-</f:security.ifHasRole>
-
+<div xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:e="http://typo3.org/ns/Org/Gucken/Events/ViewHelpers">
+    <f:security.ifHasRole role="User">
+        <f:then>
+            <e:account as="account">
+                <p class="navbar-text pull-right">
+                    Eingelogged als <a href="#">{account.accountIdentifier}</a>
+                    <f:link.action class="btn gucken" action="logout" controller="Account">Logout</f:link.action>
+                </p>
+            </e:account>
+        </f:then>
+        <f:else>
+            <f:form method="post" name="loginform" class="pull-right navbar-form"
+                    action="authenticate" controller="Account" package="org.gucken.events" absolute="true">
+                <f:form.textfield class="input-small" placeholder="Benutzername" id="login_username" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]"/>
+                <f:form.password class="input-small" placeholder="Passwort" id="login_password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]"/>
+                <button class="btn gucken" type="submit">Einloggen</button>
+            </f:form>
+        </f:else>
+    </f:security.ifHasRole>
+</div>

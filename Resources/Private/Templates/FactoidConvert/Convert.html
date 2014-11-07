@@ -1,19 +1,19 @@
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
 <r:jsonArray>
-	<r:jsonField key="update.events_{currentDate -> f:format.date(format:'Ymd')}">
-		<f:for each="{events}" as="event">
-			<f:render partial="Factoid/Event" arguments="{event:event}" />
-		</f:for>
-		&nbsp;			
-	</r:jsonField>
-	<r:jsonField key="update.identities_{currentDate -> f:format.date(format:'Ymd')}">
-		<f:for each="{identities}" as="identity">
-			<f:render partial="Factoid/Identity" arguments="{identity:identity}" />
-		</f:for>
-		&nbsp;
-	</r:jsonField>
-	<r:jsonField key="append.message-drawer">
-		<f:render partial="Tools/Messages" />
-	</r:jsonField>
+    <r:jsonField key="update.events_{currentDate -> f:format.date(format:'Ymd')}">
+        <f:for each="{events}" as="event">
+            <f:render partial="Factoid/Event" arguments="{event:event}"/>
+        </f:for>
+        &nbsp;
+    </r:jsonField>
+    <r:jsonField key="update.identities_{currentDate -> f:format.date(format:'Ymd')}">
+        <f:for each="{identities}" as="identity">
+            <f:render partial="Factoid/Identity" arguments="{identity:identity}"/>
+        </f:for>
+        &nbsp;
+    </r:jsonField>
+    <r:jsonField key="append.message-drawer">
+        <f:render partial="Tools/Messages"/>
+    </r:jsonField>
 </r:jsonArray>

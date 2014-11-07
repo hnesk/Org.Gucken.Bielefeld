@@ -1,71 +1,81 @@
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
-<f:layout name="Page.html" />
+<f:layout name="Page.html"/>
 
-<f:section name="title">Kommende Veranstaltungen: </f:section>
+<f:section name="title">Kommende Veranstaltungen:</f:section>
 
 <f:section name="content">
-<div class="row">
-	<div class="span9">
-		<div class="content">
-			<f:security.ifAccess resource="Org_Gucken_Events_Actions_Create">
-				<f:link.action controller="event" action="add" arguments="{event:event}">+</f:link.action>
-			</f:security.ifAccess>
+    <div class="row">
+        <div class="span9">
+            <div class="content">
+                <f:security.ifAccess resource="Org_Gucken_Events_Actions_Create">
+                    <f:link.action controller="event" action="add" arguments="{event:event}">+</f:link.action>
+                </f:security.ifAccess>
 
-			<f:groupedFor each="{events}" as="eventsToday" groupBy="day" groupKey="day">
-				<dl class="calendarList vcalender clearfix row">
+                <f:groupedFor each="{events}" as="eventsToday" groupBy="day" groupKey="day">
+                    <dl class="calendarList vcalender clearfix row">
 
-					<dt class="span1">
-						<f:render partial="Tools/CalendarSheet" arguments="{date:day.date}" />
-					</dt>
-					<dd class="span7">
-						<f:groupedFor each="{eventsToday}" as="eventsByType" groupBy="type" groupKey="type">
-							<h3>{type.title}</h3>
-							<table class="daylist table table-striped">
-								<thead>
-									<tr>
-										<th>Uhrzeit</th>
-										<th>Veranstaltung</th>
-										<th>Ort</th>
-									</tr>
-								</thead>
-								<tbody>
-									<f:for each="{eventsByType}" as="event">
-										<tr class="vevent">
-											<td class="time">
-												<abbr class="dtstart" title="{event.startDateTime -> f:format.date(format:'Y-m-d\TH:i:sO')}">
-													{event.startDateTime -> f:format.date(format:'H:i')}
-												</abbr>
-											</td>
-											<td class="title summary">
-												<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
-													<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
-												</f:security.ifAccess>
-												<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
-													<r:link.action controller="event" action="delete" arguments="{event:event}">-</r:link.action>
-												</f:security.ifAccess>
-												<f:link.action additionalAttributes="{data-toggle:'collapse',data-target:'#event_{e:identifier(object:event)}'}" class="url ajaxable" action="show" arguments="{event:event}"><span title="{event.title}">{event.title}</span></f:link.action>
-												<div class="collapse" id="event_{e:identifier(object:event)}"></div>
-											</td>
-											<td class="location">{event.location.name} {event.location.address.addressLocality}</td>
-										</tr>
-									</f:for>
-								</tbody>
-							</table>
-						</f:groupedFor>
-						<hr />
+                        <dt class="span1">
+                            <f:render partial="Tools/CalendarSheet" arguments="{date:day.date}"/>
+                        </dt>
+                        <dd class="span7">
+                            <f:groupedFor each="{eventsToday}" as="eventsByType" groupBy="type" groupKey="type">
+                                <h3>{type.title}</h3>
+                                <table class="daylist table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Uhrzeit</th>
+                                        <th>Veranstaltung</th>
+                                        <th>Ort</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <f:for each="{eventsByType}" as="event">
+                                        <tr class="vevent">
+                                            <td class="time">
+                                                <abbr class="dtstart"
+                                                      title="{event.startDateTime -> f:format.date(format:'Y-m-d\TH:i:sO')}">
+                                                    {event.startDateTime -> f:format.date(format:'H:i')}
+                                                </abbr>
+                                            </td>
+                                            <td class="title summary">
+                                                <f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
+                                                    <f:link.action controller="event" action="edit"
+                                                                   arguments="{event:event}">~
+                                                    </f:link.action>
+                                                </f:security.ifAccess>
+                                                <f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
+                                                    <r:link.action controller="event" action="delete"
+                                                                   arguments="{event:event}">-
+                                                    </r:link.action>
+                                                </f:security.ifAccess>
+                                                <f:link.action
+                                                        additionalAttributes="{data-toggle:'collapse',data-target:'#event_{e:identifier(object:event)}'}"
+                                                        class="url ajaxable" action="show" arguments="{event:event}">
+                                                    <span title="{event.title}">{event.title}</span></f:link.action>
+                                                <div class="collapse" id="event_{e:identifier(object:event)}"></div>
+                                            </td>
+                                            <td class="location">{event.location.name}
+                                                {event.location.address.addressLocality}
+                                            </td>
+                                        </tr>
+                                    </f:for>
+                                    </tbody>
+                                </table>
+                            </f:groupedFor>
+                            <hr/>
 
-					</dd>
-				</dl>
-			</f:groupedFor>
-		</div>
-	</div>
-	<div class="span3">
-		<div class="content">
-			<f:render partial="Tools/Twitter" />
-		</div>
-	</div>
-</div>
+                        </dd>
+                    </dl>
+                </f:groupedFor>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="content">
+                <f:render partial="Tools/Twitter"/>
+            </div>
+        </div>
+    </div>
 </f:section>
 

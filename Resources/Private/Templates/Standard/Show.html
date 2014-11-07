@@ -1,34 +1,37 @@
 {namespace r=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
-<f:layout name="Page.html" />
+<f:layout name="Page.html"/>
 
-<f:section name="title">{event.title}, {event.types.0} am {event.startDateTime -> e:format.strftime(format:'%A, %d.%m %H:%M')} im {event.location.name}, {event.location.address.addressLocality}: </f:section>
+<f:section name="title">{event.title}, {event.types.0} am {event.startDateTime -> e:format.strftime(format:'%A, %d.%m
+    %H:%M')} im {event.location.name}, {event.location.address.addressLocality}:
+</f:section>
 
 <f:section name="content">
-	<p>{event.startDateTime -> e:format.strftime(format:'%A, %d.%m %H:%M')}</p>
-	<h2>
-		<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
-			<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
-		</f:security.ifAccess>
-		<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
-			<r:link.action controller="event" action="delete" arguments="{event:event}">-</r:link.action>
-		</f:security.ifAccess>
-		{event.title} <span>{event.location.name}, {event.location.address.addressLocality}</span>
-	</h2>
+    <p>{event.startDateTime -> e:format.strftime(format:'%A, %d.%m %H:%M')}</p>
 
-	<div id="content">
-		<h4>{event.shortDescription}</h4>
-		<r:markdown>{event.description}</r:markdown>
-		<ul>
-			<f:for each="{event.types}" as="type">
-				<li>{type}</li>
-			</f:for>
-		</ul>
-		<ul>
-			<f:for each="{event.links}" as="link">
-				<li class="link {link.class}"><a href="{link.url}">{link}</a></li>
-			</f:for>
-		</ul>
-	</div>
+    <h2>
+        <f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
+            <f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
+        </f:security.ifAccess>
+        <f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
+            <r:link.action controller="event" action="delete" arguments="{event:event}">-</r:link.action>
+        </f:security.ifAccess>
+        {event.title} <span>{event.location.name}, {event.location.address.addressLocality}</span>
+    </h2>
+
+    <div id="content">
+        <h4>{event.shortDescription}</h4>
+        <r:markdown>{event.description}</r:markdown>
+        <ul>
+            <f:for each="{event.types}" as="type">
+                <li>{type}</li>
+            </f:for>
+        </ul>
+        <ul>
+            <f:for each="{event.links}" as="link">
+                <li class="link {link.class}"><a href="{link.url}">{link}</a></li>
+            </f:for>
+        </ul>
+    </div>
 </f:section>
