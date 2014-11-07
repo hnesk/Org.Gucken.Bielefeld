@@ -7,8 +7,10 @@
     <h2><i class="icon-magnet"></i> Quellen</h2>
 
     <p>
-        <r:link.action class="btn" action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\" index\
-        ")}'}"><i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)</r:link.action></p>
+        <r:link.action class="btn" action="all" controller="Import" arguments="{redirect:'{f:uri.action(action:\" index\")}'}">
+            <i class="icon-arrow-left"></i> Alle Importieren (dauert ewig)
+        </r:link.action>
+    </p>
     <p>
         <f:link.action action="add"><i class="icon-plus-sign"></i> Quelle hinzufügen</f:link.action>
     </p>
@@ -28,8 +30,7 @@
             <tr class="vevent">
                 <td class="actions">
                     <div class="btn-group">
-                        <f:link.action class="btn" action="edit" arguments="{source : source}"><i
-                                class="icon-pencil"></i></f:link.action>
+                        <f:link.action class="btn" action="edit" arguments="{source : source}"><i class="icon-pencil"></i></f:link.action>
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
@@ -41,9 +42,8 @@
                             <li>
                                 <r:link.action action="source" controller="Import"
                                                title="die Quelle {source.name} importieren"
-                                               arguments="{source:source, redirect:'{f:uri.action(action:\" index\
-                                ")}'}">
-                                <i class="icon-arrow-left"></i> Importieren
+                                               arguments="{source:source, redirect:'{f:uri.action(action:\"index\")}'}">
+                                    <i class="icon-arrow-left"></i> Importieren
                                 </r:link.action>
                             </li>
                             <li>

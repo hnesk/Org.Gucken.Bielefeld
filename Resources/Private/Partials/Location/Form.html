@@ -1,35 +1,37 @@
-<fieldset class="well" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
-    <rad:row id="location_name" property="name" label="Name">
-        <f:form.textfield class="span4" id="location_name" property="name"/>
-    </rad:row>
-    <rad:row id="location_description" property="description" label="Beschreibung">
-        <f:form.textarea class="span4" id="location_description" property="description" rows="3" cols="30"/>
-    </rad:row>
-    <rad:row id="location_url" property="url" label="Link">
-        <f:form.textfield class="span4" id="location_url" property="url"/>
-    </rad:row>
-    <rad:row id="location_email" property="email" label="E-Mail">
-        <f:form.textfield class="span4" id="location_email" property="email"/>
-    </rad:row>
-    <rad:row id="location_telephone" property="telephone" label="Telefon">
-        <f:form.textfield id="location_telephone" property="telephone"/>
-    </rad:row>
-    <rad:row id="location_faxNumber" property="faxNumber" label="Fax">
-        <f:form.textfield id="location_faxNumber" property="faxNumber"/>
-    </rad:row>
-    <rad:row id="location_code" property="code" label="Code">
-        <f:form.textfield class="span1" id="location_code" property="code"/>
-    </rad:row>
-</fieldset>
-<h4>Addresse</h4>
-<fieldset class="well" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
-    <rad:row id="location_address_streetAddress" property="address.streetAddress" label="Strasse">
-        <f:form.textfield class="span4" id="location_address_streetAddress" property="address.streetAddress"/>
-    </rad:row>
-    <rad:row id="location_address_postalCode" property="address.postalCode" label="PLZ / Stadt">
-        <div class="row-fluid">
-            <f:form.textfield class="span1" id="location_address_postalCode" property="address.postalCode"/>
-            <f:form.textfield class="span3" id="location_address_addressLocality" property="address.addressLocality"/>
-        </div>
-    </rad:row>
-</fieldset>
+<div xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
+    <fieldset class="well">
+        <rad:row id="location_name" property="name" label="Name">
+            <f:form.textfield class="span4" id="location_name" property="name"/>
+        </rad:row>
+        <rad:row id="location_description" property="description" label="Beschreibung">
+            <f:form.textarea class="span4" id="location_description" property="description" rows="3" cols="30"/>
+        </rad:row>
+        <rad:row id="location_url" property="url" label="Link">
+            <f:form.textfield class="span4" id="location_url" property="url"/>
+        </rad:row>
+        <rad:row id="location_email" property="email" label="E-Mail">
+            <f:form.textfield class="span4" id="location_email" property="email"/>
+        </rad:row>
+        <rad:row id="location_telephone" property="telephone" label="Telefon">
+            <f:form.textfield id="location_telephone" property="telephone"/>
+        </rad:row>
+        <rad:row id="location_faxNumber" property="faxNumber" label="Fax">
+            <f:form.textfield id="location_faxNumber" property="faxNumber"/>
+        </rad:row>
+        <rad:row id="location_code" property="code" label="Code">
+            <f:form.textfield class="span1" id="location_code" property="code"/>
+        </rad:row>
+    </fieldset>
+    <h4>Addresse</h4>
+    <fieldset class="well">
+        <rad:row id="location_address_streetAddress" property="address.streetAddress" label="Strasse">
+            <f:form.textfield class="span4" id="location_address_streetAddress" property="address.streetAddress"/>
+        </rad:row>
+        <rad:row id="location_address_postalCode" property="address.postalCode" label="PLZ / Stadt">
+            <div class="row-fluid">
+                <f:form.textfield class="span1" id="location_address_postalCode" property="address.postalCode"/>
+                <f:form.textfield class="span3" id="location_address_addressLocality" property="address.addressLocality"/>
+            </div>
+        </rad:row>
+    </fieldset>
+</div>
