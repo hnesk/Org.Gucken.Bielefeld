@@ -1,8 +1,7 @@
 {
-    "name": "org/gucken-bielefeld",
+    "name": "org-gucken/bielefeld",
     "type": "typo3-flow-package",
     "description": "",
-    "version": "0.1.0",
     "require": {
         "typo3/flow": "*"
     },
