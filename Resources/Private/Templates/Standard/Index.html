@@ -1,8 +1,7 @@
-{namespace m=Org\Gucken\Markdown\ViewHelpers}
+{namespace r=Org\Gucken\Rad\ViewHelpers}
 {namespace e=Org\Gucken\Events\ViewHelpers}
 <?xml version="1.0" encoding="UTF-8"?>
 <f:layout name="Page.html" />
-
 
 <f:section name="title">Kommende Veranstaltungen: </f:section>
 
@@ -43,9 +42,9 @@
 												<f:security.ifAccess resource="Org_Gucken_Events_Actions_Modify">
 													<f:link.action controller="event" action="edit" arguments="{event:event}">~</f:link.action>
 												</f:security.ifAccess>
-												<r:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
-													<f:link.action controller="event" action="delete" arguments="{event:event}">-</f:link.action>
-												</r:security.ifAccess>
+												<f:security.ifAccess resource="Org_Gucken_Events_Actions_Delete">
+													<r:link.action controller="event" action="delete" arguments="{event:event}">-</r:link.action>
+												</f:security.ifAccess>
 												<f:link.action additionalAttributes="{data-toggle:'collapse',data-target:'#event_{e:identifier(object:event)}'}" class="url ajaxable" action="show" arguments="{event:event}"><span title="{event.title}">{event.title}</span></f:link.action>
 												<div class="collapse" id="event_{e:identifier(object:event)}"></div>
 											</td>
