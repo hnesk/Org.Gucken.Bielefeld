@@ -24,11 +24,11 @@
 				<tr class="filter">
 					<th></th>
 					<th>
-						<input type="date" name="searchRequest[startDate][date]" value="{searchRequest.startDate -> f:format.date(format:'y-m-d')}" class="span4" />
-						<f:form.hidden name="searchRequest[startDate][dateFormat]" value="y-m-d" />
+						<input type="date" name="searchRequest[startDate][date]" value="{searchRequest.startDate -> f:format.date(format:'Y-m-d')}" class="span4" />
+						<f:form.hidden name="searchRequest[startDate][dateFormat]" value="Y-m-d" />
 						-
-						<input type="date" name="searchRequest[endDate][date]" value="{searchRequest.endDate -> f:format.date(format:'y-m-d')}" class="span4" />
-						<f:form.hidden name="searchRequest[endDate][dateFormat]" value="y-m-d" />
+						<input type="date" name="searchRequest[endDate][date]" value="{searchRequest.endDate -> f:format.date(format:'Y-m-d')}" class="span4" />
+						<f:form.hidden name="searchRequest[endDate][dateFormat]" value="Y-m-d" />
 					</th>
 					<th>
 						<f:form.textfield class="span6" size="" property="title" />
