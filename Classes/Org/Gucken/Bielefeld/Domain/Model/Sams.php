@@ -2,44 +2,50 @@
 
 namespace Org\Gucken\Bielefeld\Domain\Model;
 
-use Org\Gucken\Events\Domain\Model\EventSource\AbstractEventSource,
-	Org\Gucken\Events\Domain\Model\EventSource\EventSourceInterface;
+use TYPO3\Flow\Annotations as Flow;
+use Org\Gucken\Events\Annotations as Events;
 
-use	Type\Xml;
+use Org\Gucken\Events\Domain\Model\EventSource\AbstractEventSource;
+use Org\Gucken\Events\Domain\Model\EventSource\EventSourceInterface;
+use Org\Gucken\Events\Domain\Model\Location;
+use Org\Gucken\Events\Domain\Model\Type;
 
-use Org\Gucken\Events\Annotations as Events,
-    TYPO3\Flow\Annotations as Flow;
+use Type\Xml;
+
 
 /**
  * @Flow\Scope("prototype")
  */
-class Sams extends AbstractEventSource implements EventSourceInterface {
+class Sams extends AbstractEventSource implements EventSourceInterface
+{
 
     /**
      * @Events\Configurable
-     * @var \Org\Gucken\Events\Domain\Model\Location
+     * @var Location
      */
     protected $location;
 
     /**
      * @Events\Configurable
-     * @var \Org\Gucken\Events\Domain\Model\Type
+     * @var Type
      */
     protected $type;
 
 
     /**
-     * @param \Org\Gucken\Events\Domain\Model\Location $location
+     * @param Location $location
      */
-    public function setLocation($location) {
+    public function setLocation($location)
+    {
         $this->location = $location;
     }
 
     /**
      *
-     * @param \Org\Gucken\Events\Domain\Model\Type $type
+     * @param Type $type
      */
-    public function setType(\Org\Gucken\Events\Domain\Model\Type $type) {
+    public function setType(Type $type)
+    {
         $this->type = $type;
     }
 
@@ -47,34 +53,37 @@ class Sams extends AbstractEventSource implements EventSourceInterface {
     /**
      * @return \Type\Record\Collection
      */
-    public function getEvents() {
-		return $this->getUrl()->load('badHtml')->getContent()->css('#events .fullevent')->asXml()->map(array($this,'getEvent'));
+    public function getEvents()
+    {
+        return $this->getUrl()->load('badHtml')->getContent()->css('#events .fullevent')->asXml()->map(
+            array($this, 'getEvent')
+        );
     }
-	
-	/**
-	 *
-	 * @param Xml $xml
-	 * @return \Type\Record 
-	 */
-	public function getEvent(Xml $xml) {
-		#$xml->debug();
-		$wholeTitle = $xml->css('.eventinfo a h2')->asString()->normalizeSpace();
-		$title = $wholeTitle->pregReplace('/^(?:\d+\|\d+\s+)?(.+)\[ab\s\d+h\]$/', '$1');		
-		$date = $wholeTitle->substringBefore($title);
-		#if (!is($date)) {
-			$date = $xml->getDocument()->xpath('//a[@href="#'.$xml->getAttribute('id').'"]')->css('h3')->asString()->asDate('%d/%m')->modified('-1 day')->strftime('%d|%m');
-		#}
-		$dateTimeString = $date->append(' ')->append($wholeTitle->substringAfter($title))->normalizeSpace();		
-		
-		return new \Type\Record(array(
-			'title' => $title,
-			'date' => $dateTimeString->asDate('%d[\|/]%m.+\[ab\s%Hh\]', null, 0 , 5),
-			'end' => $xml->css('.eventlogo div span')->asString()->normalizeSpace()->asDate('%d.%m.%Y\s+%H:%M'),
-			'description' => $xml->css('.eventinfo')->xpath('/text()')->asString()->normalizeParagraphs(),
-			'type' => $this->type,
-			'location' => $this->location,
-		));
-	}
-}
 
-?>
+    /**
+     *
+     * @param Xml $xml
+     * @return \Type\Record
+     */
+    public function getEvent(Xml $xml)
+    {
+        $wholeTitle = $xml->css('.eventinfo a h2')->asString()->normalizeSpace();
+        $title = $wholeTitle->pregReplace('/^(?:\d+\|\d+\s+)?(.+)\[ab\s\d+h\]$/', '$1');
+        $date = $xml->getDocument()
+            ->xpath('//a[@href="#' . $xml->getAttribute('id') . '"]')
+            ->css('h3')->asString()
+            ->asDate('%d/%m')->modified('-1 day')->strftime('%d|%m');
+        $dateTimeString = $date->append(' ')->append($wholeTitle->substringAfter($title))->normalizeSpace();
+
+        return new \Type\Record(
+            array(
+                'title' => $title,
+                'date' => $dateTimeString->asDate('%d[\|/]%m.+\[ab\s%Hh\]', null, 0, 5),
+                'end' => $xml->css('.eventlogo div span')->asString()->normalizeSpace()->asDate('%d.%m.%Y\s+%H:%M'),
+                'description' => $xml->css('.eventinfo')->xpath('/text()')->asString()->normalizeParagraphs(),
+                'type' => $this->type,
+                'location' => $this->location,
+            )
+        );
+    }
+}
