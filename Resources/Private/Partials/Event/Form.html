@@ -8,20 +8,16 @@
     </rad:row>
 
     <rad:row id="event_startDateTime" property="startDateTime" label="Start">
-        <input class="span2" type="date" name="event[startDateTime][date]" id="event_startDateTime" size="10"
-               maxlength="10" value="{event.startDateTime -> f:format.date(format:'Y-m-d')}"/>
+        <input class="span2" type="date" name="event[startDateTime][date]" id="event_startDateTime" size="10" maxlength="10" value="{event.startDateTime -> f:format.date(format:'Y-m-d')}"/>
         <f:form.hidden name="event[startDateTime][dateFormat]" value="Y-m-d"/>
-        <input class="span1" type="time" step="1800" name="event[startDateTime][time]" id="startDateTime_time" size="5"
-               maxlength="5" value="{event.startDateTime -> f:format.date(format:'H:i')}"/>
+        <input class="span1" type="time" step="1800" name="event[startDateTime][time]" id="startDateTime_time" size="5" maxlength="5" value="{event.startDateTime -> f:format.date(format:'H:i')}"/>
         <f:form.hidden name="event[startDateTime][timeFormat]" value="H:i"/>
     </rad:row>
 
     <rad:row id="event_endDateTime" property="endDateTime" label="Ende">
-        <input class="span2" type="date" name="event[endDateTime][date]" id="event_endDateTime" size="10" maxlength="10"
-               value="{event.endDateTime -> f:format.date(format:'Y-m-d')}"/>
+        <input class="span2" type="date" name="event[endDateTime][date]" id="event_endDateTime" size="10" maxlength="10" value="{event.endDateTime -> f:format.date(format:'Y-m-d')}"/>
         <f:form.hidden name="event[endDateTime][dateFormat]" value="Y-m-d"/>
-        <input class="span1" type="time" step="1800" name="event[endDateTime][time]" id="endDateTime_time" size="5"
-               maxlength="5" value="{event.endDateTime -> f:format.date(format:'H:i')}"/>
+        <input class="span1" type="time" step="1800" name="event[endDateTime][time]" id="endDateTime_time" size="5" maxlength="5" value="{event.endDateTime -> f:format.date(format:'H:i')}"/>
         <f:form.hidden name="event[endDateTime][timeFormat]" value="H:i"/>
     </rad:row>
 

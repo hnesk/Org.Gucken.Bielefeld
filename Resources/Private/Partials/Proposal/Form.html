@@ -1,18 +1,14 @@
-{namespace rad=Org\Gucken\Rad\ViewHelpers}
-{namespace e=Org\Gucken\Events\ViewHelpers}
-{namespace media=TYPO3\Media\ViewHelpers}
 <fieldset
         xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-        xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers"
-        xmlns:e="http://typo3.org/ns/Org/Gucken/Events/ViewHelpers"
-        xmlns:media="http://typo3.org/ns/TYPO3/Media/ViewHelpers">
+        xmlns:rad="http://typo3.org/ns/Org/Gucken/Rad/ViewHelpers">
     <rad:row id="factoid_title" property="title" label="Veranstaltungsname">
         <f:form.textfield class="span6" id="factoid_title" property="title"/>
     </rad:row>
     <rad:row id="factoid_startDateTime" property="startDateTime" label="Datum / Uhrzeit">
-        <e:form.dateTime property="startDateTime" additionalAttributes="{data-date-format: 'dd.mm.yy'}"
-                         placeholder="dd.mm.jj" dateFormat="d.m.y" timeFormat="H:i" class="span1"
-                         id="factoid_startDateTime" size="8" maxlength="8"/>
+        <input type="date" name="proposal[startDateTime][date]" id="startDateTime" size="10" maxlength="10" value="{proposal.startDateTime -> f:format.date(format:'Y-m-d')}"/>
+        <f:form.hidden name="proposal[startDateTime][dateFormat]" value="Y-m-d" />
+        <input type="time" name="proposal[startDateTime][time]" id="startDateTime_time" size="5" maxlength="5" value="{proposal.startDateTime -> f:format.date(format:'H:i')}"/>
+        <f:form.hidden name="proposal[startDateTime][timeFormat]" value="H:i" />
     </rad:row>
     <rad:row id="factoid_location" property="locationText" label="Veranstaltungsort">
         <f:if condition="{proposedLocations}">
